@@ -1,0 +1,252 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Apply to Be a Seller| Jewellery</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+</head>
+<header>
+    {%include 'header.html'%}
+</header>
+<body>
+
+<div class="d-flex" id="wrapper">
+    {%include "sideNav.html"%}
+    <!-- Sidebar -->
+
+    <!--Main View Start-->
+    <div id="page-content-wrapper">
+        {% for message in messages %}
+        <br>
+        <div class="col-md-8">
+            <div class="alert alert-info">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <strong>{{message}}!</strong></div>
+
+
+        </div>
+
+        {% endfor %}
+        <div class="container-fluid">
+            <main role="main"><br>
+                <div class="container col-md-6">
+                    <div class="py-5 text-center bg-info" style="color:#fff ">
+                        <h2>BECOME A SELLER </h2>
+
+                    </div>
+                    <hr>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3 ">
+                                {{form.as_p}}
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-danger " type="submit"><i class="fas fa-sign-in-alt"></i>
+                            Submit
+                        </button>
+                    </form>
+                    <!--<form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstname"> First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstname" placeholder=""
+                                       name="firstname" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastname"> Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastname" placeholder=""
+                                       name="lastname" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid Last name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="companyName">Company Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="companyName" placeholder=""
+                                       name="companyName" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid Company name is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="address">Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="address"
+                                       placeholder="Address" name="address" value=""
+                                       required>
+                                <div class="invalid-feedback">
+                                    Please enter your address.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="mobile">Phone <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="mobile"
+                                       placeholder="" name="mobile" value="" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Phone Number.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="email">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email"
+                                       placeholder="you@example.com" name="email" value="">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="NID">NID <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="NID" placeholder=""
+                                       name="NID" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid NID Number is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="TradeLicense">Trade License<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="TradeLicense" placeholder=""
+                                       name="TradeLicense" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid Trade License Number is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="NID">NID Image<span class="text-danger">*</span></label><br>
+                                <input data-required="image" type="file"
+                                       name="NIDImage"
+                                       id="nid_file"
+                                       class="image-input"
+                                       data-traget-resolution="image_resolution"
+                                       height="100" value="">
+                                <div class="invalid-feedback">
+                                    Valid NID Image is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="TradeLicense">Trade License Image<span
+                                        class="text-danger">*</span></label><br>
+                                <input data-required="image" type="file"
+                                       name="TradeImage"
+                                       id="trade_file"
+                                       class="image-input"
+                                       data-traget-resolution="image_resolution"
+                                       height="100" value="">
+                                <div class="invalid-feedback">
+                                    Valid Trade License Number is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-1">
+                                <label for="username">Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="username" id="username"
+                                           placeholder="Username"
+                                           required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Your username is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Password">Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                           placeholder="Password" minlength="8"
+                                           title="Must contain 8 or more characters" required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Invalid Password
+                                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="Password"> Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="password" class="form-control" id="confirm_password"
+                                           name="confirm_password"
+                                           placeholder="Password" required>
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Password Not Mactched.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-danger " type="submit"><i class="fas fa-sign-in-alt"></i>
+                            Submit
+                        </button>
+                    </form>-->
+                </div>
+                <br>
+            </main>
+        </div>
+
+    </div>
+
+    <!--Main View End-->
+</div>
+
+<!-- FOOTER -->
+{% include 'footer.html'%}
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/form-validation.js' %}"></script>
+</html>

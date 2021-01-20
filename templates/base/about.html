@@ -1,0 +1,125 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+    <title>About | Jewellery </title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+       body {
+    font-family: Algerian;
+}
+
+      .form-count {
+  display: block;
+  width: 40%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/wishlist.css' %}" rel="stylesheet">
+</head>
+<header>
+    {%include 'header.html'%}
+</header>
+<main role="main">
+    <body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        {%include "sideNav.html"%}
+        <br> <br>
+        <!--Main View Start-->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <main role="main"><br>
+                    <div class="cart-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="py-3 text-center">
+                                        <h2>About</h2>
+                                        <hr>
+                                    </div>
+                                    <div class="">
+
+                                        <p>A one-stop shop full of all the right choices, Ecogreen.com.bd is a health
+                                            food haven with organic fruit & vegetables, Fish. Our over-flowing groceries
+                                            range is full of gluten-free, dairy-free, raw food and healthy options,
+                                            while our Health & Body care department stocks the best natural beauty
+                                            brands and a wide range of high quality health supplements. Know About us.
+
+                                            When we opened our doors in 2019, it our dream to offer the best and widest
+                                            range of organic foods available, and our mission to promote health in the
+                                            community and to bring a sense of discovery and adventure into food
+                                            shopping. As most food production becomes increasingly industrialized, we
+                                            want to bring back a sense of food that you can trust. To know about us and
+                                            to buy our product Visit our shop today.</p>
+                                        <h5>We are always in touch!</h5>
+                                        <p>
+
+                                            You can leave us a message via the Facebook, send us an email, call us or
+                                            find us in social networks. For detailed contact information about us,
+                                            please see the Contact us Page.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </main>
+            </div>
+
+        </div>
+        <!--Main View End-->
+    </div>
+    </body>
+</main>
+{% include 'footer.html'%}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</html>

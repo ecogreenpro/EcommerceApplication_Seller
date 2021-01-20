@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+{%load static%}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Jewellery Admin') }}{% endblock %}
+
+{% block extrastyle %}
+<head>
+<link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+</head>
+<style>
+
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: #ac801cc2;
+    color: #ffc;
+    overflow: hidden;
+}
+.module h2, .module caption, .inline-group h2{
+background: #ac801cc2;
+}
+div.breadcrumbs {
+    background: #ac801c;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+}
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    float: right;
+    border: none;
+    font-weight: 400;
+    background: #ac801cc2;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #ac801cc2;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Jewellery Admin') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

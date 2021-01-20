@@ -1,0 +1,353 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/eco.png' %}"/>
+    <title>Oder | Vendor | Ecogreen</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendorstatic/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="{% static 'vendorstatic/css/sb-admin-2.min.css'%}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {%include 'vendor/sidebar.html'%}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            {%include 'vendor/topbar.html'%}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Order Manager</h1>
+
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">All Products</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>#Order ID</th>
+                                    <th>Order Total</th>
+                                    <th>Status</th>
+                                    <th>Payment Method</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>3142</td>
+                                    <td>৳ 3000</td>
+                                    <td><span class="badge badge-info">Complete</span></td>
+                                    <td>bkash</td>
+                                    <td>Mohibul Hasan</td>
+                                    <td>December 2, 2020</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#orderManage"><i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>3141</td>
+                                    <td>৳ 3000</td>
+                                    <td><span class="badge badge-danger"> Cancel</span></td>
+                                    <td>bkash</td>
+                                    <td>Shajeeb Haider</td>
+                                    <td>December 1, 2020</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#orderManage"><i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>3140</td>
+                                    <td>৳ 3000</td>
+                                    <td><span class="badge badge-warning"> Pending</span></td>
+                                    <td>Cash on Delivery</td>
+                                    <td>J Kowser</td>
+                                    <td>December 1, 2020</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#orderManage"><i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+            <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content border-0">
+                        <div class="modal-body p-0">
+                            <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                                <div class="card-header pb-0 bg-white border-0 ">
+                                    <div class="row">
+                                        <div class="col ml-auto">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                    </div>
+                                    <p class="font-weight-bold mb-2"> Are you sure you wanna
+                                        delete this product ?</p>
+
+                                </div>
+                                <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                                    <div class="row justify-content-end no-gutters">
+                                        <div class="col-auto">
+                                            <button type="button"
+                                                    class="btn btn-light text-muted"
+                                                    data-dismiss="modal">Cancel
+                                            </button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-danger px-4"
+                                                    data-dismiss="modal"><i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade " id="orderManage" data-backdrop="static" data-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Order #3140 details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <h5>Billing</h5>
+                                    <label>J Kowser </label>
+                                    <label>House 36. Road 3, Flat B2 Enayet Castle, Dhanmondi</label>
+                                    <label>Dhaka</label>
+                                    <label>jk@gmail.com</label>
+                                    <label>+8801972353672</label>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <h5>Shipping</h5>
+                                    <label>J Kowser </label>
+                                    <label>House 36. Road 3, Flat B2 Enayet Castle, Dhanmondi</label>
+                                    <label>Dhaka</label>
+                                    <label>jk@gmail.com</label>
+                                    <label>+8801972353672</label>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Cost</th>
+                                        <th>Qty</th>
+                                        <th>Order Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Baby Nursing Bottle Heater</td>
+                                        <td>৳ 650</td>
+                                        <td>x 1</td>
+                                        <td>৳ 650</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="fas fa-shipping-fast"></i> Dhaka City</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>৳ 70</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td>Subtotal:</td>
+                                        <td></td>
+                                        <td><strong>৳ 650</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Shipping:</td>
+                                        <td></td>
+                                        <td><strong>৳ 70</strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td>Total:</td>
+                                        <td></td>
+                                        <td><strong>৳ 720</strong></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                    <label>Order Status</label>
+                                    <select class="form-control form-control-sm" required>
+                                        <option>Processing</option>
+                                        <option>Pending</option>
+                                        <option>Complete</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE category
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Ecogreen Pro Global 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+
+
+</body>
+
+<script src="{% static 'vendorstatic/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendorstatic/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'vendorstatic/js/sb-admin-2.min.js'%}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendorstatic/vendor/chart.js/Chart.min.js'%}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'vendorstatic/js/demo/chart-area-demo.js'%}"></script>
+<script src="{% static 'vendorstatic/js/demo/chart-pie-demo.js'%}"></script>
+
+<script src="{% static 'vendorstatic/vendor/datatables/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Page level custom scripts -->
+<script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
+
+
+</html>

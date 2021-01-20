@@ -1,0 +1,160 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Order Confirmation | Jewellery</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px
+}
+
+.alert_info {
+    background-color: #4285f4;
+    border: 2px solid #4285f4
+}
+
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0
+}
+
+.close {
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.9;
+    font-weight: normal
+}
+
+.card {
+    background-color: #fff;
+    width: 600px;
+    border: none;
+    border-radius: 16px
+    height: 200px;
+
+}
+
+.info {
+    line-height: 19px
+}
+
+.name {
+    color: #4c40e0;
+    font-size: 18px;
+    font-weight: 600
+}
+
+.order {
+    font-size: 14px;
+    font-weight: 400;
+    color: #b7b5b5
+}
+
+.detail {
+    line-height: 19px
+}
+
+.summery {
+    color: #d2cfcf;
+    font-weight: 400;
+    font-size: 13px
+}
+}
+
+.text {
+    line-height: 15px
+}
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+</head>
+<header>
+    {%include 'header.html'%}
+</header>
+<main role="main">
+    <body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        {%include "sideNav.html"%}
+        <!--Main View Start-->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <br>
+                <main role="main"><br>
+                    <div class="col-md-6 rounded mx-auto d-block">
+                        <div class="mb-3">
+                            <div class="card p-4 mt-3">
+                                <div class="first d-flex justify-content-between align-items-center mb-3">
+                                    <div class="info"><span class="d-block name">Thank you, {{user.first_name}}</span>
+                                        <br>
+                                        <span class="order">Order - {{ orderCode }}</span></div>
+                                    <img src="https://i.imgur.com/NiAVkEw.png" width="40"/>
+                                </div>
+                                <div class="detail"><span class="d-block summery">Your order has been dispatched. we are delivering you order.</span>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+    </body>
+
+    <!-- FOOTER -->
+    <footer>{% include 'footer.html'%}</footer>
+
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/form-validation.js'%}"></script>
+</body>
+</html>

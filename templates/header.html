@@ -1,0 +1,367 @@
+{% load static %}
+{% load cart_template_tags%}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <link rel="icon" type="image/png" href="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg"/>
+    <!--<link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>-->
+    <title> Jewellery | Jewellery.com.bd</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/navbar-fixed/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
+
+    <style>
+    body {
+    padding-top: 0rem;
+     padding-bottom: 0rem;
+
+}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+}
+.header_main {
+    z-index: position: relative;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    background-color: #fff;
+}
+.logo {
+    color: green;
+    font-size: 25px;
+    font-weight: 600
+}
+
+.brand-wrap {
+    text-decoration: none !important
+}
+
+.icon-sm {
+    width: 48px;
+    height: 48px;
+    line-height: 48px !important;
+    font-size: 20px
+}
+
+.widget-header {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative
+}
+
+.widget-header .notify {
+    position: absolute;
+    top: -3px;
+    right: -10px
+}
+
+.notify {
+    position: absolute;
+    top: -4px;
+    right: -10px;
+    display: inline-block;
+    padding: .25em .6em;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    border-radius: 3rem;
+    color: #fff;
+    background-color: #fa3434
+}
+
+.mr-3,
+.mx-3 {
+    margin-right: 3rem !important
+}
+
+.search-form {
+    padding-top: 1rem;
+
+    border: 2px solid #E0A800 !important
+}
+
+.search-button {
+    color: #000;
+    background-color: #ffffff;
+    border-color: #ffffff
+}
+
+
+.vl {
+    border-left: 1px solid #fff;
+    height: 100%
+}
+
+.login {
+    color: #E0A800
+}
+.nav-link {
+    text-transform: uppercase;
+    font-weight: 400
+}
+.top_bar_user div:nth-child(2)::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: -13px;
+    width: 1px;
+    height: 17px;
+    background: #f8f9fa;
+    content: '';
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'navbar-top.css' %}" rel="stylesheet">
+</head>
+<header class="section-header" id="page-top">
+    <section class="header-main border-bottom">
+        <div class="header_main">
+            <div class="container">
+                <div class="row">
+                    <!-- Logo -->
+                    <div class="col-lg-2 col-sm-3 col-3 order-1">
+                        <div class="logo_container">
+                            <div class="logo"><a href="{% url 'core:home'%}"><img id="logo" class="rounded mx-auto d-block"
+                                                               src="{% static 'media/Jewellery.png' %}" alt=""
+                                                               width="110" height="72"> </a></div>
+                        </div>
+                    </div> <!-- Search -->
+                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                        <div class="header_search">
+                            <div class="header_search_content">
+                                <div class="header_search_form_container">
+                                    <form action='/search/'  class="header_search_form clearfix">
+
+                                        <input style="font-family: 'Rubik';" name="search" type="search" required="required" class="header_search_input"
+                                            placeholder="Search for products(e.g. Phone, dresses)">
+                                        <button type="submit" class="header_search_button trans_300" value="Submit"
+                                                style="background: #AC801C;!important;"><i
+                                                class="fas fa-search text-white"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Wishlist -->
+                    <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                <!--<a href="#">
+                                    <div class="wishlist_icon"><img
+                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png"
+                                            alt=""></div>
+                                    <div class="wishlist_content">
+                                        <div class="wishlist_text"><a href="#" class="text-dark"
+                                                                      style="font-family: 'Rubik';">Wishlist</a>
+                                        </div>
+                                        <div class="badge badge-pill badge-primary"
+                                             style="font-family: 'Rubik'; background: #AC801C; ">0
+                                        </div>
+                                    </div>
+                                </a>-->
+                            </div> <!-- Cart -->
+                            <div class="bag">
+                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                    <a href="{% url 'core:cart' %}" style="font-family: 'Rubik';">
+                                        <div class="cart_icon"><img
+                                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png"
+                                                alt="">
+                                            <div class="cart_count" style="font-family: 'Rubik'; background: #AC801C;">
+                                                {% cartCount user.id as count %}
+                                                <span>{{ count }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="cart_content">
+                                            <div class="cart_text text-dark">Bag
+
+                                    </a>
+                                </div>
+                                {%cartTotal user.id as total%}
+                                <div class="cart_price" style="font-family: 'Rubik';">BDT {{total}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #000!important;">
+        <button class="btn " id="menu-toggle" width="70" height="40"
+                style="background-color: #ac801cc2!important; color: #fff; font-family: 'Rubik';"><i
+                class="fas fa-bars"></i> Catagories
+        </button> &nbsp; &nbsp; &nbsp;
+        <!--<a class="navbar-brand" href="#">
+            <img src="{% static 'media/avatar.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""
+                 loading="lazy">
+            Ecogreen eShop
+        </a>--->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse" style="font-family: 'Rubik';">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'core:home'%}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'core:shop'%}">Shop <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+
+            <ul>
+                <li class="nav-item dropdown no-arrow">
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
+                       role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user"></i> Hello! <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="userDropdown">
+                       <!-- <a class="dropdown-item" href="#">
+                            <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
+                        </a>-->
+
+                        <a class="dropdown-item" href="{% url 'core:userprofile' %}">
+                            <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                            My Profile
+                        </a>
+
+                        <a class="dropdown-item" href="{% url 'core:userOrder' %}">
+                            <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
+                            My Order
+                        </a>
+
+                        <!--<a class="dropdown-item" href="#">
+                            <i class="fas fa-money-check-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Balance
+                        </a>
+
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Chat
+                        </a>-->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#my-modal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                        {%else%}
+                        <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
+                           role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-user"></i> Hello!</a>
+                        {%endif%}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content border-0">
+                    <div class="modal-body p-0">
+                        <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                            <div class="card-header pb-0 bg-white border-0 ">
+                                <div class="row">
+                                    <div class="col ml-auto">
+                                        <button type="button" class="close"
+                                                data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+                                <p class="font-weight-bold mb-2"> Are you sure you wanna logout?</p>
+
+                            </div>
+                            <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                                <div class="row justify-content-end no-gutters">
+                                    <div class="col-auto">
+                                        <button type="button"
+                                                class="btn btn-light text-muted"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                    </div> &nbsp;
+                                    <div class="col-auto">
+                                        <a href="{% url 'core:logout' %} " type="button" class="btn btn-danger px-4">
+                                            logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+
+
+
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<link href="{% static 'js/navbar.js' %}" rel="stylesheet">
+</html>
+

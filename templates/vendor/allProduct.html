@@ -1,0 +1,276 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/eco.png' %}"/>
+    <title>All Product | Vendor | Dashboard</title>
+
+    <style>
+        .item .item-content {
+    padding: 30px 35px
+}
+
+.image-upload {
+    width: 100%;
+    height: 300px;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    background: #f8f8f9;
+    color: #666;
+    overflow: hidden
+}
+
+.item-wrapper form img {
+    margin-bottom: 20px;
+    width: auto;
+    height: auto;
+    max-height: 400px;
+    width: auto;
+    border-radius: 5px;
+    overflow: hidden
+}
+
+.image-upload img {
+    height: 100% !important;
+    width: auto !important;
+    border-radius: 0px;
+    margin: 0 auto
+}
+
+.image-upload i {
+    font-size: 6em;
+    color: #ccc
+}
+
+.image-upload input {
+    cursor: pointer;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.item-wrapper input {
+    height: 43px;
+    line-height: 43px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px
+}
+
+
+
+
+
+    </style>
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {%include 'vendor/sidebar.html'%}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            {%include 'vendor/topbar.html'%}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-7">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">All Products</h6>
+
+                        <a href="{% url 'addProduct' %}"
+                           class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus"></i>
+                            Add new</a>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Images</th>
+                                    <th>Product Name  <i class="fas fa-sort"> </i> </th>
+                                    <th>Price <i class="fas fa-sort"> </i></th>
+                                    <th>Catagory <i class="fas fa-sort"> </i></th>
+                                    <th>Quantity <i class="fas fa-sort"> </i></th>
+                                    <th>Availablity <i class="fas fa-sort"> </i></th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td><img class="rounded mx-auto d-block"
+                                             src="{% static 'media/eco.png' %}" alt=""
+                                             width="50" height="50"></td>
+                                    <td>Amanatshah Lungi</td>
+                                    <td>5000</td>
+                                    <td>Dresses</td>
+                                    <td>29</td>
+                                    <td>In Stock</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td><img class="rounded mx-auto d-block"
+                                             src="{% static 'media/eco.png' %}" alt=""
+                                             width="50" height="50"></td>
+                                    <td>Puma T-shirt</td>
+                                    <td>40</td>
+                                    <td>Men's Fashion</td>
+                                    <td>27</td>
+                                    <td>Out Stock</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                        </button>
+
+
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content border-0">
+                                        <div class="modal-body p-0">
+                                            <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                                                <div class="card-header pb-0 bg-white border-0 ">
+                                                    <div class="row">
+                                                        <div class="col ml-auto">
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                    </div>
+                            <p class="font-weight-bold mb-2"> Are you sure you wanna
+                                delete this product ?</p>
+
+                        </div>
+                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                            <div class="row justify-content-end no-gutters">
+                                <div class="col-auto">
+                                    <button type="button"
+                                            class="btn btn-light text-muted"
+                                            data-dismiss="modal">Cancel
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-danger px-4"
+                                            data-dismiss="modal"><i class="fas fa-trash"></i>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+</div>
+
+</div>
+</div>
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Ecogreen Pro Global 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/form-validation.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/datatables/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Page level custom scripts -->
+<script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
+</html>

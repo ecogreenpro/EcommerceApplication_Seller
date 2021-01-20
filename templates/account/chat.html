@@ -1,0 +1,183 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Chat | Jewellery</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
+</head>
+<header>
+    {%include 'header.html'%}
+</header>
+<main role="main">
+    <body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        {%include "sideNav.html"%}
+        <!--Main View Start-->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <main role="main"><br>
+
+
+
+                                <div class="card card-bordered">
+                                    <div class="card-header">
+                                        <h4 class="card-title"><strong>Chat with Admin</strong></h4>
+                                    </div>
+                                    <div class="ps-container ps-theme-default ps-active-y"
+                                         id="chat-content"
+                                         style="overflow-y: scroll !important; height:500px !important;">
+                                        <div class="media media-chat"><i class="fas fa-user-tie"></i>
+                                            <div class="media-body">
+                                                <p>Hi</p>
+                                                <p>How are you ...???</p>
+                                                <p>What are you doing tomorrow?<br> Can we come up a
+                                                    bar?</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">23:58</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-meta-day">Today</div>
+                                        <div class="media media-chat media-chat-reverse">
+                                            <div class="media-body">
+                                                <p>Hiii, I'm good.</p>
+                                                <p>How are you doing?</p>
+                                                <p>Long time no see! Tomorrow office. will be free on
+                                                    sunday.</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:06</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat"><i class="fas fa-user-tie"></i>
+                                            <div class="media-body">
+                                                <p>Okay</p>
+                                                <p>We will go on sunday? </p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:07</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat media-chat-reverse">
+                                            <div class="media-body">
+                                                <p>That's awesome!</p>
+                                                <p>I will meet you Sandon Square sharp at 10 AM</p>
+                                                <p>Is that okay?</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:09</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat"><i class="fas fa-user-tie"></i>
+                                            <div class="media-body">
+                                                <p>Okay i will meet you on Sandon Square </p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:10</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat media-chat-reverse">
+                                            <div class="media-body">
+                                                <p>Do you have pictures of Matley Marriage?</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:10</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat"><i class="fas fa-user-tie"></i>
+                                            <div class="media-body">
+                                                <p>Sorry I don't have. i changed my phone.</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:12</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="media media-chat media-chat-reverse">
+                                            <div class="media-body">
+                                                <p>Okay then see you on sunday!!</p>
+                                                <p class="meta">
+                                                    <time datetime="2018">00:12</time>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="ps-scrollbar-x-rail"
+                                             style="left: 0px; bottom: 0px;">
+                                            <div class="ps-scrollbar-x" tabindex="0"
+                                                 style="left: 0px; width: 0px;"></div>
+                                        </div>
+                                        <div class="ps-scrollbar-y-rail"
+                                             style="top: 0px; height: 0px; right: 2px;">
+                                            <div class="ps-scrollbar-y" tabindex="0"
+                                                 style="top: 0px; height: 2px;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="publisher bt-1 border-light"><i class="fas fa-user-tie"></i><input
+                                            class="publisher-input" type="text"
+                                            placeholder="Write something"> <i
+                                            class="fa fa-paper-plane"></i></a></div>
+                                </div>
+
+
+                            </main>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+
+        </div>
+        <!--Main View End-->
+    </div>
+
+
+    </body>
+
+    <!-- FOOTER -->
+    <footer>{% include 'footer.html'%}</footer>
+
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>
