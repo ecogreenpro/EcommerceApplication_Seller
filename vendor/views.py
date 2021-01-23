@@ -1,11 +1,10 @@
-from django.contrib import messages
 from django.shortcuts import render
-
+from django.contrib import messages, auth
 # Create your views here.
 from django.views.generic import ListView
 
-from core.models import Products, Order, OrderProduct
-from vendor.forms import SellerRegistrationForm
+from core.models import Products, OrderProduct
+from vendor.forms import SellerRegistrationForm, AddProductForm
 
 
 def vendorDashboard(request):
@@ -26,8 +25,16 @@ class allProduct(ListView):
 
 
 def addProduct(request):
-    context = {}
-    return render(request, 'vendor/addProduct.html', context)
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES, request=request)
+
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Product Added Successfully, We will review your Product.')
+            return render(request, 'vendor/allProduct.html')
+    else:
+        form = AddProductForm(request=request)
+    return render(request, 'vendor/addProduct.html', {'form': form})
 
 
 def vendoerStockmanager(request):

@@ -74,6 +74,8 @@ class Brands(models.Model):
 
 
 class Products(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     price = models.FloatField()
