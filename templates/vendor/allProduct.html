@@ -126,14 +126,17 @@
                                 </thead>
 
                                 <tbody>
+                                {%for item in object_list%}
+                                {%if item.isactive%}
+                                {%if request.user%}
                                 <tr>
                                     <td><img class="rounded mx-auto d-block"
-                                             src="{% static 'media/eco.png' %}" alt=""
+                                             src="{{item.mainImage.url}}" alt=""
                                              width="50" height="50"></td>
-                                    <td>Amanatshah Lungi</td>
-                                    <td>5000</td>
-                                    <td>Dresses</td>
-                                    <td>29</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.price}}</td>
+                                    <td>{{item.category.name}}</td>
+                                    <td>{{item.stockQuantity}}</td>
                                     <td>In Stock</td>
                                     <td>
                                         <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
@@ -144,26 +147,9 @@
                                     </td>
 
                                 </tr>
-                                <tr>
-                                    <td><img class="rounded mx-auto d-block"
-                                             src="{% static 'media/eco.png' %}" alt=""
-                                             width="50" height="50"></td>
-                                    <td>Puma T-shirt</td>
-                                    <td>40</td>
-                                    <td>Men's Fashion</td>
-                                    <td>27</td>
-                                    <td>Out Stock</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
-                                        </button>
-
-
-                                    </td>
-
-                                </tr>
+                                {%endif%}
+                                {%endif%}
+                                {%endfor%}
                                 </tbody>
                             </table>
 

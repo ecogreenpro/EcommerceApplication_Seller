@@ -16,70 +16,50 @@
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-      }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
 
 
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 12px
+        }
 
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 12px
-}
+        .alert_info {
+            background-color: #4285f4;
+            border: 2px solid #4285f4
+        }
 
-.alert_info {
-    background-color: #4285f4;
-    border: 2px solid #4285f4
-}
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0
+        }
 
-button.close {
-    -webkit-appearance: none;
-    padding: 0;
-    cursor: pointer;
-    background: 0 0;
-    border: 0
-}
-
-.close {
-    font-size: 20px;
-    color: #fff;
-    opacity: 0.9;
-    font-weight: normal
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        .close {
+            font-size: 20px;
+            color: #fff;
+            opacity: 0.9;
+            font-weight: normal
+        }
 
 
     </style>
@@ -149,6 +129,7 @@ button.close {
                                             </div>
                                         </div>
                                     </div>
+
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><strong>Email: </strong>
                                             {{request.user.email}}
@@ -156,12 +137,24 @@ button.close {
                                         <li class="list-group-item"><strong>Phone:</strong>
                                             {{user.userprofile.Phone}}
                                         </li>
+                                        <li class="list-group-item"><strong>Company Name:</strong>
+                                            {{user.sellerprofile.CompanyName}}
+                                        </li>
                                         <li class="list-group-item">
-                                            <a class="dropdown-item" href="{% url 'core:changePassword' %}">
-                                            Change Password
+                                            <a class=" btn btn-outline-primary alert-warnings "
+                                               href="{% url 'core:changePassword' %}">
+                                                Change Password
                                             </a>
                                         </li>
-
+                                        {% if user.sellerprofile.isSeller %}
+                                        <li class="list-group-item">
+                                            <a class=" btn btn-outline-primary alert-warnings "
+                                               href="{% url 'vendorDashboard' %}">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                Go to Vendor Dashboard
+                                            </a>
+                                        </li>
+                                        {%endif%}
                                     </ul>
                                 </div>
 

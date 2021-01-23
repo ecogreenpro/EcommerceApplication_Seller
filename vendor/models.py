@@ -3,6 +3,10 @@ from django.db import models
 
 
 # Create your models here.
+from django.urls import reverse
+from django.utils.safestring import mark_safe
+
+
 class SellerRegistration(models.Model):
     Name = models.CharField(max_length=50)
     CompanyName = models.CharField(max_length=50, unique=True, verbose_name='Company Name')
