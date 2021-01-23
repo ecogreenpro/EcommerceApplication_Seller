@@ -74,13 +74,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {%for orders in myOrders%}
+                                {%if request.user%}
                                 <tr>
-                                    <td>3142</td>
-                                    <td>৳ 3000</td>
-                                    <td><span class="badge badge-info">Complete</span></td>
-                                    <td>bkash</td>
-                                    <td>Mohibul Hasan</td>
-                                    <td>December 2, 2020</td>
+                                    <td>{{orders.order.order_Number}}</td>
+                                    <td>৳ {{orders.order.OrderTotal}}</td>
+                                    <td><span class="badge badge-info">{{orders.order.order_status}}</span></td>
+                                    <td>{{orders.order.payment}}</td>
+                                    <td>{{orders.order.first_name}} {{orders.order.last_name}}</td>
+                                    <td>{{orders.order.ordered_date}}0</td>
                                     <td>
                                         <button type="button" class="btn btn-success" data-toggle="modal"
                                                 data-target="#orderManage"><i class="fas fa-edit"></i>
@@ -90,42 +92,8 @@
                                         </button>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>3141</td>
-                                    <td>৳ 3000</td>
-                                    <td><span class="badge badge-danger"> Cancel</span></td>
-                                    <td>bkash</td>
-                                    <td>Shajeeb Haider</td>
-                                    <td>December 1, 2020</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderManage"><i class="fas fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>3140</td>
-                                    <td>৳ 3000</td>
-                                    <td><span class="badge badge-warning"> Pending</span></td>
-                                    <td>Cash on Delivery</td>
-                                    <td>J Kowser</td>
-                                    <td>December 1, 2020</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderManage"><i class="fas fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
+                                {%endif%}
+                                {%endfor%}
                                 </tbody>
                             </table>
                         </div>

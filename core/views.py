@@ -12,11 +12,7 @@ from django.utils.crypto import get_random_string
 from .forms import ProfileModelForm
 from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping
 from .models import Products, Categories, Brands
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
-from vendor.models import SellerRegistration
-from io import BytesIO
-from xhtml2pdf import pisa
+from vendor.models import sellerProfile
 
 
 # Create your views here.
