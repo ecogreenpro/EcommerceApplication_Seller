@@ -9,7 +9,8 @@ from django.utils.safestring import mark_safe
 
 class SellerRegistration(models.Model):
     Name = models.CharField(max_length=50)
-    CompanyName = models.CharField(max_length=50, unique=True, verbose_name='Company Name')
+    ShopName = models.CharField(max_length=50, unique=True, verbose_name='Shop Name')
+    ShopLogo = models.ImageField(upload_to='Photos', verbose_name='Shop Logo')
     Phone = models.CharField(max_length=15)
     Email = models.EmailField()
     Address = models.TextField()
@@ -19,12 +20,12 @@ class SellerRegistration(models.Model):
     TradeImage = models.ImageField(upload_to='Photos', verbose_name='Trade License Image')
 
     def __str__(self):
-        return self.CompanyName
+        return self.ShopName
 
 
 class sellerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    CompanyName = models.CharField(max_length=50, unique=True, verbose_name='Company Name')
+    ShopName = models.CharField(max_length=50, unique=True, verbose_name='Shop Name')
     Address = models.TextField()
     Phone = models.CharField(max_length=20, default="+8801xxxxxxxxx", null=False)
     NID = models.CharField(max_length=50, unique=True)
@@ -34,7 +35,7 @@ class sellerProfile(models.Model):
     isSeller = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.CompanyName
+        return self.ShopName
 
     def get_absolute_url(self):
         return reverse("sellerProfile", kwargs={'slug': self.slug})

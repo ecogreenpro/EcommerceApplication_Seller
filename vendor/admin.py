@@ -6,7 +6,7 @@ from .models import sellerProfile, SellerRegistration
 class SellerRegistrationAdmin(admin.ModelAdmin):
     list_display = [
 
-        'CompanyName',
+        'ShopName',
         'Phone',
         'NID',
         'TradeLicense',
@@ -14,7 +14,7 @@ class SellerRegistrationAdmin(admin.ModelAdmin):
     ]
 
     list_filter = ['NID']
-    search_fields = ['CompanyName']
+    search_fields = ['ShopName']
 
 
 admin.site.register(sellerProfile, SellerRegistrationAdmin)
@@ -23,14 +23,14 @@ admin.site.register(sellerProfile, SellerRegistrationAdmin)
 class BecomeSellerAdmin(admin.ModelAdmin):
     list_display = [
 
-        'CompanyName',
+        'ShopName',
         'Phone',
         'NID',
         'TradeLicense'
     ]
 
     list_filter = ['NID']
-    search_fields = ['CompanyName']
+    search_fields = ['ShopName']
 
 
 admin.site.register(SellerRegistration, BecomeSellerAdmin)
