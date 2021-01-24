@@ -75,7 +75,8 @@
                                 </thead>
                                 <tbody>
                                 {%for orders in myOrders%}
-                                {%if orders.product.user.sellerprofile.ShopName == request.user.sellerprofile.ShopName%}
+
+                                {%if orders.product.user.sellerprofile.ShopDetails.ShopName == request.user.sellerprofile.ShopDetails.ShopName%}
                                 <tr>
                                     <td>{{orders.order.order_Number}}</td>
                                     <td>৳ {{orders.order.OrderTotal}}</td>
