@@ -11,10 +11,10 @@ class SellerRegistration(models.Model):
     ShopName = models.CharField(max_length=50, unique=True, verbose_name='Shop Name')
     ShopLogo = models.ImageField(upload_to='Photos', verbose_name='Shop Logo')
     Phone = models.CharField(max_length=15)
-    Email = models.EmailField()
-    Address = models.TextField()
-    NID = models.CharField(max_length=50)
-    TradeLicense = models.CharField(max_length=50, verbose_name='Trade License')
+    Email = models.EmailField(unique=True)
+    Address = models.TextField(unique=True)
+    NID = models.CharField(max_length=50, unique=True)
+    TradeLicense = models.CharField(max_length=50, unique=True, verbose_name='Trade License')
     NIDImage = models.ImageField(upload_to='Photos', verbose_name='NID Image')
     TradeImage = models.ImageField(upload_to='Photos', verbose_name='Trade License Image')
 
@@ -30,7 +30,7 @@ class SellerRegistration(models.Model):
 
 class sellerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    ShopDetails = models.OneToOneField(SellerRegistration, on_delete=models.CASCADE,null=True)
+    ShopDetails = models.OneToOneField(SellerRegistration, on_delete=models.CASCADE, null=True)
     isSeller = models.BooleanField(default=False)
 
     def __str__(self):
@@ -38,5 +38,3 @@ class sellerProfile(models.Model):
 
     def get_absolute_url(self):
         return reverse("sellerProfile", kwargs={'slug': self.slug})
-
-
