@@ -1,3 +1,4 @@
+from ckeditor.widgets import CKEditorWidget
 from django import forms
 
 from core.models import Products
@@ -26,6 +27,8 @@ class SellerRegistrationForm(forms.ModelForm):
 
 
 class AddProductForm(forms.ModelForm):
+    shortDescription = forms.CharField(widget=CKEditorWidget()),
+    longDescirption = forms.CharField(widget=CKEditorWidget()),
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
@@ -46,8 +49,6 @@ class AddProductForm(forms.ModelForm):
             'brand': forms.Select(attrs={'class': 'form-control'}),
             'label': forms.Select(attrs={'class': 'form-control'}),
             'stockQuantity': forms.NumberInput(attrs={'class': 'form-control'}),
-            'shortDescription': forms.Textarea(attrs={'class': 'form-control'}),
-            'longDescirption': forms.Textarea(attrs={'class': 'form-control'}),
             'mainImage': forms.FileInput(attrs={'required': True, }),
             'altImageOne': forms.FileInput(attrs={'required': True, }),
             'altImageTwo': forms.FileInput(attrs={'required': True, })

@@ -103,6 +103,7 @@
                         <form method="post" class="needs-validation" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
+                                {{form.media}}
                                 {{form.as_p}}
 
                             </div>
