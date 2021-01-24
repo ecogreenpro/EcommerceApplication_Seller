@@ -135,7 +135,7 @@
                                 <tbody>
                                 {%for item in object_list%}
                                 {%if item.isactive%}
-                                {%if item.user.sellerprofile.CompanyName == request.user.sellerprofile.CompanyName %}
+                                {%if item.user.sellerprofile.ShopName == request.user.sellerprofile.ShopName %}
 
                                 <tr>
                                     <td><img class="rounded mx-auto d-block"
