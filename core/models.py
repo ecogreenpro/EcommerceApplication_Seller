@@ -81,7 +81,7 @@ class Products(models.Model):
     price = models.FloatField()
     discountPrice = models.FloatField(blank=True, null=True, verbose_name="Discount Price")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brands, on_delete=models.CASCADE,  null=True)
+    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, null=True)
     label = models.CharField(choices=Label_Choices, max_length=30)
     stockQuantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
     shortDescription = RichTextUploadingField()
@@ -262,3 +262,34 @@ class userProfile(models.Model):
 
     userPhoto.short_description = 'Image'
     userPhoto.allow_tags = True
+
+
+class Settings(models.Model):
+    siteTitle = models.CharField(max_length=150)
+    description = models.CharField(max_length=255)
+    address = models.CharField(blank=True, max_length=100)
+    phone = models.CharField(blank=True, max_length=15)
+    email = models.CharField(blank=True, max_length=50)
+    logo = models.ImageField(blank=True, upload_to='Photos')
+    favIcon = models.ImageField(blank=True, upload_to='Photos')
+    facebook = models.CharField(blank=True, max_length=50)
+    instagram = models.CharField(blank=True, max_length=50)
+    twitter = models.CharField(blank=True, max_length=50)
+    youtube = models.CharField(blank=True, max_length=50)
+    aboutus = RichTextUploadingField(blank=True)
+    privacyPolicy = RichTextUploadingField(blank=True)
+    returnPolicy = RichTextUploadingField(blank=True)
+    paymentProcess = RichTextUploadingField(blank=True)
+    contact = RichTextUploadingField(blank=True)
+    isActive = models.BooleanField(max_length=10, default=False)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.siteTitle
+
+    def SiteLogo(self):
+        return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.logo.url))
+
+    SiteLogo.short_description = 'Image'
+    SiteLogo.allow_tags = True

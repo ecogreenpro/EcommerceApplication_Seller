@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping, OrderProduct
+from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping, OrderProduct, \
+    Settings
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -114,6 +115,17 @@ class userProfileAdmin(admin.ModelAdmin):
     search_fields = ['user', 'isActive']
 
 
+class settingsAdmin(admin.ModelAdmin):
+    list_display = [
+        'SiteLogo',
+        'siteTitle',
+        'address',
+        'phone',
+        'isActive'
+    ]
+
+
+admin.site.register(Settings, settingsAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Products, ProductsAdmin)

@@ -9,8 +9,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
+
 from .forms import ProfileModelForm
-from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping
+from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
 
@@ -19,7 +20,8 @@ from vendor.models import sellerProfile
 
 
 def header(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'header.html', context)
 
 
@@ -29,27 +31,32 @@ def footer(request):
 
 
 def about(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'base/about.html', context)
 
 
 def contact(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'base/contact.html', context)
 
 
 def privacyPolicy(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'base/privacyPolicy.html', context)
 
 
 def terms(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'base/refundReturnsPolicy.html', context)
 
 
 def paymentProcess(request):
-    context = {}
+    setting = Settings.objects.get(pk=1)
+    context = {'Settings': setting}
     return render(request, 'base/paymentProcess.html', context)
 
 
