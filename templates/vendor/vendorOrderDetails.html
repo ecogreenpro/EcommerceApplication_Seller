@@ -1,0 +1,224 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/eco.png' %}"/>
+    <title>Oder | Vendor | Ecogreen</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendorstatic/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="{% static 'vendorstatic/css/sb-admin-2.min.css'%}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {%include 'vendor/sidebar.html'%}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            {%include 'vendor/topbar.html'%}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="staticBackdropLabel">Order No #{{OrderNo}} </h3>
+                        </div>
+                        <form method="POST" action="/updateOrder/">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h5>Shipping to</h5>
+                                        <label><span
+                                                class="ml-1"><strong>{{Billed_firstName}} {{Billed_lastName}}</strong></span></label><br>
+                                        <label><span
+                                                class="ml-1">{{Address}}, {{District}}, {{Country}}</span></label>
+                                        <label> <span class="ml-1">{{District}}</span></label>
+                                        <label> <span class="ml-1">{{Email}}</span></label><br>
+                                        <label> <span class="ml-1">{{Phone}}</span></label><br>
+                                    </div>
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead">
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%for productList in Product%}
+                                        <tr>
+                                            <td><strong>{{productList.product.name}}</strong></td>
+                                            <td>{{productList.price}}</td>
+                                            <td>{{productList.quantity}}</td>
+                                            <td>{{productList.amount}}</td>
+                                        </tr>
+                                        {%endfor%}
+
+                                        <!--<tr>
+                                            <td></td>
+                                            <td>Subtotal:</td>
+                                            <td></td>
+                                            <td><strong>৳ {{oderTotal}}</strong></td>
+                                        </tr>-->
+                                        <tr>
+                                            <td></td>
+                                            <td>Shipping Charge: <br>
+                                            </td>
+                                            <td></td>
+                                            <td><strong>৳ 100</strong></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong>Order Note : </strong>{{OrderNote}}</td>
+                                            <td>Total:</td>
+                                            <td></td>
+                                            <td><strong>৳ {{oderTotal}}</strong></td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+
+
+                                    </div>
+                                    <div class="col-sm-2 mb-3 mb-sm-0">
+
+                                        <label>Order Status</label>
+                                        <select class="form-control form-control-sm" required>
+                                            <option>Processing</option>
+                                            <option>Pending</option>
+                                            <option>Complete</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please Select AT LEAST ONE category
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+
+    </div>
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Ecogreen Pro Global 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+
+
+</body>
+
+<script src="{% static 'vendorstatic/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendorstatic/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'vendorstatic/js/sb-admin-2.min.js'%}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendorstatic/vendor/chart.js/Chart.min.js'%}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'vendorstatic/js/demo/chart-area-demo.js'%}"></script>
+<script src="{% static 'vendorstatic/js/demo/chart-pie-demo.js'%}"></script>
+
+<script src="{% static 'vendorstatic/vendor/datatables/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Page level custom scripts -->
+<script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
+
+
+</html>

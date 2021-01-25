@@ -81,7 +81,7 @@ class Products(models.Model):
     price = models.FloatField()
     discountPrice = models.FloatField(blank=True, null=True, verbose_name="Discount Price")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brands, on_delete=models.CASCADE,  null=True)
+    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, null=True)
     label = models.CharField(choices=Label_Choices, max_length=30)
     stockQuantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
     shortDescription = RichTextUploadingField()
@@ -167,56 +167,49 @@ class CartProducts(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    order_Number = models.CharField(max_length=20)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    phone_number = models.CharField(max_length=30)
-    email = models.EmailField()
-    ordered_date = models.DateTimeField(auto_now_add=True)
-    address = models.CharField(max_length=100)
-    country = models.CharField(max_length=30)
-    district = models.CharField(max_length=30)
-    zip_code = models.CharField(max_length=10)
-    order_note = models.TextField(max_length=70)
+    order_Number = models.CharField(max_length=20, null=True)
+    first_name = models.CharField(max_length=30, null=True)
+    last_name = models.CharField(max_length=30, null=True)
+    phone_number = models.CharField(max_length=30, null=True)
+    email = models.EmailField(null=True)
+    ordered_date = models.DateTimeField(auto_now_add=True, null=True)
+    address = models.CharField(max_length=100, null=True)
+    country = models.CharField(max_length=30, null=True)
+    district = models.CharField(max_length=30, null=True)
+    zip_code = models.CharField(max_length=10, null=True)
+    order_note = models.TextField(max_length=70, null=True)
 
-    payment = models.CharField(choices=Payment_Choices, max_length=20)
+    payment = models.CharField(choices=Payment_Choices, max_length=20, null=True)
     coupon = models.ForeignKey(
         'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
     shipping = models.ForeignKey(
         'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
-    order_status = models.CharField(choices=Status_Choices, max_length=20)
+    order_status = models.CharField(choices=Status_Choices, max_length=20, null=True)
     OrderTotal = models.FloatField(blank=True, null=True)
 
-    '''
-    1. Item added to cart
-    2. Adding a BillingAddress
-    (Failed Checkout)
-    3. Payment
-    4. Being delivered
-    5. Received
-    6. Refunds
-    '''
-
-    def get_total(self):
-        total = 0
-        for order_item in self.products.all():
-            total += order_item.get_final_price()
-
-        return total
+    def __str__(self):
+        return self.order_Number
 
 
 class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    price = models.FloatField()
-    amount = models.FloatField()
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True)
+    quantity = models.IntegerField(null=True)
+    price = models.FloatField(null=True)
+    amount = models.FloatField(null=True)
+    create_at = models.DateTimeField(auto_now_add=True, null=True)
+    update_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.product.name
+
+    def get_total(self):
+        total = 0
+        for order_item in self.product.all():
+            total += order_item.get_final_price()
+
+        return total
 
 
 class Coupon(models.Model):
