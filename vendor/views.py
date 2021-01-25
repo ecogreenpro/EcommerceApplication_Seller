@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.contrib import messages, auth
 # Create your views here.
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, View, UpdateView
 
-from core.models import Products, OrderProduct
-from vendor.forms import SellerRegistrationForm, AddProductForm
+from core.models import Products, OrderProduct, Order
+from vendor.forms import SellerRegistrationForm, AddProductForm, OrderUpdateForm
 
 
 def vendorDashboard(request):
@@ -43,11 +44,42 @@ def vendoerStockmanager(request):
 
 
 def vendoerOrderManager(request):
-    orders = OrderProduct.objects.all()
+    orders = Order.objects.all()
     context = {
         'myOrders': orders
     }
     return render(request, 'vendor/vendoerOrderManager.html', context)
+
+
+class vandorOrderDetails(DetailView):
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(order_Number=self.kwargs['order_Number'])
+        orderProdcut = OrderProduct.objects.filter(order=order)
+        context = {
+            'Product': orderProdcut,
+            'Billed_firstName': order.first_name,
+            'Billed_lastName': order.last_name,
+            'Phone': order.phone_number,
+            'Email': order.email,
+            'Address': order.address,
+            'District': order.district,
+            'Country': order.country,
+            'OrderDate': order.ordered_date,
+            'OrderNo': order.order_Number,
+            'oderTotal': order.OrderTotal,
+            'Delivery': order.payment,
+            'OrderNote': order.order_note,
+        }
+        return render(self.request, "vendor/vendorOrderDetails.html", context)
+
+
+# class OrderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#     model = Order
+#     fields = ['order_status']
+#
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 
 def vendorReviewManager(request):

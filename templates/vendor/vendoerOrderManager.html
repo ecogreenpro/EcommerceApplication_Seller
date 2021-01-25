@@ -47,6 +47,17 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                {% for message in messages %}
+                <br>
+                <div class="col-md-8">
+                    <div class="alert alert-info">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{message}}!</strong></div>
+
+
+                </div>
+
+                {% endfor %}
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Order Manager</h1>
@@ -64,10 +75,10 @@
                                 <tr>
                                     <th>#Order ID</th>
                                     <th>Order Total</th>
-                                    <th>Status</th>
                                     <th>Payment Method</th>
                                     <th>Customer</th>
                                     <th>Date</th>
+                                    <th>Status</th>
                                     <th>Action</th>
 
 
@@ -76,24 +87,26 @@
                                 <tbody>
                                 {%for orders in myOrders%}
 
-                                {%if orders.product.user.sellerprofile.ShopDetails.ShopName == request.user.sellerprofile.ShopDetails.ShopName%}
+
                                 <tr>
-                                    <td>{{orders.order.order_Number}}</td>
-                                    <td>৳ {{orders.order.OrderTotal}}</td>
-                                    <td><span class="badge badge-info">{{orders.order.order_status}}</span></td>
-                                    <td>{{orders.order.payment}}</td>
-                                    <td>{{orders.order.first_name}} {{orders.order.last_name}}</td>
-                                    <td>{{orders.order.ordered_date}}0</td>
+                                    <td><a style="text-decoration: none"
+                                           href="{% url 'vandorOrderDetails' orders.order_Number %}">#{{orders.order_Number}}</a>
+                                    </td>
+                                    <td>৳ {{orders.OrderTotal}}</td>
+                                    <td>{{orders.payment}}</td>
+                                    <td>{{orders.first_name}} {{orders..last_name}}</td>
+                                    <td>{{orders.ordered_date}}</td>
+                                    <td><span class="badge badge-info">{{orders.order_status}}</span></td>
                                     <td>
-                                        <a type="button" class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderManage"><i class="fas fa-edit"></i>
+                                        <a href="#" type="button"
+                                           class="btn btn-success"><i class="fas fa-edit"></i>
                                         </a>
                                         <a type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#my-modal"><i class="fas fa-trash-alt"></i>
+                                           data-target="#my-modal"><i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                {%endif%}
+
                                 {%endfor%}
                                 </tbody>
                             </table>
@@ -103,150 +116,10 @@
 
             </div>
             <!-- /.container-fluid -->
-            <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content border-0">
-                        <div class="modal-body p-0">
-                            <div class="card border-0 p-sm-3 p-2 justify-content-center">
-                                <div class="card-header pb-0 bg-white border-0 ">
-                                    <div class="row">
-                                        <div class="col ml-auto">
-                                            <button type="button" class="close"
-                                                    data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                    </div>
-                                    <p class="font-weight-bold mb-2"> Are you sure you wanna
-                                        delete this product ?</p>
 
-                                </div>
-                                <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
-                                    <div class="row justify-content-end no-gutters">
-                                        <div class="col-auto">
-                                            <button type="button"
-                                                    class="btn btn-light text-muted"
-                                                    data-dismiss="modal">Cancel
-                                            </button>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="button" class="btn btn-danger px-4"
-                                                    data-dismiss="modal"><i class="fas fa-trash"></i> Delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="modal fade " id="orderManage" data-backdrop="static" data-keyboard="false" tabindex="-1"
-             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Order #3140 details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h5>Billing</h5>
-                                    <label>J Kowser </label>
-                                    <label>House 36. Road 3, Flat B2 Enayet Castle, Dhanmondi</label>
-                                    <label>Dhaka</label>
-                                    <label>jk@gmail.com</label>
-                                    <label>+8801972353672</label>
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h5>Shipping</h5>
-                                    <label>J Kowser </label>
-                                    <label>House 36. Road 3, Flat B2 Enayet Castle, Dhanmondi</label>
-                                    <label>Dhaka</label>
-                                    <label>jk@gmail.com</label>
-                                    <label>+8801972353672</label>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="thead">
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Cost</th>
-                                        <th>Qty</th>
-                                        <th>Order Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Baby Nursing Bottle Heater</td>
-                                        <td>৳ 650</td>
-                                        <td>x 1</td>
-                                        <td>৳ 650</td>
-                                    </tr>
 
-                                    <tr>
-                                        <td><i class="fas fa-shipping-fast"></i> Dhaka City</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>৳ 70</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td>Subtotal:</td>
-                                        <td></td>
-                                        <td><strong>৳ 650</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>Shipping:</td>
-                                        <td></td>
-                                        <td><strong>৳ 70</strong></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td>Total:</td>
-                                        <td></td>
-                                        <td><strong>৳ 720</strong></td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-
-                                    <label>Order Status</label>
-                                    <select class="form-control form-control-sm" required>
-                                        <option>Processing</option>
-                                        <option>Pending</option>
-                                        <option>Complete</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please Select AT LEAST ONE category
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- End of Main Content -->

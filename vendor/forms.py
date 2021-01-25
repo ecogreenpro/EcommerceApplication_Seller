@@ -1,7 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
-from core.models import Products
+from core.models import Products, OrderProduct, Order
 from .models import *
 
 
@@ -54,3 +54,14 @@ class AddProductForm(forms.ModelForm):
             'altImageTwo': forms.FileInput(attrs={'required': True, })
 
         }
+
+
+class OrderUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(OrderUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['order_status'].initial = self.request
+
+    class Meta:
+        model = Order
+        fields = ['order_status']
