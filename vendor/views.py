@@ -13,16 +13,19 @@ def vendorDashboard(request):
     return render(request, 'vendor/vendorDashboard.html', context)
 
 
-class allProduct(ListView):
-    model = Products
-    paginate_by = 16
-    template_name = "vendor/allProduct.html"
+# class allProduct(ListView):
+#     model = Products
+#     paginate_by = 16
+#     template_name = "vendor/allProduct.html"
 
 
-#
-# def allProduct(request):
-#     context = {}
-#     return render(request, 'vendor/allProduct.html', context)
+
+def allProduct(request):
+    product = Products.objects.all()
+    context = {
+        'product':product
+    }
+    return render(request, 'vendor/allProduct.html', context)
 
 
 def addProduct(request):
