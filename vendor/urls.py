@@ -19,7 +19,8 @@ urlpatterns = [
     path('vendoer-topSell-report/', views.topSelling, name="topSelling"),
     path('vendoer-accounts-report/', views.accountsReport, name="accountsReport"),
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
-    path('settings/', views.settings, name="settings"),
+    path('seller-profile/', views.settings, name="sellerProfile"),
+    path('seller-update/', views.sellerUpdate, name="sellerUpdate"),
     # path('update-order/<order_Number>', views.vandorUpdateOrder, name="updateOrder"),
 
     #path('all-product/', allProduct.as_view(), name="allProduct"),

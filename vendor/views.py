@@ -1,16 +1,32 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages, auth
 # Create your views here.
 from django.views.generic import ListView, DetailView, View, UpdateView
 
 from core.models import Products, OrderProduct, Order
-from vendor.forms import SellerRegistrationForm, AddProductForm, OrderUpdateForm, sellerProfile
+from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm
+from vendor.models import SellerRegistration
 
 
 def vendorDashboard(request):
     context = {}
     return render(request, 'vendor/vendorDashboard.html', context)
+
+
+def becomeSeller(request):
+    if request.method == 'POST':
+        form = SellerRegistrationForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Registration Confirmed')
+            return render(request, 'account/login.html')
+    else:
+        form = SellerRegistrationForm()
+    return render(request, 'becomeSeller.html', {'form': form})
 
 
 # class allProduct(ListView):
@@ -19,11 +35,10 @@ def vendorDashboard(request):
 #     template_name = "vendor/allProduct.html"
 
 
-
 def allProduct(request):
     product = Products.objects.all()
     context = {
-        'product':product
+        'product': product
     }
     return render(request, 'vendor/allProduct.html', context)
 
@@ -97,28 +112,24 @@ def accountsReport(request):
 
 
 def settings(request):
+    return render(request, 'vendor/sellerProfile.html')
+
+
+@login_required(login_url='/login')  # Check login
+def sellerUpdate(request):
+    shopDetails = SellerRegistration.objects.filter(ShopName=request.user.sellerprofile.ShopDetails.ShopName).first()
     if request.method == 'POST':
-        Name = request.POST['Name']
-        ShopName = request.POST['ShopName']
-        Address = request.POST['Address']
-        Phone = request.POST['Phone']
-        Email = request.POST['Email']
-
-        sellerProfile.objects.filter(user=request.user).update(Name=Name, Address=Address,
-                                                               ShopName=ShopName,
-                                                               Phone=Phone, Email=Email)
-
-    return render(request, 'vendor/settings.html')
-
-
-def becomeSeller(request):
-    if request.method == 'POST':
-        form = SellerRegistrationForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            form.save()
-            messages.info(request, 'Registration Confirmed')
-            return render(request, 'account/login.html')
+        shopDetailsForm = ProfileUpdateForm(request.POST, request.FILES,
+                                            instance=shopDetails)
+        if shopDetailsForm.is_valid():
+            shopDetailsForm.save()
+            messages.success(request, 'Your account has been updated!')
+            return HttpResponseRedirect('/seller-profile/')
     else:
-        form = SellerRegistrationForm()
-    return render(request, 'becomeSeller.html', {'form': form})
+
+        shopDetailsForm = ProfileUpdateForm(instance=shopDetails)
+        context = {
+
+            'shopDetailsForm': shopDetailsForm
+        }
+        return render(request, 'vendor/sellerDetailsUpdate.html', context)

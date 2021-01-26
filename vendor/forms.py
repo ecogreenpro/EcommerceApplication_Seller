@@ -57,26 +57,15 @@ class AddProductForm(forms.ModelForm):
         }
 
 
-class UserUpdateForm(UserChangeForm):
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name')
-        widgets = {
-            'username': TextInput(attrs={'class': 'input', 'placeholder': 'username'}),
-            'email': EmailInput(attrs={'class': 'input', 'placeholder': 'email'}),
-            'first_name': TextInput(attrs={'class': 'input', 'placeholder': 'first_name'}),
-            'last_name': TextInput(attrs={'class': 'input', 'placeholder': 'last_name'}),
-        }
-
-
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = SellerRegistration
-        fields = ('Name', 'ShopName', 'ShopLogo', 'Phone', 'Email', 'Address')
+        fields = ('Name', 'ShopName', 'Phone', 'Email', 'Address', 'ShopLogo',)
         widgets = {
-            'Name': TextInput(attrs={'class': 'input', 'placeholder': 'Name'}),
-            'ShopName': TextInput(attrs={'class': 'input', 'placeholder': 'Shop Name'}),
-            'Phone': TextInput(attrs={'class': 'input', 'placeholder': 'Phone'}),
-            'Email': TextInput(attrs={'class': 'input', 'placeholder': 'Email'}),
-            'ShopLogo': FileInput(attrs={'class': 'input', 'placeholder': 'ShopLogo', }),
+            'Name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'ShopName': TextInput(attrs={'class': 'form-control', 'placeholder': 'Shop Name'}),
+            'Phone': TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+            'Email': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'Address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
+            'ShopLogo': FileInput(attrs={'placeholder': 'ShopLogo'}),
         }

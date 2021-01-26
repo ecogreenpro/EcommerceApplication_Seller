@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
             field=models.ImageField(upload_to='Photos', verbose_name='Trade License Image'),
         ),
         migrations.DeleteModel(
-            name='sellerProfile',
+            name='sellerProfile.html',
         ),
     ]

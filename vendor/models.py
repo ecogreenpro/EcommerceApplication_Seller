@@ -37,4 +37,4 @@ class sellerProfile(models.Model):
         return self.ShopDetails.ShopName
 
     def get_absolute_url(self):
-        return reverse("sellerProfile", kwargs={'slug': self.slug})
+        return reverse("sellerProfile.html", kwargs={'slug': self.slug})

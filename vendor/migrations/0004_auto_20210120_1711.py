@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             field=models.FileField(upload_to='Photos/', verbose_name='Trade License Image'),
         ),
         migrations.CreateModel(
-            name='sellerProfile',
+            name='sellerProfile.html',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('CompanyName', models.CharField(max_length=50, unique=True, verbose_name='Company Name')),
