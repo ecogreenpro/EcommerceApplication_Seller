@@ -5,7 +5,7 @@ from django.contrib import messages, auth
 from django.views.generic import ListView, DetailView, View, UpdateView
 
 from core.models import Products, OrderProduct, Order
-from vendor.forms import SellerRegistrationForm, AddProductForm, OrderUpdateForm
+from vendor.forms import SellerRegistrationForm, AddProductForm, OrderUpdateForm, sellerProfile
 
 
 def vendorDashboard(request):
@@ -100,6 +100,21 @@ def topSelling(request):
 def accountsReport(request):
     context = {}
     return render(request, 'vendor/accountsReport.html', context)
+
+
+def settings(request):
+    if request.method == 'POST':
+        Name = request.POST['Name']
+        ShopName = request.POST['ShopName']
+        Address = request.POST['Address']
+        Phone = request.POST['Phone']
+        Email = request.POST['Email']
+
+        sellerProfile.objects.filter(user=request.user).update(Name=Name, Address=Address,
+                                                               ShopName=ShopName,
+                                                               Phone=Phone, Email=Email)
+
+    return render(request, 'vendor/settings.html')
 
 
 def becomeSeller(request):
