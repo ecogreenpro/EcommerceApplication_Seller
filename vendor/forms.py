@@ -1,6 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
-
+from django.contrib.auth.forms import UserChangeForm
+from django.forms import TextInput, EmailInput, Select, FileInput
 from core.models import Products, OrderProduct, Order
 from .models import *
 
@@ -56,12 +57,26 @@ class AddProductForm(forms.ModelForm):
         }
 
 
-class OrderUpdateForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop("request")
-        super(OrderUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['order_status'].initial = self.request
-
+class UserUpdateForm(UserChangeForm):
     class Meta:
-        model = Order
-        fields = ['order_status']
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+        widgets = {
+            'username': TextInput(attrs={'class': 'input', 'placeholder': 'username'}),
+            'email': EmailInput(attrs={'class': 'input', 'placeholder': 'email'}),
+            'first_name': TextInput(attrs={'class': 'input', 'placeholder': 'first_name'}),
+            'last_name': TextInput(attrs={'class': 'input', 'placeholder': 'last_name'}),
+        }
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = SellerRegistration
+        fields = ('Name', 'ShopName', 'ShopLogo', 'Phone', 'Email', 'Address')
+        widgets = {
+            'Name': TextInput(attrs={'class': 'input', 'placeholder': 'Name'}),
+            'ShopName': TextInput(attrs={'class': 'input', 'placeholder': 'Shop Name'}),
+            'Phone': TextInput(attrs={'class': 'input', 'placeholder': 'Phone'}),
+            'Email': TextInput(attrs={'class': 'input', 'placeholder': 'Email'}),
+            'ShopLogo': FileInput(attrs={'class': 'input', 'placeholder': 'ShopLogo', }),
+        }

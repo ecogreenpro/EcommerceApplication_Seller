@@ -76,15 +76,6 @@ class vandorOrderDetails(DetailView):
         return render(self.request, "vendor/vendorOrderDetails.html", context)
 
 
-# class OrderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = Order
-#     fields = ['order_status']
-#
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-
-
 def vendorReviewManager(request):
     context = {}
     return render(request, 'vendor/vendorReview.html', context)
