@@ -20,130 +20,124 @@
     <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
 
     <style>
-    body {
-    padding-top: 0rem;
-     padding-bottom: 0rem;
+        body {
+            padding-top: 0rem;
+            padding-bottom: 0rem;
 
-}
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
         }
-      }
 
-}
-.header_main {
-    z-index: position: relative;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    background-color: #fff;
-}
-.logo {
-    color: #008000;
-    font-size: 25px;
-    font-weight: 600
-}
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-.brand-wrap {
-    text-decoration: none !important
-}
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
 
-.icon-sm {
-    width: 48px;
-    height: 48px;
-    line-height: 48px !important;
-    font-size: 20px
-}
+        }
+        .header_main {
+            z-index: position: relative;
+            padding-top: 10px;
+            padding-bottom: 0px;
+            background-color: #fff;
+        }
 
-.widget-header {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative
-}
+        .logo {
+            color: #008000;
+            font-size: 25px;
+            font-weight: 600
+        }
 
-.widget-header .notify {
-    position: absolute;
-    top: -3px;
-    right: -10px
-}
+        .brand-wrap {
+            text-decoration: none !important
+        }
 
-.notify {
-    position: absolute;
-    top: -4px;
-    right: -10px;
-    display: inline-block;
-    padding: .25em .6em;
-    font-size: 12px;
-    line-height: 1;
-    text-align: center;
-    border-radius: 3rem;
-    color: #fff;
-    background-color: #fa3434
-}
+        .icon-sm {
+            width: 48px;
+            height: 48px;
+            line-height: 48px !important;
+            font-size: 20px
+        }
 
-.mr-3,
-.mx-3 {
-    margin-right: 3rem !important
-}
+        .widget-header {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative
+        }
 
-.search-form {
-    padding-top: 1rem;
+        .widget-header .notify {
+            position: absolute;
+            top: -3px;
+            right: -10px
+        }
 
-    border: 2px solid #E0A800 !important
-}
+        .notify {
+            position: absolute;
+            top: -4px;
+            right: -10px;
+            display: inline-block;
+            padding: .25em .6em;
+            font-size: 12px;
+            line-height: 1;
+            text-align: center;
+            border-radius: 3rem;
+            color: #fff;
+            background-color: #fa3434
+        }
 
-.search-button {
-    color: #000;
-    background-color: #ffffff;
-    border-color: #ffffff
-}
+        .mr-3,
+        .mx-3 {
+            margin-right: 3rem !important
+        }
 
+        .search-form {
+            padding-top: 1rem;
 
-.vl {
-    border-left: 1px solid #fff;
-    height: 100%
-}
+            border: 2px solid #E0A800 !important
+        }
 
-.login {
-    color: #E0A800
-}
-.nav-link {
-    text-transform: uppercase;
-    font-weight: 400
-}
-.top_bar_user div:nth-child(2)::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    right: -13px;
-    width: 1px;
-    height: 17px;
-    background: #f8f9fa;
-    content: '';
+        .search-button {
+            color: #000;
+            background-color: #ffffff;
+            border-color: #ffffff
+        }
 
 
+        .vl {
+            border-left: 1px solid #fff;
+            height: 100%
+        }
 
+        .login {
+            color: #E0A800
+        }
 
+        .nav-link {
+            text-transform: uppercase;
+            font-weight: 400
+        }
 
-
-
-
-
-
+        .top_bar_user div:nth-child(2)::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            right: -13px;
+            width: 1px;
+            height: 17px;
+            background: #f8f9fa;
+            content: '';
 
 
     </style>
@@ -158,19 +152,22 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="{% url 'core:home'%}"><img id="logo" class="rounded mx-auto d-block"
-                                                               src="{% static 'Settings.logo' %}" alt=""
-                                                               width="110" height="72"> </a></div>
+                            <div class="logo"><a href="{% url 'core:home'%}">
+                                <img id="logo"
+                                     class="rounded mx-auto d-block"
+                                     src="{{Settings.logo.url}}" alt=""
+                                     width="110" height="72"> </a></div>
                         </div>
-                    </div> <!-- Search -->
+                    </div>
                     <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action='/search/'  class="header_search_form clearfix">
+                                    <form action='/search/' class="header_search_form clearfix">
 
-                                        <input style="font-family: 'Rubik';" name="search" type="search" required="required" class="header_search_input"
-                                            placeholder="Search for products(e.g. Phone, dresses)">
+                                        <input style="font-family: 'Rubik';" name="search" type="search"
+                                               required="required" class="header_search_input"
+                                               placeholder="Search for products(e.g. Phone, dresses)">
                                         <button type="submit" class="header_search_button trans_300" value="Submit"
                                                 style="background: #AC801C;!important;"><i
                                                 class="fas fa-search text-white"></i></button>
@@ -259,9 +256,9 @@
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                          aria-labelledby="userDropdown">
-                       <!-- <a class="dropdown-item" href="#">
-                            <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
-                        </a>-->
+                        <!-- <a class="dropdown-item" href="#">
+                             <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
+                         </a>-->
 
                         <a class="dropdown-item" href="{% url 'core:userprofile' %}">
                             <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -345,14 +342,10 @@
 
 <!-- Menu Toggle Script -->
 <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
     });
-
-
-
-
 
 
 </script>

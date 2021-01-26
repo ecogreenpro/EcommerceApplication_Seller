@@ -20,7 +20,7 @@ from vendor.models import sellerProfile
 
 
 def header(request):
-    setting = Settings.objects.get(pk=1)
+    setting = Settings.objects.get()
     context = {'Settings': setting}
     return render(request, 'header.html', context)
 
@@ -31,25 +31,25 @@ def footer(request):
 
 
 def about(request):
-    setting = Settings.objects.get(pk=1)
+    setting = Settings.objects.get()
     context = {'Settings': setting}
     return render(request, 'base/about.html', context)
 
 
 def contact(request):
-    setting = Settings.objects.get(pk=1)
+    setting = Settings.objects.get()
     context = {'Settings': setting}
     return render(request, 'base/contact.html', context)
 
 
 def privacyPolicy(request):
-    setting = Settings.objects.get(pk=1)
+    setting = Settings.objects.get()
     context = {'Settings': setting}
     return render(request, 'base/privacyPolicy.html', context)
 
 
 def terms(request):
-    setting = Settings.objects.get(pk=1)
+    setting = Settings.objects.get()
     context = {'Settings': setting}
     return render(request, 'base/refundReturnsPolicy.html', context)
 
@@ -278,31 +278,6 @@ def wishlist(request):
     return render(request, 'wishlist.html', context)
 
 
-# def becomeSeller(request):
-#     if request.method == 'POST':
-#         name = request.POST['Name']
-#         companyName = request.POST['companyName']
-#         phone = request.POST['mobile']
-#         email = request.POST['email']
-#         address = request.POST['address']
-#         nid = request.POST['NID']
-#         tradeLicense = request.POST['TradeLicense']
-#         nidImage = request.POST['NIDImage']
-#         tradeImage = request.POST['TradeImage']
-#
-#         becomeSeller = SellerRegistration.objects.create(Name=name, CompanyName=companyName,
-#                                                          Phone=phone, Email=email,
-#                                                          Address=address, NID=nid,
-#                                                          TradeLicense=tradeLicense, NIDImage=nidImage,
-#                                                          TradeImage=tradeImage)
-#
-#         becomeSeller.save()
-#         messages.info(request, 'Registration Confirmed')
-#
-#     context = {}
-#     return render(request, 'becomeSeller.html', context)
-
-
 def search(request):
     try:
         Search = request.GET.get('search')
@@ -335,10 +310,19 @@ def notFound(request, exception):
 #     return render(request, 'shop.html', {"Products": product})
 
 
-class shop(ListView):
-    model = Products
-    paginate_by = 16
-    template_name = "shop.html"
+# class shop(ListView):
+#     model = Products
+#     paginate_by = 16
+#     template_name = "shop.html"
+
+def shop(request):
+    product = Products.objects.all()
+    setting = Settings.objects.get()
+    context = {
+        'product': product,
+        'Settings': setting
+    }
+    return render(request, 'shop.html', context)
 
 
 class productDetail(DetailView):
@@ -346,9 +330,19 @@ class productDetail(DetailView):
     template_name = "productDetail.html"
 
 
-class home(ListView):
-    model = Products
-    template_name = "home.html"
+def home(request):
+    product = Products.objects.all()
+    setting = Settings.objects.get()
+    context = {
+        'product': product,
+        'Settings': setting
+    }
+    return render(request, 'home.html', context)
+
+
+# class home(ListView):
+#     model = Products
+#     template_name = "home.html"
 
 
 class CategoryView(View):

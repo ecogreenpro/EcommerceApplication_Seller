@@ -373,7 +373,7 @@ height:513px;
                                     <h1>Featured Product</h1>
                                 </div>
                                 <div class="row align-items-center product-slider product-slider-4">
-                                    {% for item in object_list %}
+                                    {% for item in product %}
                                     {% if item.isactive %}
                                     <div class="col-lg-3">
                                         <div class="product-item">
@@ -440,7 +440,7 @@ height:513px;
                                     <h1>Best Seller Products</h1>
                                 </div>
                                 <div class="row align-items-center product-slider product-slider-4">
-                                    {% for item in object_list %}
+                                    {% for item in product %}
                                     {% if item.isactive %}
                                     {% if item.discountPrice %}
                                     <div class="col-lg-3">
