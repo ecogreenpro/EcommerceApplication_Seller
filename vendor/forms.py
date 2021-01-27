@@ -69,3 +69,28 @@ class ProfileUpdateForm(forms.ModelForm):
             'Address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
             'ShopLogo': forms.FileInput(attrs={'required': True, }),
         }
+
+
+class updateForm(forms.ModelForm):
+    shortDescription = forms.CharField(widget=CKEditorWidget()),
+    longDescirption = forms.CharField(widget=CKEditorWidget()),
+
+    class Meta:
+        model = Products
+        fields = ['user', 'name', 'slug', 'price', 'discountPrice', 'category', 'brand', 'label', 'stockQuantity',
+                  'shortDescription', 'longDescirption', 'mainImage', 'altImageOne', 'altImageTwo']
+        widgets = {
+            'user': forms.HiddenInput(),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'discountPrice': forms.NumberInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'brand': forms.Select(attrs={'class': 'form-control'}),
+            'label': forms.Select(attrs={'class': 'form-control'}),
+            'stockQuantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'mainImage': forms.FileInput(attrs={'required': True, }),
+            'altImageOne': forms.FileInput(attrs={'required': True, }),
+            'altImageTwo': forms.FileInput(attrs={'required': True, })
+
+        }
