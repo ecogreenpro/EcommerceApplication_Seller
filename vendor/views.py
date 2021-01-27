@@ -52,7 +52,10 @@ def addProduct(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Product Added Successfully, We will review your Product.')
-            return HttpResponseRedirect('/allProduct')
+            return HttpResponseRedirect('/all-product/')
+        else:
+            messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
+            return HttpResponseRedirect('/add-new-product/')
     else:
         form = AddProductForm(request=request)
     return render(request, 'vendor/addProduct.html', {'form': form})

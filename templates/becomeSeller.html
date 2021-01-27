@@ -81,49 +81,49 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Name"> Name <span class="text-danger">*</span></label>
-                                {% render_field form.Name class="form-control" placeholder="Your name" id="firstname" %}
+                                {% render_field form.Name class="form-control" placeholder="Your name"%}
                                 <div class="invalid-feedback">
-                                    Valid  name is required.
+                                    Valid name is required.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="ShopName"> Last Name <span class="text-danger">*</span></label>
-                                {% render_field form.ShopName class="form-control" placeholder="Your name" id="firstname" %}
+
+                                {% render_field form.ShopName class="form-control" placeholder="Your Shop name" %}
                                 <div class="invalid-feedback">
-                                    Valid Last name is required.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="companyName">Company Name <span class="text-danger">*</span></label>
-                                {% render_field form.ShopLogo class="form-control" placeholder="Your name" id="firstname" %}
-                                <div class="invalid-feedback">
-                                    Valid Company name is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="address">Address <span class="text-danger">*</span></label>
-                                {% render_field form.Phone class="form-control" placeholder="Your name" id="firstname" %}
-                                <div class="invalid-feedback">
-                                    Please enter your address.
+                                    Valid Shop Name is required.
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="mobile">Phone <span class="text-danger">*</span></label>
-                                {% render_field form.Email class="form-control" placeholder="Your name" id="firstname" %}
+                                <label for="ShopLogo">Shop Logo <span class="text-danger">*</span></label><br>
+                                {% render_field form.ShopLogo placeholder="Shop Logo" %}
                                 <div class="invalid-feedback">
-                                    Please enter a valid Phone Number.
+                                    Shop Logo is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Phone">Phone <span class="text-danger">*</span></label>
+                                {% render_field form.Phone class="form-control" placeholder="Contact Number" %}
+                                <div class="invalid-feedback">
+                                    Please enter your Phone No.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Email">Email <span class="text-danger">*</span></label>
+                                {% render_field form.Email class="form-control" placeholder="name@example.com" %}
+                                <div class="invalid-feedback">
+                                    Please enter a valid Email.
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="email">Email <span class="text-danger">*</span></label>
-                               {% render_field form.Address class="form-control" placeholder="Your name" id="firstname" %}
+                                <label for="Address">Address <span class="text-danger">*</span></label>
+                                {% render_field form.Address class="form-control" placeholder="Shop Address"%}
                                 <div class="invalid-feedback">
-                                    Please enter a valid email address
+                                    Please enter a valid address
                                 </div>
                             </div>
 
@@ -131,14 +131,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="NID">NID <span class="text-danger">*</span></label>
-                                {% render_field form.NID class="form-control" placeholder="Your name" id="firstname" %}
+                                {% render_field form.NID class="form-control" id="firstname" %}
                                 <div class="invalid-feedback">
                                     Valid NID Number is required.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="TradeLicense">Trade License<span class="text-danger">*</span></label>
-                                {% render_field form.TradeLicense class="form-control" placeholder="Your name" id="firstname" %}
+                                {% render_field form.TradeLicense class="form-control" placeholder="" %}
                                 <div class="invalid-feedback">
                                     Valid Trade License Number is required.
                                 </div>
@@ -148,7 +148,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="NID">NID Image<span class="text-danger">*</span></label><br>
-                                {% render_field form.NIDImage class="form-control" placeholder="Your name" id="firstname" %}
+                                {% render_field form.NIDImage %}
                                 <!--<input data-required="image" type="file"
                                        name="NIDImage"
                                        id="nid_file"
@@ -162,7 +162,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="TradeLicense">Trade License Image<span
                                         class="text-danger">*</span></label><br>
-                                {% render_field form.TradeImage class="form-control" placeholder="Your name" id="firstname" %}
+                                {% render_field form.TradeImage %}
                                 <!--<input data-required="image" type="file"
                                        name="TradeImage"
                                        id="trade_file"

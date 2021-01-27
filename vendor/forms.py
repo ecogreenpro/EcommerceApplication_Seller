@@ -18,7 +18,7 @@ class SellerRegistrationForm(forms.ModelForm):
             'ShopLogo': forms.FileInput(attrs={'required': True, }),
             'Phone': forms.NumberInput(attrs={'class': 'form-control'}),
             'Email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'Address': forms.Textarea(attrs={'class': 'form-control'}),
+            'Address': forms.TextInput(attrs={'class': 'form-control'}),
             'NID': forms.NumberInput(attrs={'class': 'form-control'}),
             'TradeLicense': forms.NumberInput(attrs={'class': 'form-control'}),
             'NIDImage': forms.FileInput(attrs={'required': True, }),
@@ -42,7 +42,7 @@ class AddProductForm(forms.ModelForm):
                   'shortDescription', 'longDescirption', 'mainImage', 'altImageOne', 'altImageTwo']
         widgets = {
             'user': forms.HiddenInput(),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': ''}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'discountPrice': forms.NumberInput(attrs={'class': 'form-control'}),
