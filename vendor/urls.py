@@ -21,6 +21,7 @@ urlpatterns = [
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('seller-profile/', views.settings, name="sellerProfile"),
     path('seller-update/', views.sellerUpdate, name="sellerUpdate"),
+    path('seller-change-password/', views.sellerChangePassword, name="sellerChangePassword"),
     # path('update-order/<order_Number>', views.vandorUpdateOrder, name="updateOrder"),
 
     #path('all-product/', allProduct.as_view(), name="allProduct"),

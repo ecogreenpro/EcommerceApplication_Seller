@@ -65,13 +65,14 @@
                         <tr>
                             <th class="text-left">
                                 <a href="{%url 'sellerUpdate'%}" class="btn btn-warning">Update Profile</a>
-                                <a href="/user/password" class="btn btn-danger">Change Password</a>
+                                <a href="{%url 'sellerChangePassword'%}" class="btn btn-danger">Change Password</a>
                             </th>
-                            <td><img src="{{ request.user.sellerprofile.ShopDetails.ShopLogo.url }}" style="border-radius: 45px; height: 200px "></td>
+                            <td><img src="{{ request.user.sellerprofile.ShopDetails.ShopLogo.url }}"
+                                     style="border-radius: 45px; height: 200px "></td>
                         </tr>
                         <tr>
-                            <th class="text-left">Name </th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Name}} </td>
+                            <th class="text-left">Name</th>
+                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Name}}</td>
                         </tr>
                         <tr>
                             <th class="text-left">Email</th>

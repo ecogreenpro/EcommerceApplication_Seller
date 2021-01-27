@@ -1,7 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
-from django.forms import TextInput, EmailInput, Select, FileInput
+from django.forms import TextInput, EmailInput, FileInput
 from core.models import Products, OrderProduct, Order
 from .models import *
 
@@ -65,7 +65,7 @@ class ProfileUpdateForm(forms.ModelForm):
             'Name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
             'ShopName': TextInput(attrs={'class': 'form-control', 'placeholder': 'Shop Name'}),
             'Phone': TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
-            'Email': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'Email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
             'Address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
-            'ShopLogo': FileInput(attrs={'placeholder': 'ShopLogo'}),
+            'ShopLogo': forms.FileInput(attrs={'required': True, }),
         }
