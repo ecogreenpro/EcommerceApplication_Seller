@@ -13,7 +13,7 @@ class SellerRegistrationForm(forms.ModelForm):
                   'TradeImage']
 
         widgets = {
-            'Name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
+            'Name': forms.TextInput(attrs={'class': 'form-control'}),
             'ShopName': forms.TextInput(attrs={'class': 'form-control'}),
             'ShopLogo': forms.FileInput(attrs={'required': True, }),
             'Phone': forms.NumberInput(attrs={'class': 'form-control'}),
