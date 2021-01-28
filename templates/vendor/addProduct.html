@@ -1,4 +1,5 @@
 {%load static%}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +93,17 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+                {% for message in messages %}
+                <br>
+                <div class="col-md-8">
+                    <div class="alert alert-info">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{message| safe}}!</strong></div>
 
+
+                </div>
+
+                {% endfor %}
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-7">
@@ -100,11 +111,157 @@
                         <h6 class="m-0 font-weight-bold text-primary">Add Products</h6>
                     </div>
                     <div class="card-body">
+                        <!-- <form method="post" class="needs-validation" enctype="multipart/form-data">
+                             {% csrf_token %}
+                             <div class="form-group">
+                                 {{form.media}}
+                                 {{form.as_p}}
+
+                             </div>
+                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                 <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i> Add
+                                     Product
+                                 </button>
+
+                             </div>
+                         </form>-->
                         <form method="post" class="needs-validation" enctype="multipart/form-data">
                             {% csrf_token %}
+                            {{ form.media }}
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {% render_field form.name type="text" class="form-control" placeholder="Product Name" %}
+                                    {% render_field form.user class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Product name is required.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {% render_field form.slug class="form-control" placeholder="Product Slug"%}
+                                    <div class="invalid-feedback">
+                                        Slug is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">৳</span>
+
+                                        {% render_field form.price class="form-control" placeholder="Product Price"%}
+
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Price is required.
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">৳</span>
+                                        {% render_field form.discountPrice class="form-control" placeholder="Discount Price"%}
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                {{form.media}}
-                                {{form.as_p}}
+                                {% render_field form.shortDescription class="form-control ckeditor"%}
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="Category"> Category Name <span class="text-danger">*</span></label>
+                                    {% render_field form.category class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE category
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="brand"> Brand Name</label>
+                                    {% render_field form.brand class="form-control"%}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="label"> Label <span class="text-danger">*</span></label>
+                                    {% render_field form.label class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE Label
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="stockQuantity"> Stock Quantity <span
+                                            class="text-danger">*</span></label>
+                                    {% render_field form.stockQuantity class="form-control "%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE Label
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-inner">
+                                <div class="item-content">
+                                    <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br> <i
+                                            class="fas fa-fw fa-cloud-upload-alt"></i>
+                                        <div class="h-100">
+                                            <div class="dplay-tbl">
+                                                <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                    <h5><b>Upload Product image</b></h5>
+                                                    <h6 class="mt-10 mb-70">Or Drop </h6>
+                                                    <div class="invalid-feedback">
+                                                        Please Select Product image
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--upload-content--> {% render_field form.mainImage class="form-control"%}
+
+                                    </label></div>
+                                </div>
+                                <!--item-content-->
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="item-inner">
+                                        <div class="item-content">
+                                            <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br>
+                                                <i
+                                                        class="fas fa-fw fa-cloud-upload-alt"></i>
+                                                <div class="h-100">
+                                                    <div class="dplay-tbl">
+                                                        <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                            <h5><b>Add image gallery</b></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% render_field form.altImageOne class="form-control"%}
+                                            </label></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="item-inner">
+                                        <div class="item-content">
+                                            <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br>
+                                                <i
+                                                        class="fas fa-fw fa-cloud-upload-alt"></i>
+                                                <div class="h-100">
+                                                    <div class="dplay-tbl">
+                                                        <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                            <h5><b>Add image gallery</b></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% render_field form.altImageTwo class="form-control"%}
+                                            </label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{form.longDescirption}}
 
                             </div>
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -184,4 +341,11 @@
 <script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
 <!-- Page level custom scripts -->
 <script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
+<script>
+    for (var i in CKEDITOR.instances) {
+        CKEDITOR.instances[i].on('change', function () {
+            CKEDITOR.instances[i].updateElement()
+        });
+    }
+</script>
 </html>

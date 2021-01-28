@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'core',
     'vendor',
     'ckeditor',
-
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [

@@ -9,7 +9,7 @@ from django.contrib import messages, auth
 from django.views.generic import ListView, DetailView, View, UpdateView
 
 from core.models import Products, OrderProduct, Order
-from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm
+from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
 from vendor.models import SellerRegistration
 
 
@@ -52,7 +52,10 @@ def addProduct(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Product Added Successfully, We will review your Product.')
-            return HttpResponseRedirect('/allProduct')
+            return HttpResponseRedirect('/all-product/')
+        else:
+            messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
+            return HttpResponseRedirect('/add-new-product/')
     else:
         form = AddProductForm(request=request)
     return render(request, 'vendor/addProduct.html', {'form': form})
@@ -115,6 +118,26 @@ def accountsReport(request):
 
 def settings(request):
     return render(request, 'vendor/sellerProfile.html')
+
+
+@login_required(login_url='/login')
+def updateProduct(request, slug):
+    product = Products.objects.filter(slug=slug).first()
+    if request.method == 'POST':
+        productUpdateForm = updateForm(request.POST, request.FILES,
+                                           instance=product)
+        if productUpdateForm.is_valid():
+            productUpdateForm.save()
+            messages.success(request, 'Your Product has been updated!')
+            return HttpResponseRedirect('/all-product/')
+    else:
+
+        productUpdateForm = updateForm(instance=product)
+        context = {
+
+            'form': productUpdateForm
+        }
+        return render(request, 'vendor/updateProduct.html', context)
 
 
 @login_required(login_url='/login')  # Check login

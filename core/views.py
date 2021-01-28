@@ -1,4 +1,6 @@
 from django.contrib import messages, auth
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.template.loader import get_template
 from django.utils import timezone
@@ -92,9 +94,22 @@ def forgotpassword(request):
     return render(request, 'account/forgotpassword.html', context)
 
 
+@login_required(login_url='/login')
 def changePassword(request):
-    context = {}
-    return render(request, 'account/changePassword.html', context)
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return HttpResponseRedirect('/userprofile')
+        else:
+            messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
+            return HttpResponseRedirect('/change-password/')
+    else:
+
+        form = PasswordChangeForm(request.user)
+        return render(request, 'account/ChangePassword.html', {'form': form, })
 
 
 def signup(request):
@@ -209,7 +224,7 @@ def cart(request):
 @login_required(login_url='/login')
 def checkout(request):
     current_user = request.user
-    #shipping = Shipping.objects.all()
+    # shipping = Shipping.objects.all()
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
