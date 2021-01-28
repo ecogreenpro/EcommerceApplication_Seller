@@ -110,6 +110,10 @@ class Products(models.Model):
     def products_photo(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.mainImage.url))
 
+    def get_percentage(self):
+        discount = (100 * ((self.price - self.discountPrice) / self.price))
+        return discount.__int__()
+
     products_photo.short_description = 'Image'
     products_photo.allow_tags = True
 
@@ -275,3 +279,24 @@ class Settings(models.Model):
 
     SiteLogo.short_description = 'Image'
     SiteLogo.allow_tags = True
+
+
+class CarouselAdvImage(models.Model):
+    title = models.CharField(max_length=50, blank=True)
+    Home_carousel1 = models.ImageField(blank=True, upload_to='Photos')
+    Home_carousel2 = models.ImageField(blank=True, upload_to='Photos')
+    Home_carousel3 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_top1 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_top2 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_middle1 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_middle2 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_middle3 = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_Bottom_long = models.ImageField(blank=True, upload_to='Photos')
+    Home_Adv_Bottom_Short = models.ImageField(blank=True, upload_to='Photos')
+    Shop_carousel1 = models.ImageField(blank=True, upload_to='Photos')
+    Shop_carousel2 = models.ImageField(blank=True, upload_to='Photos')
+    Shop_carousel3 = models.ImageField(blank=True, upload_to='Photos')
+    Become_Seller_Image = models.ImageField(blank=True, upload_to='Photos')
+
+    def __str__(self):
+        return self.title

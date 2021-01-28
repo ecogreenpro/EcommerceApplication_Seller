@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping, OrderProduct, \
-    Settings
+    Settings, CarouselAdvImage
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -125,6 +125,17 @@ class settingsAdmin(admin.ModelAdmin):
     ]
 
 
+class CarouselAdvImageAdmin(admin.ModelAdmin):
+    list_display = [
+        'title',
+        'Home_carousel1',
+        'Home_Adv_Bottom_long',
+        'Shop_carousel1',
+
+    ]
+
+
+admin.site.register(CarouselAdvImage, CarouselAdvImageAdmin)
 admin.site.register(Settings, settingsAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Brands, BrandsAdmin)
