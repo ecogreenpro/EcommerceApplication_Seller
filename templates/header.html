@@ -1,330 +1,210 @@
 {% load static %}
 {% load cart_template_tags%}
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% load category_template_tags%}
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <link rel="icon" type="image/png" href="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg"/>
-    <!--<link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>-->
-    <title> Jewellery | Jewellery.com.bd</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/navbar-fixed/">
-
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
-    <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
-
-    <style>
-        body {
-            padding-top: 0rem;
-            padding-bottom: 0rem;
-
-        }
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        }
-        .header_main {
-            z-index: position: relative;
-            padding-top: 10px;
-            padding-bottom: 0px;
-            background-color: #fff;
-        }
-
-        .logo {
-            color: #008000;
-            font-size: 25px;
-            font-weight: 600
-        }
-
-        .brand-wrap {
-            text-decoration: none !important
-        }
-
-        .icon-sm {
-            width: 48px;
-            height: 48px;
-            line-height: 48px !important;
-            font-size: 20px
-        }
-
-        .widget-header {
-            display: inline-block;
-            vertical-align: middle;
-            position: relative
-        }
-
-        .widget-header .notify {
-            position: absolute;
-            top: -3px;
-            right: -10px
-        }
-
-        .notify {
-            position: absolute;
-            top: -4px;
-            right: -10px;
-            display: inline-block;
-            padding: .25em .6em;
-            font-size: 12px;
-            line-height: 1;
-            text-align: center;
-            border-radius: 3rem;
-            color: #fff;
-            background-color: #fa3434
-        }
-
-        .mr-3,
-        .mx-3 {
-            margin-right: 3rem !important
-        }
-
-        .search-form {
-            padding-top: 1rem;
-
-            border: 2px solid #E0A800 !important
-        }
-
-        .search-button {
-            color: #000;
-            background-color: #ffffff;
-            border-color: #ffffff
-        }
-
-
-        .vl {
-            border-left: 1px solid #fff;
-            height: 100%
-        }
-
-        .login {
-            color: #E0A800
-        }
-
-        .nav-link {
-            text-transform: uppercase;
-            font-weight: 400
-        }
-
-        .top_bar_user div:nth-child(2)::after {
-            display: block;
-            position: absolute;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
-            transform: translateY(-50%);
-            right: -13px;
-            width: 1px;
-            height: 17px;
-            background: #f8f9fa;
-            content: '';
-
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'navbar-top.css' %}" rel="stylesheet">
+    <title>Martfury - Multipurpose Marketplace HTML5 Template + Admin Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/fonts/Linearicons/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/owl-carousel/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/owl-carousel/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/slick/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/nouislider/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/lightGallery-master/dist/css/lightgallery.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
-<header class="section-header" id="page-top">
-    <section class="header-main border-bottom">
-        <div class="header_main">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo -->
-                    <div class="col-lg-2 col-sm-3 col-3 order-1">
-                        <div class="logo_container">
-                            <div class="logo"><a href="{% url 'core:home'%}">
-                                <img id="logo"
-                                     class="rounded mx-auto d-block"
-                                     src="{{Settings.logo.url}}" alt=""
-                                     width="110" height="72"> </a></div>
+<!--<section class="header-main border-bottom">
+    <div class="header_main">
+        <div class="container">
+            <div class="row">
+                &lt;!&ndash; Logo &ndash;&gt;
+                <div class="col-lg-2 col-sm-3 col-3 order-1">
+                    <div class="logo_container">
+                        <div class="logo"><a href="{% url 'core:home'%}">
+                            <img id="logo"
+                                 class="rounded mx-auto d-block"
+                                 src="{{Settings.logo.url}}" alt=""
+                                 width="110" height="72"> </a></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                    <div class="header_search">
+                        <div class="header_search_content">
+                            <div class="header_search_form_container">
+                                <form action='/search/' class="header_search_form clearfix">
+
+                                    <input style="font-family: 'Rubik';" name="search" type="search"
+                                           required="required" class="header_search_input"
+                                           placeholder="Search for products(e.g. Phone, dresses)">
+                                    <button type="submit" class="header_search_button trans_300" value="Submit"
+                                            style="background: #AC801C;!important;"><i
+                                            class="fas fa-search text-white"></i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                        <div class="header_search">
-                            <div class="header_search_content">
-                                <div class="header_search_form_container">
-                                    <form action='/search/' class="header_search_form clearfix">
-
-                                        <input style="font-family: 'Rubik';" name="search" type="search"
-                                               required="required" class="header_search_input"
-                                               placeholder="Search for products(e.g. Phone, dresses)">
-                                        <button type="submit" class="header_search_button trans_300" value="Submit"
-                                                style="background: #AC801C;!important;"><i
-                                                class="fas fa-search text-white"></i></button>
-                                    </form>
+                </div> &lt;!&ndash; Wishlist &ndash;&gt;
+                <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                    <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                        <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                            &lt;!&ndash;<a href="#">
+                                <div class="wishlist_icon"><img
+                                        src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png"
+                                        alt=""></div>
+                                <div class="wishlist_content">
+                                    <div class="wishlist_text"><a href="#" class="text-dark"
+                                                                  style="font-family: 'Rubik';">Wishlist</a>
+                                    </div>
+                                    <div class="badge badge-pill badge-primary"
+                                         style="font-family: 'Rubik'; background: #AC801C; ">0
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div> <!-- Wishlist -->
-                    <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                <!--<a href="#">
-                                    <div class="wishlist_icon"><img
-                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png"
-                                            alt=""></div>
-                                    <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="#" class="text-dark"
-                                                                      style="font-family: 'Rubik';">Wishlist</a>
-                                        </div>
-                                        <div class="badge badge-pill badge-primary"
-                                             style="font-family: 'Rubik'; background: #AC801C; ">0
+                            </a>&ndash;&gt;
+                        </div> &lt;!&ndash; Cart &ndash;&gt;
+                        <div class="bag">
+                            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                <a href="{% url 'core:cart' %}" style="font-family: 'Rubik';">
+                                    <div class="cart_icon"><img
+                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png"
+                                            alt="">
+                                        <div class="cart_count" style="font-family: 'Rubik'; background: #AC801C;">
+                                            {% cartCount user.id as count %}
+                                            <span>{{ count }}</span>
                                         </div>
                                     </div>
-                                </a>-->
-                            </div> <!-- Cart -->
-                            <div class="bag">
-                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                    <a href="{% url 'core:cart' %}" style="font-family: 'Rubik';">
-                                        <div class="cart_icon"><img
-                                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png"
-                                                alt="">
-                                            <div class="cart_count" style="font-family: 'Rubik'; background: #AC801C;">
-                                                {% cartCount user.id as count %}
-                                                <span>{{ count }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="cart_content">
-                                            <div class="cart_text text-dark">Bag
+                                    <div class="cart_content">
+                                        <div class="cart_text text-dark">Bag
 
-                                    </a>
-                                </div>
-                                {%cartTotal user.id as total%}
-                                <div class="cart_price" style="font-family: 'Rubik';">BDT {{total}}</div>
+                                </a>
                             </div>
+                            {%cartTotal user.id as total%}
+                            <div class="cart_price" style="font-family: 'Rubik';">BDT {{total}}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-    </section>
-    <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #000!important;">
-        <button class="btn " id="menu-toggle" width="70" height="40"
-                style="background-color: #ac801cc2!important; color: #fff; font-family: 'Rubik';"><i
-                class="fas fa-bars"></i> Catagories
-        </button> &nbsp; &nbsp; &nbsp;
-        <!--<a class="navbar-brand" href="#">
-            <img src="{% static 'media/avatar.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""
-                 loading="lazy">
-            Ecogreen eShop
-        </a>--->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse" style="font-family: 'Rubik';">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'core:home'%}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'core:shop'%}">Shop <span class="sr-only">(current)</span></a>
-                </li>
+    </div>
+</section>
+<nav class="navbar navbar-expand-md navbar-dark " style="background-color: #000!important;">
+    <button class="btn " id="menu-toggle" width="70" height="40"
+            style="background-color: #ac801cc2!important; color: #fff; font-family: 'Rubik';"><i
+            class="fas fa-bars"></i> Catagories
+    </button> &nbsp; &nbsp; &nbsp;
+    &lt;!&ndash;<a class="navbar-brand" href="#">
+        <img src="{% static 'media/avatar.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""
+             loading="lazy">
+        Ecogreen eShop
+    </a>-&ndash;&gt;
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="font-family: 'Rubik';">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'core:home'%}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'core:shop'%}">Shop <span class="sr-only">(current)</span></a>
+            </li>
 
-            </ul>
+        </ul>
 
-            <ul>
-                <li class="nav-item dropdown no-arrow">
-                    {% if request.user.is_authenticated %}
+        <ul>
+            <li class="nav-item dropdown no-arrow">
+                {% if request.user.is_authenticated %}
+                <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
+                   role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="far fa-user"></i> Hello! <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
+                </a>
+                &lt;!&ndash; Dropdown - User Information &ndash;&gt;
+                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"
+                     aria-labelledby="userDropdown">
+                    &lt;!&ndash; <a class="dropdown-item" href="#">
+                         <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
+                     </a>&ndash;&gt;
+
+                    <a class="dropdown-item" href="{% url 'core:userprofile' %}">
+                        <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                        My Profile
+                    </a>
+
+                    <a class="dropdown-item" href="{% url 'core:userOrder' %}">
+                        <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
+                        My Order
+                    </a>
+
+                    &lt;!&ndash;<a class="dropdown-item" href="#">
+                        <i class="fas fa-money-check-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Balance
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Chat
+                    </a>&ndash;&gt;
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#my-modal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                    {%else%}
                     <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
                        role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-user"></i> Hello! <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
-                    </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                         aria-labelledby="userDropdown">
-                        <!-- <a class="dropdown-item" href="#">
-                             <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
-                         </a>-->
+                        <i class="far fa-user"></i> Hello!</a>
+                    {%endif%}
+                </div>
+            </li>
+        </ul>
+    </div>
 
-                        <a class="dropdown-item" href="{% url 'core:userprofile' %}">
-                            <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
-                            My Profile
-                        </a>
-
-                        <a class="dropdown-item" href="{% url 'core:userOrder' %}">
-                            <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
-                            My Order
-                        </a>
-
-                        <!--<a class="dropdown-item" href="#">
-                            <i class="fas fa-money-check-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Balance
-                        </a>
-
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Chat
-                        </a>-->
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#my-modal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>
-                        {%else%}
-                        <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
-                           role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-user"></i> Hello!</a>
-                        {%endif%}
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content border-0">
-                    <div class="modal-body p-0">
-                        <div class="card border-0 p-sm-3 p-2 justify-content-center">
-                            <div class="card-header pb-0 bg-white border-0 ">
-                                <div class="row">
-                                    <div class="col ml-auto">
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                    </div>
+    <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-body p-0">
+                    <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                        <div class="card-header pb-0 bg-white border-0 ">
+                            <div class="row">
+                                <div class="col ml-auto">
+                                    <button type="button" class="close"
+                                            data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
                                 </div>
-                                <p class="font-weight-bold mb-2"> Are you sure you wanna logout?</p>
-
                             </div>
-                            <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
-                                <div class="row justify-content-end no-gutters">
-                                    <div class="col-auto">
-                                        <button type="button"
-                                                class="btn btn-light text-muted"
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                    </div> &nbsp;
-                                    <div class="col-auto">
-                                        <a href="{% url 'core:logout' %} " type="button" class="btn btn-danger px-4">
-                                            logout
-                                        </a>
-                                    </div>
+                            <p class="font-weight-bold mb-2"> Are you sure you wanna logout?</p>
+
+                        </div>
+                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                            <div class="row justify-content-end no-gutters">
+                                <div class="col-auto">
+                                    <button type="button"
+                                            class="btn btn-light text-muted"
+                                            data-dismiss="modal">Cancel
+                                    </button>
+                                </div> &nbsp;
+                                <div class="col-auto">
+                                    <a href="{% url 'core:logout' %} " type="button" class="btn btn-danger px-4">
+                                        logout
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -332,29 +212,937 @@
                 </div>
             </div>
         </div>
+    </div>
+</nav>-->
+<header class="header header--1" data-sticky="true">
+    <div class="header__top" >
+        <div class="ps-container">
+            <div class="header__left">
+                <div class="menu--product-categories">
+                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                    <div class="menu__content">
+                        <ul class="menu--dropdown">
+                            {% categories %}
+                        </ul>
+                    </div>
+                </div>
+                <a class="ps-logo" href="#">
+                    <img src="{% static 'Jewellery.png' %}" alt="" width="110"
+                                                          height="70"></a>
+            </div>
+            <div class="header__center">
+                <form class="ps-form--quick-search" action="index.html" method="get">
+                    <div class="form-group--icon"></i>
+                    </div>
+                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search">
+                    <button>Search</button>
+                    <div class="ps-panel--search-result">
+                        <div class="ps-panel__content">
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Apple iPhone Retina 6s
+                                    Plus 32GB</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span></span>
+                                    </div>
+                                    <p class="ps-product__price">$990.50</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Apple iPhone Retina 6s
+                                    Plus 64GB</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span></span>
+                                    </div>
+                                    <p class="ps-product__price">$1120.50</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Apple iPhone Retina 6s
+                                    Plus 128GB</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span></span>
+                                    </div>
+                                    <p class="ps-product__price">$1220.50</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/2.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Marshall Kilburn
+                                    Portable Wireless Speaker</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div>
+                                    <p class="ps-product__price">$36.78 – $56.99</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/3.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Herschel Leather Duffle
+                                    Bag In Brown Color</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>02</span>
+                                    </div>
+                                    <p class="ps-product__price">$125.30</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/4.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Xbox One Wireless
+                                    Controller Black Color</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>02</span>
+                                    </div>
+                                    <p class="ps-product__price">$55.30</p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/5.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Grand Slam Indoor Of
+                                    Show Jumping Novel</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>02</span>
+                                    </div>
+                                    <p class="ps-product__price sale">$41.27
+                                        <del>$52.99</del>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="ps-product ps-product--wide ps-product--search-result">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
+                                        src="img/products/arrivals/6.jpg" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title"
+                                                                    href="product-default.html">Sound Intone I65
+                                    Earphone White Version</a>
+                                    <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div>
+                                    <p class="ps-product__price sale">$41.27
+                                        <del>$62.39</del>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ps-panel__footer text-center"><a href="shop-default.html">See all results</a></div>
+                    </div>
+                </form>
+            </div>
+            <div class="header__right">
+                <div class="header__actions"><a class="header__extra" href="#"><i
+                        class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="#"><i
+                        class="icon-heart"></i><span><i>0</i></span></a>
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                        <div class="ps-cart__content">
+                            <div class="ps-cart__items">
+                                <div class="ps-product--cart-mobile">
+                                    <div class="ps-product__thumbnail"><a href="#"><img
+                                            src="img/products/clothing/7.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
+                                            class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical
+                                        Leather Watch In Black</a>
+                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                    </div>
+                                </div>
+                                <div class="ps-product--cart-mobile">
+                                    <div class="ps-product__thumbnail"><a href="#"><img
+                                            src="img/products/clothing/5.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
+                                            class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend
+                                        Caro Pane Shirt</a>
+                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-cart__footer">
+                                <h3>Sub Total:<strong>$59.99</strong></h3>
+                                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn"
+                                                                                                    href="checkout.html">Checkout</a>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-block--user-header">
+                        <div class="ps-block__left"><i class="icon-user"></i></div>
+                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navigation">
+        <div class="ps-container">
+            <div class="navigation__left">
+                <div class="menu--product-categories">
+                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                    <div class="menu__content">
+                        <ul class="menu--dropdown">
+                            {% categories %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation__right">
+                <ul class="menu">
+                    <li class="menu-item-has-children"><a href="#">Home</a><span class="sub-toggle"></span>
+                        <ul class="sub-menu">
+                            <li><a href="#">About us</a>
+                        </ul>
+                    </li>
+                    <!--<li class="menu-item-has-children"><a href="index.html">Home</a><span class="sub-toggle"></span>
+                       &lt;!&ndash; <ul class="sub-menu">
+                            <li><a href="index.html">Marketplace Full Width</a>
+                            </li>
+                            <li><a href="homepage-2.html">Home Auto Parts</a>
+                            </li>
+                            <li><a href="homepage-10.html">Home Technology</a>
+                            </li>
+                            <li><a href="homepage-9.html">Home Organic</a>
+                            </li>
+                            <li><a href="homepage-3.html">Home Marketplace V1</a>
+                            </li>
+                            <li><a href="homepage-4.html">Home Marketplace V2</a>
+                            </li>
+                            <li><a href="homepage-5.html">Home Marketplace V3</a>
+                            </li>
+                            <li><a href="homepage-6.html">Home Marketplace V4</a>
+                            </li>
+                            <li><a href="homepage-7.html">Home Electronic</a>
+                            </li>
+                            <li><a href="homepage-8.html">Home Furniture</a>
+                            </li>
+                            <li><a href="homepage-kids.html">Home Kids</a>
+                            </li>
+                            <li><a href="homepage-photo-and-video.html">Home photo and picture</a>
+                            </li>
+                            <li><a href="home-medical.html">Home Medical</a>
+                            </li>
+                        </ul>&ndash;&gt;
+                    </li>
+                    <li class="menu-item-has-children has-mega-menu"><a href="shop-default.html">Shop</a><span
+                            class="sub-toggle"></span>
+                        &lt;!&ndash;<div class="mega-menu">
+                            <div class="mega-menu__column">
+                                <h4>Catalog Pages<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="shop-default.html">Shop Default</a>
+                                    </li>
+                                    <li><a href="shop-default.html">Shop Fullwidth</a>
+                                    </li>
+                                    <li><a href="shop-categories.html">Shop Categories</a>
+                                    </li>
+                                    <li><a href="shop-sidebar.html">Shop Sidebar</a>
+                                    </li>
+                                    <li><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>
+                                    </li>
+                                    <li><a href="shop-carousel.html">Shop Carousel</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Product Layout<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="product-default.html">Default</a>
+                                    </li>
+                                    <li><a href="product-extend.html">Extended</a>
+                                    </li>
+                                    <li><a href="product-full-content.html">Full Content</a>
+                                    </li>
+                                    <li><a href="product-box.html">Boxed</a>
+                                    </li>
+                                    <li><a href="product-sidebar.html">Sidebar</a>
+                                    </li>
+                                    <li><a href="product-default.html">Fullwidth</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Product Types<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="product-default.html">Simple</a>
+                                    </li>
+                                    <li><a href="product-default.html">Color Swatches</a>
+                                    </li>
+                                    <li><a href="product-image-swatches.html">Images Swatches</a>
+                                    </li>
+                                    <li><a href="product-countdown.html">Countdown</a>
+                                    </li>
+                                    <li><a href="product-multi-vendor.html">Multi-Vendor</a>
+                                    </li>
+                                    <li><a href="product-instagram.html">Instagram</a>
+                                    </li>
+                                    <li><a href="product-affiliate.html">Affiliate</a>
+                                    </li>
+                                    <li><a href="product-on-sale.html">On sale</a>
+                                    </li>
+                                    <li><a href="product-video.html">Video Featured</a>
+                                    </li>
+                                    <li><a href="product-groupped.html">Grouped</a>
+                                    </li>
+                                    <li><a href="product-out-stock.html">Out Of Stock</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Woo Pages<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="shopping-cart.html">Shopping Cart</a>
+                                    </li>
+                                    <li><a href="checkout.html">Checkout</a>
+                                    </li>
+                                    <li><a href="whishlist.html">Whishlist</a>
+                                    </li>
+                                    <li><a href="compare.html">Compare</a>
+                                    </li>
+                                    <li><a href="order-tracking.html">Order Tracking</a>
+                                    </li>
+                                    <li><a href="my-account.html">My Account</a>
+                                    </li>
+                                    <li><a href="checkout-2.html">Checkout 2</a>
+                                    </li>
+                                    <li><a href="shipping.html">Shipping</a>
+                                    </li>
+                                    <li><a href="payment.html">Payment</a>
+                                    </li>
+                                    <li><a href="payment-success.html">Payment Success</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>&ndash;&gt;
+                    </li>
+                    <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span
+                            class="sub-toggle"></span>
+                        <div class="mega-menu">
+                            <div class="mega-menu__column">
+                                <h4>Basic Page<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="about-us.html">About Us</a>
+                                    </li>
+                                    <li><a href="contact-us.html">Contact</a>
+                                    </li>
+                                    <li><a href="faqs.html">Faqs</a>
+                                    </li>
+                                    <li><a href="comming-soon.html">Comming Soon</a>
+                                    </li>
+                                    <li><a href="404-page.html">404 Page</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Vendor Pages<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="become-a-vendor.html">Become a Vendor</a>
+                                    </li>
+                                    <li><a href="vendor-store.html">Vendor Store</a>
+                                    </li>
+                                    <li><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>
+                                    </li>
+                                    <li><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>
+                                    </li>
+                                    <li><a href="store-list.html">Store List</a>
+                                    </li>
+                                    <li><a href="store-list.html">Store List 2</a>
+                                    </li>
+                                    <li><a href="store-detail.html">Store Detail</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Account Pages<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="user-information.html">User Information</a>
+                                    </li>
+                                    <li><a href="addresses.html">Addresses</a>
+                                    </li>
+                                    <li><a href="invoices.html">Invoices</a>
+                                    </li>
+                                    <li><a href="invoice-detail.html">Invoice Detail</a>
+                                    </li>
+                                    <li><a href="notifications.html">Notifications</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item-has-children has-mega-menu"><a href="#">Blogs</a><span
+                            class="sub-toggle"></span>
+                        <div class="mega-menu">
+                            <div class="mega-menu__column">
+                                <h4>Blog Layout<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="blog-grid.html">Grid</a>
+                                    </li>
+                                    <li><a href="blog-list.html">Listing</a>
+                                    </li>
+                                    <li><a href="blog-small-thumb.html">Small Thumb</a>
+                                    </li>
+                                    <li><a href="blog-left-sidebar.html">Left Sidebar</a>
+                                    </li>
+                                    <li><a href="blog-right-sidebar.html">Right Sidebar</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu__column">
+                                <h4>Single Blog<span class="sub-toggle"></span></h4>
+                                <ul class="mega-menu__list">
+                                    <li><a href="blog-detail.html">Single 1</a>
+                                    </li>
+                                    <li><a href="blog-detail-2.html">Single 2</a>
+                                    </li>
+                                    <li><a href="blog-detail-3.html">Single 3</a>
+                                    </li>
+                                    <li><a href="blog-detail-4.html">Single 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>-->
+                </ul>
+                <ul class="navigation__extra">
+                    <li><a href="#">Sell on Martfury</a></li>
+                    <li><a href="#">Tract your order</a></li>
+                    <li>
+                        <div class="ps-dropdown"><a href="#">US Dollar</a>
+                            <ul class="ps-dropdown-menu">
+                                <li><a href="#">Us Dollar</a></li>
+                                <li><a href="#">Euro</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="">English</a>
+                            <ul class="ps-dropdown-menu">
+                                <li><a href="#"><img src="img/flag/germany.png" alt=""> Germany</a></li>
+                                <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-
 </header>
+<header class="header header--mobile" data-sticky="true">
+    <div class="header__top">
+        <div class="header__left">
+            <p>Welcome to Martfury Online Shopping Store !</p>
+        </div>
+        <div class="header__right">
+            <ul class="navigation__extra">
+                <li><a href="#">Sell on Martfury</a></li>
+                <li><a href="#">Tract your order</a></li>
+                <li>
+                    <div class="ps-dropdown"><a href="#">US Dollar</a>
+                        <ul class="ps-dropdown-menu">
+                            <li><a href="#">Us Dollar</a></li>
+                            <li><a href="#">Euro</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="">English</a>
+                        <ul class="ps-dropdown-menu">
+                            <li><a href="#"><img src="img/flag/germany.png" alt=""> Germany</a></li>
+                            <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navigation--mobile">
+        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a>
+        </div>
+        <div class="navigation__right">
+            <div class="header__actions">
+                <div class="ps-cart--mini"><a class="header__extra" href="#"><i
+                        class="icon-bag2"></i><span><i>0</i></span></a>
+                    <div class="ps-cart__content">
+                        <div class="ps-cart__items">
+                            <div class="ps-product--cart-mobile">
+                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg"
+                                                                                    alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
+                                        class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical
+                                    Leather Watch In Black</a>
+                                    <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                </div>
+                            </div>
+                            <div class="ps-product--cart-mobile">
+                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg"
+                                                                                    alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
+                                        class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend
+                                    Caro Pane Shirt</a>
+                                    <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ps-cart__footer">
+                            <h3>Sub Total:<strong>$59.99</strong></h3>
+                            <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn"
+                                                                                                href="checkout.html">Checkout</a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-block--user-header">
+                    <div class="ps-block__left"><i class="icon-user"></i></div>
+                    <div class="ps-block__right"><a href="my-account.html">Login</a><a
+                            href="my-account.html">Register</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ps-search--mobile">
+        <form class="ps-form--search-mobile" action="index.html" method="get">
+            <div class="form-group--nest">
+                <input class="form-control" type="text" placeholder="Search something...">
+                <button><i class="icon-magnifier"></i></button>
+            </div>
+        </form>
+    </div>
+</header>
+<div class="ps-panel--sidebar" id="cart-mobile">
+    <div class="ps-panel__header">
+        <h3>Shopping Cart</h3>
+    </div>
+    <div class="navigation__content">
+        <div class="ps-cart--mobile">
+            <div class="ps-cart__content">
+                <div class="ps-product--cart-mobile">
+                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a>
+                    </div>
+                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
+                            class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In
+                        Black</a>
+                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-cart__footer">
+                <h3>Sub Total:<strong>$59.99</strong></h3>
+                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ps-panel--sidebar" id="navigation-mobile">
+    <div class="ps-panel__header">
+        <h3>Categories</h3>
+    </div>
+    <div class="ps-panel__content">
+        <ul class="menu--mobile">
+            <li><a href="#">Hot Promotions</a>
+            </li>
+            <li class="menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span
+                    class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Electronic<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="#">Home Audio &amp; Theathers</a>
+                            </li>
+                            <li><a href="#">TV &amp; Videos</a>
+                            </li>
+                            <li><a href="#">Camera, Photos &amp; Videos</a>
+                            </li>
+                            <li><a href="#">Cellphones &amp; Accessories</a>
+                            </li>
+                            <li><a href="#">Headphones</a>
+                            </li>
+                            <li><a href="#">Videosgames</a>
+                            </li>
+                            <li><a href="#">Wireless Speakers</a>
+                            </li>
+                            <li><a href="#">Office Electronic</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="#">Digital Cables</a>
+                            </li>
+                            <li><a href="#">Audio &amp; Video Cables</a>
+                            </li>
+                            <li><a href="#">Batteries</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#">Clothing &amp; Apparel</a>
+            </li>
+            <li><a href="#">Home, Garden &amp; Kitchen</a>
+            </li>
+            <li><a href="#">Health &amp; Beauty</a>
+            </li>
+            <li><a href="#">Yewelry &amp; Watches</a>
+            </li>
+            <li class="menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span
+                    class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="#">Computer &amp; Tablets</a>
+                            </li>
+                            <li><a href="#">Laptop</a>
+                            </li>
+                            <li><a href="#">Monitors</a>
+                            </li>
+                            <li><a href="#">Networking</a>
+                            </li>
+                            <li><a href="#">Drive &amp; Storages</a>
+                            </li>
+                            <li><a href="#">Computer Components</a>
+                            </li>
+                            <li><a href="#">Security &amp; Protection</a>
+                            </li>
+                            <li><a href="#">Gaming Laptop</a>
+                            </li>
+                            <li><a href="#">Accessories</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#">Babies &amp; Moms</a>
+            </li>
+            <li><a href="#">Sport &amp; Outdoor</a>
+            </li>
+            <li><a href="#">Phones &amp; Accessories</a>
+            </li>
+            <li><a href="#">Books &amp; Office</a>
+            </li>
+            <li><a href="#">Cars &amp; Motocycles</a>
+            </li>
+            <li><a href="#">Home Improments</a>
+            </li>
+            <li><a href="#">Vouchers &amp; Services</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="navigation--list">
+    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i
+            class="icon-menu"></i><span> Menu</span></a><a class="navigation__item ps-toggle--sidebar"
+                                                           href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a>
+    </div>
+</div>
+<div class="ps-panel--sidebar" id="search-sidebar">
+    <div class="ps-panel__header">
+        <form class="ps-form--search-mobile" action="index.html" method="get">
+            <div class="form-group--nest">
+                <input class="form-control" type="text" placeholder="Search something...">
+                <button><i class="icon-magnifier"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="navigation__content"></div>
+</div>
+<div class="ps-panel--sidebar" id="menu-mobile">
+    <div class="ps-panel__header">
+        <h3>Menu</h3>
+    </div>
+    <div class="ps-panel__content">
+        <ul class="menu--mobile">
+            <li class="menu-item-has-children"><a href="index.html">Home</a><span class="sub-toggle"></span>
+                <ul class="sub-menu">
+                    <li><a href="index.html">Marketplace Full Width</a>
+                    </li>
+                    <li><a href="homepage-2.html">Home Auto Parts</a>
+                    </li>
+                    <li><a href="homepage-10.html">Home Technology</a>
+                    </li>
+                    <li><a href="homepage-9.html">Home Organic</a>
+                    </li>
+                    <li><a href="homepage-3.html">Home Marketplace V1</a>
+                    </li>
+                    <li><a href="homepage-4.html">Home Marketplace V2</a>
+                    </li>
+                    <li><a href="homepage-5.html">Home Marketplace V3</a>
+                    </li>
+                    <li><a href="homepage-6.html">Home Marketplace V4</a>
+                    </li>
+                    <li><a href="homepage-7.html">Home Electronic</a>
+                    </li>
+                    <li><a href="homepage-8.html">Home Furniture</a>
+                    </li>
+                    <li><a href="homepage-kids.html">Home Kids</a>
+                    </li>
+                    <li><a href="homepage-photo-and-video.html">Home photo and picture</a>
+                    </li>
+                    <li><a href="home-medical.html">Home Medical</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item-has-children has-mega-menu"><a href="shop-default.html">Shop</a><span
+                    class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Catalog Pages<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="shop-default.html">Shop Default</a>
+                            </li>
+                            <li><a href="shop-default.html">Shop Fullwidth</a>
+                            </li>
+                            <li><a href="shop-categories.html">Shop Categories</a>
+                            </li>
+                            <li><a href="shop-sidebar.html">Shop Sidebar</a>
+                            </li>
+                            <li><a href="shop-sidebar-without-banner.html">Shop Without Banner</a>
+                            </li>
+                            <li><a href="shop-carousel.html">Shop Carousel</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Product Layout<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="product-default.html">Default</a>
+                            </li>
+                            <li><a href="product-extend.html">Extended</a>
+                            </li>
+                            <li><a href="product-full-content.html">Full Content</a>
+                            </li>
+                            <li><a href="product-box.html">Boxed</a>
+                            </li>
+                            <li><a href="product-sidebar.html">Sidebar</a>
+                            </li>
+                            <li><a href="product-default.html">Fullwidth</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Product Types<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="product-default.html">Simple</a>
+                            </li>
+                            <li><a href="product-default.html">Color Swatches</a>
+                            </li>
+                            <li><a href="product-image-swatches.html">Images Swatches</a>
+                            </li>
+                            <li><a href="product-countdown.html">Countdown</a>
+                            </li>
+                            <li><a href="product-multi-vendor.html">Multi-Vendor</a>
+                            </li>
+                            <li><a href="product-instagram.html">Instagram</a>
+                            </li>
+                            <li><a href="product-affiliate.html">Affiliate</a>
+                            </li>
+                            <li><a href="product-on-sale.html">On sale</a>
+                            </li>
+                            <li><a href="product-video.html">Video Featured</a>
+                            </li>
+                            <li><a href="product-groupped.html">Grouped</a>
+                            </li>
+                            <li><a href="product-out-stock.html">Out Of Stock</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Woo Pages<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="shopping-cart.html">Shopping Cart</a>
+                            </li>
+                            <li><a href="checkout.html">Checkout</a>
+                            </li>
+                            <li><a href="whishlist.html">Whishlist</a>
+                            </li>
+                            <li><a href="compare.html">Compare</a>
+                            </li>
+                            <li><a href="order-tracking.html">Order Tracking</a>
+                            </li>
+                            <li><a href="my-account.html">My Account</a>
+                            </li>
+                            <li><a href="checkout-2.html">Checkout 2</a>
+                            </li>
+                            <li><a href="shipping.html">Shipping</a>
+                            </li>
+                            <li><a href="payment.html">Payment</a>
+                            </li>
+                            <li><a href="payment-success.html">Payment Success</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item-has-children has-mega-menu"><a href="#">Pages</a><span class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Basic Page<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="about-us.html">About Us</a>
+                            </li>
+                            <li><a href="contact-us.html">Contact</a>
+                            </li>
+                            <li><a href="faqs.html">Faqs</a>
+                            </li>
+                            <li><a href="comming-soon.html">Comming Soon</a>
+                            </li>
+                            <li><a href="404-page.html">404 Page</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Vendor Pages<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="become-a-vendor.html">Become a Vendor</a>
+                            </li>
+                            <li><a href="vendor-store.html">Vendor Store</a>
+                            </li>
+                            <li><a href="vendor-dashboard-free.html">Vendor Dashboard Free</a>
+                            </li>
+                            <li><a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>
+                            </li>
+                            <li><a href="store-list.html">Store List</a>
+                            </li>
+                            <li><a href="store-list.html">Store List 2</a>
+                            </li>
+                            <li><a href="store-detail.html">Store Detail</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Account Pages<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="user-information.html">User Information</a>
+                            </li>
+                            <li><a href="addresses.html">Addresses</a>
+                            </li>
+                            <li><a href="invoices.html">Invoices</a>
+                            </li>
+                            <li><a href="invoice-detail.html">Invoice Detail</a>
+                            </li>
+                            <li><a href="notifications.html">Notifications</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item-has-children has-mega-menu"><a href="#">Blogs</a><span class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Blog Layout<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="blog-grid.html">Grid</a>
+                            </li>
+                            <li><a href="blog-list.html">Listing</a>
+                            </li>
+                            <li><a href="blog-small-thumb.html">Small Thumb</a>
+                            </li>
+                            <li><a href="blog-left-sidebar.html">Left Sidebar</a>
+                            </li>
+                            <li><a href="blog-right-sidebar.html">Right Sidebar</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Single Blog<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li><a href="blog-detail.html">Single 1</a>
+                            </li>
+                            <li><a href="blog-detail-2.html">Single 2</a>
+                            </li>
+                            <li><a href="blog-detail-3.html">Single 3</a>
+                            </li>
+                            <li><a href="blog-detail-4.html">Single 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 
 
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<link href="{% static 'js/navbar.js' %}" rel="stylesheet">
+<script src="{%static 'core/plugins/jquery.min.js'%}"></script>
+<script src="{%static 'core/plugins/nouislider/nouislider.min.js'%}"></script>
+<script src="{%static 'core/plugins/popper.min.js'%}"></script>
+<script src="{%static 'core/plugins/owl-carousel/owl.carousel.min.js'%}"></script>
+<script src="{%static 'core/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{%static 'core/plugins/imagesloaded.pkgd.min.js'%}"></script>
+<script src="{%static 'core/plugins/masonry.pkgd.min.js'%}"></script>
+<script src="{%static 'core/plugins/isotope.pkgd.min.js'%}"></script>
+<script src="{%static 'core/plugins/jquery.matchHeight-min.js'%}"></script>
+<script src="{%static 'core/plugins/slick/slick/slick.min.js'%}"></script>
+<script src="{%static 'core/plugins/jquery-bar-rating/dist/jquery.barrating.min.js'%}"></script>
+<script src="{%static 'core/plugins/slick-animation.min.js'%}"></script>
+<script src="{%static 'core/plugins/lightGallery-master/dist/js/lightgallery-all.min.js'%}"></script>
+<script src="{%static 'core/plugins/sticky-sidebar/dist/sticky-sidebar.min.js'%}"></script>
+<script src="{%static 'core/plugins/select2/dist/js/select2.full.min.js'%}"></script>
+<script src="{%static 'core/plugins/gmap3.min.js'%}"></script>
+<!-- custom scripts-->
+<script src="{% static 'core/js/main.js' %}"></script>
 </html>
 

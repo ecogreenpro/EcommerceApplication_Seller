@@ -11,8 +11,7 @@ def categories():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<a href="/category/{}" class="list-group-item list-group-item-action text-white" style="background-color: #ac801cc2!important; font-family: 'Rubik';"><i 
-        class="fas fa-th-large"></i> {}</a>""".format(
+        items_li += """<li><a href="/category/{}"><i class="icon-shirt"></i> {}</a></li>""".format(
             i.slug, i.name)
     return mark_safe(items_li)
 
@@ -34,24 +33,14 @@ def categories_home():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """ <div class="col-lg-3">
-                                    <div class="product-item">
-                                        <div class="product-title">
-                                            <a style="text-decoration: none;" href="/category/{}">{}</a>
-                                            
-                                        </div>
-                                        <div class="product-image">
-                                            <a style="text-decoration: none;"  href="/category/{}">
-                                                <img class="image" src="media/{}" alt="Product Image">
-                                            </a>
-                                        </div>
-                                        <div class="product-price">
-                                            <h3><span> </span><label >Jewellery</label> </h3>
-                                            <a style="text-decoration: none;" href="/category/{}" class="btn" href=""><i class="far fa-eye"></i> Shop Now</a>
-                                        </div>
-                                    </div>
-                                </div>""".format(
-            i.slug,i.name, i.slug, i.image,i.slug)
+        items_li += """ <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
+                               <div class="ps-block&#45;&#45;category"><a class="ps-block__overlay" href="/category/{}"></a>
+                               <img
+                                   src="media/{}" alt="">
+                               <p>{}</p>
+                               </div>
+                           </div>""".format(
+            i.slug, i.image, i.name)
     return mark_safe(items_li)
 
 
