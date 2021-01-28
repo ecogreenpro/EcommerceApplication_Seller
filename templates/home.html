@@ -106,7 +106,7 @@
                         <div class="ps-product ps-product--inner">
                             <div class="ps-product__thumbnail"><a href="{% url 'core:productDetail' item.slug %}"><img
                                     src="{{item.mainImage.url}}" alt="" width="240" height="240"></a>
-                                <div class="ps-product__badge">-16%</div>
+                                <div class="ps-product__badge">-{{item.get_percentage}}%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i
                                             class="icon-bag2"></i></a></li>
@@ -122,12 +122,12 @@
                                 <p class="ps-product__price sale">
                                     {%if item.discountPrice%}
                                     ৳ {{item.discountPrice}}
-                                    <del> ৳ {{item.discountPrice}}</del>
+                                    <del> ৳ {{item.price}}</del>
 
                                     {%else%}
                                     ৳ {{item.price}}
                                     {%endif%}
-                                    <small>18% off</small></p>
+                                    <small>{{item.get_percentage}}% off</small></p>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                                                     href="{% url 'core:productDetail' item.slug %}">
                                     {{item.name | truncatechars_html:35 }}</a>
@@ -168,6 +168,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="ps-product-list ps-garden-kitchen">
             <div class="ps-container">
                 <div class="ps-section__header">
@@ -191,7 +192,7 @@
                         <div class="ps-product">
                             <div class="ps-product__thumbnail"><a href="{% url 'core:productDetail' item.slug %}"><img
                                     src="{{item.mainImage.url}}" alt="" height="220" width="220"></a>
-                                <div class="ps-product__badge">-16%</div>
+                                <div class="ps-product__badge">-{{item.get_percentage}}%</div>
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i
                                             class="icon-bag2"></i></a></li>
@@ -205,8 +206,8 @@
                             </div>
                             <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
                                 <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Korea
-                                    Long Sofa Fabric In Blue Navy Color</a>
+                                                                    href="product-default.html">
+                                    {{item.name}}</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -216,9 +217,14 @@
                                             <option value="2">5</option>
                                         </select><span>01</span>
                                     </div>
-                                    <p class="ps-product__price sale">$567.99
-                                        <del>$670.00</del>
+                                    {%if item.discountPrice%}
+                                    <p class="ps-product__price sale">৳ {{item.discountPrice}}
+                                        <del> ৳ {{item.price}}</del>
                                     </p>
+                                    {%else%}
+                                    ৳ {{item.price}}
+                                    {%endif%}
+
                                 </div>
                                 <div class="ps-product__content hover"><a class="ps-product__title"
                                                                           href="product-default.html">Korea Long Sofa
