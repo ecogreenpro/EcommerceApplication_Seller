@@ -1,225 +1,83 @@
 {% load static %}
-<!-- ------------------------------footer sub end---------------------------------- -->
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Abel|Lato|Open+Sans&display=swap" rel="stylesheet">
-<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-a11y="true"></script>
-<style>
-
-    /* footer */
-#footer-main{
-	background: #000;
-	color: white;
-	font-size: 0.8rem;
-	padding: 2.5rem 0;
-    font-family: 'Lato', sans-serif;
-}
-
-#footer-main a{
-	font-size: 14px;
-	display: block;
-	margin: 0.3rem;
-	color: grey;
-}
-
-#footer-main a:hover{
-	font-weight: bold;
-	color: white;
-}
-
-#footer-main h6 a{
-    color: white;
-
-
-}
-
-
-
-#footer-main hr {
-    margin-top: 1rem;
-    border: 0;
-    border-top: 1px solid white;
-}
-
-#footer-main img{
-	margin-right: 0.6rem;
-}
-.rounded-sm,
-.icon-bg-square::after,
-.team-member::before {
-    border-radius: 15px
-}
-
-.icon-primary {
-    color: #AC801C
-}
-
-.icon-bg-square {
-    position: relative
-}
-
-.icon-lg {
-    font-size: 50px
-}
-
-.icon-bg-square::after {
-    content: '';
-    position: absolute;
-    top: -55px;
-    left: 73%;
-    width: 75px;
-    height: 75px;
-    -webkit-transform: rotate(50deg) scale(0.8) skew(-1deg, -15deg) translateX(16px) translateY(97px);
-    transform: rotate(50deg) scale(0.8) skew(-1deg, -15deg) translateX(16px) translateY(97px);
-    background: #AC801C
-}
-
-.icon-bg-square::before {
-    z-index: 1;
-    position: relative
-}
-
-.facebook {
-    background-color: #3b5998;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 8px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer
-}
-
-.twitter {
-    background-color: #1DA1F2;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 8px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer
-}
-
-.linkedin {
-    background-color: #2867B2;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 8px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer
-}
-
-
-
-
-
-
-
-</style>
-
-<footer id="footer-main" class="">
-    <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <div class="text-center shadow card py-3 border-0 rounded-sm">
-                        <div class="card-body"><i
-                                class="fas fa-headset icon-lg icon-bg-square mb-5 icon-primary"
-                                style="color:#AC801C;"></i>
-                            <h4 class="mb-3" style="color:#AC801C;">24/7 Support</h4>
-                        </div>
-                    </div>
+<footer class="ps-footer">
+    <div class="ps-container">
+        <div class="ps-footer__widgets">
+            <aside class="widget widget_footer widget_contact-us">
+                <h4 class="widget-title">Contact us</h4>
+                <div class="widget_content">
+                    <p>Call us 24/7</p>
+                    <h3>1800 97 97 69</h3>
+                    <p>502 New Design Str, Melbourne, Australia <br><a href="mailto:contact@martfury.co">contact@martfury.co</a>
+                    </p>
+                    <ul class="ps-list--social">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <div class="text-center shadow card py-3 border-0 rounded-sm">
-                        <div class="card-body"><i
-                                class="fas fa-shipping-fast icon-lg icon-bg-square mb-5 icon-primary"
-                                style="color:#AC801C;"></i>
-                            <h4 class="mb-3" style="color:#AC801C;">Get Fastest delivery</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <div class="text-center shadow card py-3 border-0 rounded-sm">
-                        <div class="card-body"><i
-                                class="fas fa-money-check-alt icon-lg icon-bg-square mb-5 icon-primary"
-                                style="color:#AC801C;"></i>
-                            <h4 class="mb-3" style="color:#AC801C;">100% Payment Secured</h4>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            </aside>
+            <aside class="widget widget_footer">
+                <h4 class="widget-title">Quick links</h4>
+                <ul class="ps-list--link">
+                    <li><a href="#">Policy</a></li>
+                    <li><a href="#">Term & Condition</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Return</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </aside>
+            <aside class="widget widget_footer">
+                <h4 class="widget-title">Company</h4>
+                <ul class="ps-list--link">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#">Affilate</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </aside>
+            <aside class="widget widget_footer">
+                <h4 class="widget-title">Bussiness</h4>
+                <ul class="ps-list--link">
+                    <li><a href="#">Our Press</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="my-account.html">My account</a></li>
+                    <li><a href="shop-default.html">Shop</a></li>
+                </ul>
+            </aside>
         </div>
-        <br>
-        <div class="row">
-             <div class="col-sm-3">
-                <h6 class="mt-3">Information</h6>
-                <a href="{% url 'core:about' %}">About</a>
-                <a href="{% url 'core:contact' %}">Contact Us</a>
-                <a href="{% url 'core:privacyPolicy' %}">Privacy Policy</a>
-                <a href="{% url 'core:paymentProcess' %}">Payment Process</a>
-                <a href="{% url 'core:refundReturnsPolicy' %}">Refund & Returns Policy</a>
-            </div>
-             <div class="col-sm-3">
-                <h6 class="mt-3">CUSTOMER SERVICE
-                </h6>
-                <a href="{% url 'core:shop' %}">Shop</a>
-                <a href="#">Wishlist</a>
-                <a href="{% url 'core:cart' %}">Shopping Cart</a>
-            </div>
-            <div class="col-sm-3">
-                <br>
-
-                <h6 class="mt-3"><a href="{% url 'core:orderTrack' %}">Order Track</a></h6>
-                <h6 class="mt-3"><a href="{% url 'becomeSeller' %}">Become Seller</a></h6>
-                {%if request.user.is_authenticated%}
-
-                {%else%}
-                <h6 class="mt-3"><a href="{% url 'core:login'%}" ><i
-                ></i> Login</a></h6>
-
-                {%endif%}
-                <h6 class="mt-3"><a href="{% url 'core:userprofile' %}">My Account</a></h6>
-
-            </div>
-
-
-            <div class="col-sm-3">
-                <h6 class="mt-3"> Contact Us</h6>
-                <hr>
-                <h6 class="mt-3"><i class="fas fa-map-marker-alt"></i> House #757/1 (4th Floor),
-                    West Shewrapara, Mirpur, Dhaka-1216.</h6>
-
-                <h6 class="mt-3"><i class="fas fa-envelope"></i> support@ecogreen.com.bd</h6>
-
-                <h6 class="mt-3"><i class="fas fa-phone"></i> 01973404973</h6>
-                <div class="row mb-4 px-3">
-
-                    <div class="facebook text-center mr-4">
-                        <div class="fab fa-facebook"></div>
-                    </div>
-                    <div class="twitter text-center mr-4">
-                        <div class="fab fa-twitter"></div>
-                    </div>
-                    <div class="linkedin text-center mr-4">
-                        <div class="fab fa-linkedin"></div>
-                    </div>
-                </div>
-
-                <br><br>
-
-                <br>
-
-            </div>
+        <div class="ps-footer__links">
+            <p><strong>Consumer Electric:</strong><a href="#">Air Conditioners</a><a href="#">Audios &amp;
+                Theaters</a><a href="#">Car Electronics</a><a href="#">Office Electronics</a><a href="#">TV
+                Televisions</a><a href="#">Washing Machines</a>
+            </p>
+            <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a
+                    href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED
+                TVs</a>
+            </p>
+            <p><strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a href="#">Decoration</a><a
+                    href="#">Furniture</a><a href="#">Garden Tools</a><a href="#">Garden Equipments</a><a href="#">Powers
+                And Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
+            </p>
+            <p><strong>Health &amp; Beauty:</strong><a href="#">Hair Care</a><a href="#">Decoration</a><a href="#">Hair
+                Care</a><a href="#">Makeup</a><a href="#">Body Shower</a><a href="#">Skin Care</a><a
+                    href="#">Cologine</a><a href="#">Perfume</a>
+            </p>
+            <p><strong>Jewelry &amp; Watches:</strong><a href="#">Necklace</a><a href="#">Pendant</a><a href="#">Diamond
+                Ring</a><a href="#">Sliver Earing</a><a href="#">Leather Watcher</a><a href="#">Gucci</a>
+            </p>
+            <p><strong>Computer &amp; Technologies:</strong><a href="#">Desktop PC</a><a href="#">Laptop</a><a href="#">Smartphones</a><a
+                    href="#">Tablet</a><a href="#">Game Controller</a><a href="#">Audio &amp; Video</a><a href="#">Wireless
+                Speaker</a><a href="#">Done</a>
+            </p>
         </div>
-        <hr>
-        <div class="row">
-            <a href="#" style="margin-left: 1rem">Privacy Policy | © Ecogreen 2019-2020</a>
+        <div class="ps-footer__copyright">
+            <p>© 2018 Martfury. All Rights Reserved</p>
+            <p><span>We Using Safe Payment For:</span><a href="#"><img src="img/payment-method/1.jpg" alt=""></a><a
+                    href="#"><img src="img/payment-method/2.jpg" alt=""></a><a href="#"><img
+                    src="img/payment-method/3.jpg" alt=""></a><a href="#"><img src="img/payment-method/4.jpg"
+                                                                               alt=""></a><a href="#"><img
+                    src="img/payment-method/5.jpg" alt=""></a></p>
         </div>
     </div>
 </footer>
-<!-- ------------------------------footer end---------------------------------- -->
-
