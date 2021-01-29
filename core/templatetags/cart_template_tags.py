@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 
-from core.models import CartProducts, Order
+from core.models import CartProducts, Order, Products
 
 register = template.Library()
 
@@ -9,6 +9,12 @@ register = template.Library()
 @register.simple_tag
 def cartCount(userid):
     count = CartProducts.objects.filter(user_id=userid).count()
+    return count
+
+
+@register.simple_tag
+def prductCount():
+    count = Products.objects.all().count()
     return count
 
 

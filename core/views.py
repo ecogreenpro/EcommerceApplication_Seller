@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 
 from .forms import ProfileModelForm
-from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings
+from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
 
@@ -22,8 +22,21 @@ from vendor.models import sellerProfile
 
 
 def header(request):
+    images = CarouselAdvImage.objects.get()
     setting = Settings.objects.get()
-    context = {'Settings': setting}
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'images': images,
+        'total': total
+    }
     return render(request, 'header.html', context)
 
 
@@ -34,36 +47,107 @@ def footer(request):
 
 def about(request):
     setting = Settings.objects.get()
-    context = {'Settings': setting}
+    images = CarouselAdvImage.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'images': images,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'base/about.html', context)
 
 
 def contact(request):
     setting = Settings.objects.get()
-    context = {'Settings': setting}
+    images = CarouselAdvImage.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'image': images,
+        'total': total
+    }
     return render(request, 'base/contact.html', context)
 
 
 def privacyPolicy(request):
     setting = Settings.objects.get()
-    context = {'Settings': setting}
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'base/privacyPolicy.html', context)
 
 
 def terms(request):
     setting = Settings.objects.get()
-    context = {'Settings': setting}
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'base/refundReturnsPolicy.html', context)
 
 
 def paymentProcess(request):
-    setting = Settings.objects.get(pk=1)
-    context = {'Settings': setting}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'base/paymentProcess.html', context)
 
 
 def login(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -90,12 +174,37 @@ def dashboard(request):
 
 
 def forgotpassword(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'account/forgotpassword.html', context)
 
 
 @login_required(login_url='/login')
 def changePassword(request):
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -109,16 +218,40 @@ def changePassword(request):
     else:
 
         form = PasswordChangeForm(request.user)
-        return render(request, 'account/ChangePassword.html', {'form': form, })
+        return render(request, 'account/ChangePassword.html', {'form': form, }, context)
 
 
 def signup(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'account/signup.html', context)
 
 
 def createUser(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     first_name = request.POST['firstName']
     last_name = request.POST['lastName']
     email = request.POST['email']
@@ -138,10 +271,23 @@ def createUser(request):
             userRegistration.is_staff = False
             userRegistration.save()
             messages.info(request, 'Registration Confirmed')
-    return render(request, 'account/login.html')
+    return render(request, 'account/login.html', context)
 
 
 def updateProfile(request):
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     address = request.POST['address']
     country = request.POST['country']
     city = request.POST['city']
@@ -151,24 +297,59 @@ def updateProfile(request):
                                                          country=country,
                                                          Phone=phone)
     messages.info(request, 'Profile Updated ')
-    return render(request, 'account/userprofile.html')
+    return render(request, 'account/userprofile.html', context)
 
 
 def userprofile(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'account/userprofile.html', context)
 
 
 def userOrder(request):
     orders = Order.objects.filter(user=request.user)
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
     context = {
-        'userorder': orders
+        'userorder': orders,
+        'Settings': setting,
+        'cart': cart,
+        'total': total
     }
     return render(request, 'account/userOrder.html', context)
 
 
 def balance(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'account/balance.html', context)
 
 
@@ -195,7 +376,19 @@ class invoiceView(View):
 
 
 def chat(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'account/chat.html', context)
 
 
@@ -203,6 +396,7 @@ def chat(request):
 def cart(request):
     category = Categories.objects.all()  # Access User Session information
     cart = CartProducts.objects.filter(user=request.user)
+    setting = Settings.objects.get()
     if cart:
         total = 0
         for rs in cart:
@@ -213,7 +407,8 @@ def cart(request):
         context = {
             'cart': cart,
             'category': category,
-            'total': total
+            'total': total,
+            'Settings': setting,
         }
     else:
         context = {"empty": True}
@@ -228,7 +423,15 @@ def checkout(request):
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
+    setting = Settings.objects.get()
+    total_cart = 0
     total = 100
+
+    for rs in cart:
+        if rs.item.discountPrice:
+            total_cart += rs.item.discountPrice * rs.quantity
+        else:
+            total_cart += rs.item.price * rs.quantity
 
     for rs in cart:
         if rs.item.discountPrice:
@@ -277,23 +480,59 @@ def checkout(request):
     context = {
         'cart': cart,
         'category': category,
-        'total': total,
+        'final_total': total,
         'userProfile': userprofile,
+        'Settings': setting,
+        'cart': cart,
+        'total': total_cart
     }
     return render(request, 'checkout.html', context)
 
 
 def orderTrack(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'orderTrack.html', context)
 
 
 def wishlist(request):
-    context = {}
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'Settings': setting,
+        'cart': cart,
+        'total': total
+    }
     return render(request, 'wishlist.html', context)
 
 
 def search(request):
+    setting = Settings.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+
     try:
         Search = request.GET.get('search')
     except:
@@ -301,11 +540,17 @@ def search(request):
 
     if Search:
         products = Products.objects.filter(name__icontains=Search)
-        context = {'query': Search, 'Products': products}
+        context = {'query': Search, 'Products': products, 'Settings': setting,
+                   'cart': cart,
+                   'total': total}
         template = 'result.html'
     else:
         template = 'shop.html'
-        context = {}
+        context = {
+            'Settings': setting,
+            'cart': cart,
+            'total': total
+        }
     return render(request, template, context)
 
 
@@ -319,38 +564,66 @@ def notFound(request, exception):
     return render(request, 'base/404.html')
 
 
-# def shop(request):
-#     context = {}
-#     product = Products.objects.raw("SELECT * FROM core_products")
-#     return render(request, 'shop.html', {"Products": product})
-
-
-# class shop(ListView):
-#     model = Products
-#     paginate_by = 16
-#     template_name = "shop.html"
-
-def shop(request):
-    product = Products.objects.all()
-    setting = Settings.objects.get()
-    context = {
-        'product': product,
-        'Settings': setting
-    }
-    return render(request, 'shop.html', context)
+class shop(ListView):
+    paginate_by = 4
+    def get(self, request, *args, **kwargs):
+        images = CarouselAdvImage.objects.get()
+        product = Products.objects.all()
+        setting = Settings.objects.get()
+        categories = Categories.objects.all()
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
+        context = {
+            'Settings': setting,
+            'cart': cart,
+            'image': images,
+            'categories': categories,
+            'total': total, 'product': product,
+        }
+        return render(self.request, 'shop.html', context)
 
 
 class productDetail(DetailView):
-    model = Products
-    template_name = "productDetail.html"
+    def get(self, request, *args, **kwargs):
+        product = Products.objects.get(slug=self.kwargs['slug'])
+        setting = Settings.objects.get()
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
+        context = {
+            'object': product,
+            'Settings': setting,
+            'cart': cart,
+            'total': total,
+        }
+        return render(self.request, "productDetail.html", context)
 
 
 def home(request):
     product = Products.objects.all()
     setting = Settings.objects.get()
+    images = CarouselAdvImage.objects.get()
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
     context = {
-        'product': product,
-        'Settings': setting
+        'Settings': setting,
+        'cart': cart,
+        'image': images,
+        'total': total, 'product': product,
     }
     return render(request, 'home.html', context)
 
@@ -361,27 +634,50 @@ def home(request):
 
 
 class CategoryView(View):
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         category = Categories.objects.get(slug=self.kwargs['slug'])
         item = Products.objects.filter(category=category, isactive=True)
+        setting = Settings.objects.get()
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
         context = {
             'object_list': item,
             'category_title': category.name,
             'category_description': category.description,
-            'category_image': category.image
+            'category_image': category.image,
+            'Settings': setting,
+            'cart': cart,
+            'total': total,
+
         }
         return render(self.request, "category.html", context)
 
 
 class BrandView(View):
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         brand = Brands.objects.get(slug=self.kwargs['slug'])
         item = Products.objects.filter(brand=brand, isactive=True)
+        setting = Settings.objects.get()
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
         context = {
             'object_list': item,
             'Brand_title': brand.name,
             'Brand_description': brand.description,
-            'Brand_image': brand.image
+            'Brand_image': brand.image,
+            'Settings': setting,
+            'cart': cart,
+            'total': total,
         }
         return render(self.request, "brand.html", context)
 

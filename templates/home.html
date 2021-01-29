@@ -20,17 +20,18 @@
                          data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1"
                          data-owl-duration="1000" data-owl-mousedrag="on" data-owl-animate-in="fadeIn"
                          data-owl-animate-out="fadeOut">
-                        <div class="ps-banner bg--cover" data-background="{% static '1.png' %}"><a
-                                class="ps-banner__overlay" href="shop-default.html"></a></div>
-                        <div class="ps-banner bg--cover" data-background="{% static '2.png' %}"><a
-                                class="ps-banner__overlay" href="shop-default.html"></a></div>
-                        <div class="ps-banner bg--cover" data-background="{% static '3.png' %}"><a
-                                class="ps-banner__overlay" href="shop-default.html"></a></div>
+                        <div class="ps-banner bg--cover" data-background="{{image.Home_carousel1.url}}"><a
+                                class="ps-banner__overlay" href=/shop"></a></div>
+                        <div class="ps-banner bg--cover" data-background="{{image.Home_carousel2.url}}"><a
+                                class="ps-banner__overlay" href="/shop"></a></div>
+                        <div class="ps-banner bg--cover" data-background="{{image.Home_carousel3.url}}"><a
+                                class="ps-banner__overlay" href="/shop"></a></div>
                     </div>
                 </div>
-                <div class="ps-section__right"><a class="ps-collection" href="#"><img
-                        src="{% static 'avatar.png' %}" alt=""></a><a class="ps-collection" href="#"><img
-                        src="{% static 'avatar.png' %}" alt=""></a></div>
+                <div class="ps-section__right"><a class="ps-collection" href="/shop"><img
+                        src="{{image.Home_Adv_top1.url}}" alt=""></a>
+                    <a class="ps-collection" href="/shop"><img
+                            src="{{image.Home_Adv_top2.url}}" alt=""></a></div>
             </div>
         </div>
         <div class="ps-site-features">
@@ -106,7 +107,11 @@
                         <div class="ps-product ps-product--inner">
                             <div class="ps-product__thumbnail"><a href="{% url 'core:productDetail' item.slug %}"><img
                                     src="{{item.mainImage.url}}" alt="" width="240" height="240"></a>
-                                <div class="ps-product__badge">-{{item.get_percentage}}%</div>
+                                {%if item.discountPrice%}
+                                <div class="ps-product__badge">
+                                    -{{item.get_percentage}}%
+                                </div>
+                                {%endif%}
                                 <ul class="ps-product__actions">
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i
                                             class="icon-bag2"></i></a></li>
@@ -127,7 +132,11 @@
                                     {%else%}
                                     ৳ {{item.price}}
                                     {%endif%}
-                                    <small>{{item.get_percentage}}% off</small></p>
+                                    {%if item.discountPrice%}
+                                    <small>{{item.get_percentage}}% off
+                                    </small>
+                                    {%endif%}
+                                </p>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                                                     href="{% url 'core:productDetail' item.slug %}">
                                     {{item.name | truncatechars_html:35 }}</a>
@@ -139,10 +148,6 @@
                                             <option value="1">4</option>
                                             <option value="2">5</option>
                                         </select><span>01</span>
-                                    </div>
-                                    <div class="ps-product__progress-bar ps-progress" data-value="59">
-                                        <div class="ps-progress__value"><span></span></div>
-                                        <p>Sold:32</p>
                                     </div>
                                 </div>
                             </div>
@@ -156,14 +161,17 @@
         <div class="ps-home-ads">
             <div class="ps-container">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img
-                            src="{% static '1.png' %}" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
+                                                                                  href="/shop"><img
+                            src="{{image.Home_Adv_middle1.url}}" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img
-                            src="{% static '2.png' %}" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
+                                                                                  href="/shop"><img
+                            src="{{image.Home_Adv_middle2.url}}" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img
-                            src="{% static '3.png' %}" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
+                                                                                  href="/shop"><img
+                            src="{{image.Home_Adv_middle3.url}}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -172,13 +180,7 @@
         <div class="ps-product-list ps-garden-kitchen">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Home, Garden & Kitchen</h3>
-                    <ul class="ps-section__links">
-                        <li><a href="shop-grid.html">New Arrivals</a></li>
-                        <li><a href="shop-grid.html">Best seller</a></li>
-                        <li><a href="shop-grid.html">Must Popular</a></li>
-                        <li><a href="shop-grid.html">View All</a></li>
-                    </ul>
+                    <h3>On Sale Product</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--responsive owl-slider" data-owl-auto="true" data-owl-loop="true"
@@ -204,7 +206,8 @@
                                             class="icon-chart-bars"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young Shop</a>
+                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">
+                                {{item.user.sellerprofile.ShopDetails.ShopName | truncatechars_html:12}}</a>
                                 <div class="ps-product__content"><a class="ps-product__title"
                                                                     href="product-default.html">
                                     {{item.name}}</a>
@@ -226,13 +229,16 @@
                                     {%endif%}
 
                                 </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title"
-                                                                          href="product-default.html">Korea Long Sofa
-                                    Fabric
-                                    In Blue Navy Color</a>
-                                    <p class="ps-product__price sale">$567.99
-                                        <del>$670.00</del>
+                                <div class="ps-product__content hover">
+                                    <a class="ps-product__title" href="{% url 'core:productDetail' item.slug %}">
+                                        {{item.name | truncatechars_html:35 }}</a>
+                                    {%if item.discountPrice%}
+                                    <p class="ps-product__price sale">৳ {{item.discountPrice}}
+                                        <del> ৳ {{item.price}}</del>
                                     </p>
+                                    {%else%}
+                                    ৳ {{item.price}}
+                                    {%endif%}
                                 </div>
                             </div>
                         </div>
@@ -256,15 +262,18 @@
         <div class="ps-home-ads">
             <div class="ps-container">
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img
-                            src="{% static '2.png' %}" alt=""></a>
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
+                                                                                  href="/shop"><img
+                            src="{{image.Home_Adv_Bottom_long.url}}" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img
-                            src="{% static '1.png' %}" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
+                                                                                  href="/shop"><img
+                            src="{{image.Home_Adv_Bottom_Short.url}}" alt="" height="282"></a>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
         <!--<div class="ps-product-list ps-clothings">
              <div class="ps-container">
                  <div class="ps-section__header">

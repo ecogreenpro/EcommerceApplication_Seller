@@ -111,8 +111,11 @@ class Products(models.Model):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.mainImage.url))
 
     def get_percentage(self):
-        discount = (100 * ((self.price - self.discountPrice) / self.price))
-        return discount.__int__()
+        if self.discountPrice:
+            discount = (100 * ((self.price - self.discountPrice) / self.price))
+            return discount.__int__()
+        else:
+            return self.price
 
     products_photo.short_description = 'Image'
     products_photo.allow_tags = True

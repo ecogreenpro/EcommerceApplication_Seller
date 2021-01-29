@@ -47,9 +47,9 @@ urlpatterns = [
 
     # path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),
-    path('shop/', views.shop, name="shop"),
+    #path('shop/', views.shop, name="shop"),
     # path('product/', views.productDetail, name="productDetail"),
-    #path('shop/', shop.as_view(), name='shop'),
+    path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
     path('brand/<slug>/', BrandView.as_view(), name='brand'),

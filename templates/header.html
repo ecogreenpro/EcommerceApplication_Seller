@@ -13,7 +13,8 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Martfury - Multipurpose Marketplace HTML5 Template + Admin Template</title>
+    <link rel="shortcut icon" type="image/png" href="{{Settings.favIcon.url}}"/>
+    <title> Jewellery | Jewellery.com.bd</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
           rel="stylesheet">
     <link rel="stylesheet" href="{% static 'core/plugins/font-awesome/css/font-awesome.min.css' %}">
@@ -215,7 +216,7 @@
     </div>
 </nav>-->
 <header class="header header--1" data-sticky="true">
-    <div class="header__top" >
+    <div class="header__top" style="background: whitesmoke!important;">
         <div class="ps-container">
             <div class="header__left">
                 <div class="menu--product-categories">
@@ -226,19 +227,20 @@
                         </ul>
                     </div>
                 </div>
-                <a class="ps-logo" href="#">
-                    <img src="{% static 'Jewellery.png' %}" alt="" width="110"
-                                                          height="70"></a>
+                <a class="ps-logo" href="{% url 'core:home'%}">
+                    <img src="{{Settings.logo.url}}" alt="" width="110"
+                         height="70"></a>
             </div>
             <div class="header__center">
-                <form class="ps-form--quick-search" action="index.html" method="get">
+                <form class="ps-form--quick-search" action="/search/" method="get">
                     <div class="form-group--icon"></i>
                     </div>
-                    <input class="form-control" type="text" placeholder="I'm shopping for..." id="input-search">
-                    <button>Search</button>
-                    <div class="ps-panel--search-result">
+                    <input class="form-control" name="search" type="search" required="required" type="text"
+                           placeholder="I'm shopping fo.." id="input-search">
+                    <button type="submit">Search</button>
+                    <!--<div class="ps-panel&#45;&#45;search-result">
                         <div class="ps-panel__content">
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/1.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -256,7 +258,7 @@
                                     <p class="ps-product__price">$990.50</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/1.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -274,7 +276,7 @@
                                     <p class="ps-product__price">$1120.50</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/1.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -292,7 +294,7 @@
                                     <p class="ps-product__price">$1220.50</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/2.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -310,7 +312,7 @@
                                     <p class="ps-product__price">$36.78 – $56.99</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/3.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -328,7 +330,7 @@
                                     <p class="ps-product__price">$125.30</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/4.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -346,7 +348,7 @@
                                     <p class="ps-product__price">$55.30</p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/5.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -366,7 +368,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="ps-product ps-product--wide ps-product--search-result">
+                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img
                                         src="img/products/arrivals/6.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__title"
@@ -388,53 +390,63 @@
                             </div>
                         </div>
                         <div class="ps-panel__footer text-center"><a href="shop-default.html">See all results</a></div>
-                    </div>
+                    </div>-->
                 </form>
             </div>
             <div class="header__right">
-                <div class="header__actions"><a class="header__extra" href="#"><i
-                        class="icon-chart-bars"></i><span><i>0</i></span></a><a class="header__extra" href="#"><i
-                        class="icon-heart"></i><span><i>0</i></span></a>
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                <div class="header__actions"><a class="header__extra" href="#">
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i>
+                        <span>{% cartCount user.id as count %}
+                            <i>{{count}}</i></span></a>
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
+                                {% for Order_item in cart %}
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img
-                                            src="img/products/clothing/7.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
-                                            class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical
-                                        Leather Watch In Black</a>
-                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                    <div class="ps-product__thumbnail"><a
+                                            href="{% url 'core:productDetail' Order_item.item.slug %}"><img
+                                            src="{{ Order_item.item.mainImage.url }}" alt=""></a></div>
+                                    <div class="ps-product__content">
+                                        <a class="ps-product__remove"
+                                           href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                                           onclick="return confirm('Are you sure to Delete?')"><i
+                                                class="icon-cross"></i></a>
+                                        <a href="{% url 'core:productDetail' Order_item.item.slug %}">
+                                            {{ Order_item.item.name }}</a>
+                                        <p><strong>Sold by:</strong> {{object.user.sellerprofile.ShopDetails.ShopName}}
+                                        </p><small>{{ Order_item.quantity }} x {% if Order_item.item.discountPrice%}
+                                        ৳ {{ Order_item.item.discountPrice }}
+                                        {%else%}
+                                        ৳ {{ Order_item.item.price }}
+                                        {%endif%}</small>
                                     </div>
                                 </div>
-                                <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img
-                                            src="img/products/clothing/5.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
-                                            class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend
-                                        Caro Pane Shirt</a>
-                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
-                                    </div>
-                                </div>
+                                {%endfor%}
                             </div>
                             <div class="ps-cart__footer">
-                                <h3>Sub Total:<strong>$59.99</strong></h3>
-                                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn"
-                                                                                                    href="checkout.html">Checkout</a>
+
+                                <h3>Sub Total:<strong>{{total}}</strong></h3>
+                                <figure><a class="ps-btn" href="/cart">View Cart</a><a class="ps-btn"
+                                                                                       href="/checkout">Checkout</a>
                                 </figure>
                             </div>
                         </div>
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a>
+                        <div class="ps-block__right">{% if request.user.is_authenticated %}
+                            <a href="{% url 'core:userprofile' %}">{{request.user.username}}</a>
+                            {%else%}
+                            <a href="{% url 'core:login'%}">Login</a><a
+                                    href="{% url 'core:signup'%}">Register</a>
+                            {%endif%}
                         </div>
                     </div>
+                </a>
                 </div>
             </div>
         </div>
     </div>
-    <nav class="navigation">
+    <nav class="navigation" style="background: #d09918!important;">
         <div class="ps-container">
             <div class="navigation__left">
                 <div class="menu--product-categories">
@@ -687,7 +699,7 @@
     </nav>
 </header>
 <header class="header header--mobile" data-sticky="true">
-    <div class="header__top">
+    <!--<div class="header__top">
         <div class="header__left">
             <p>Welcome to Martfury Online Shopping Store !</p>
         </div>
@@ -713,59 +725,70 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a>
+    </div>-->
+    <div class="navigation--mobile" style="background: whitesmoke!important;">
+        <div class="navigation__left"><a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}" alt=""
+                                                                                height="60" width="100"></a>
         </div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i
-                        class="icon-bag2"></i><span><i>0</i></span></a>
+                        class="icon-bag2"></i><span>{% cartCount user.id as count %}
+                            <i>{{count}}</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
+                            {% for Order_item in cart %}
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg"
-                                                                                    alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
-                                        class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical
-                                    Leather Watch In Black</a>
-                                    <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                <div class="ps-product__thumbnail"><a
+                                        href="{% url 'core:productDetail' Order_item.item.slug %}"><img
+                                        src="{{ Order_item.item.mainImage.url }}" alt=""></a></div>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__remove"
+                                       href="{% url 'core:productDetail' Order_item.item.slug %}"><i
+                                            class="icon-cross"></i></a><a
+                                        href="{% url 'core:productDetail' Order_item.item.slug %}">
+                                    {{ Order_item.item.name }}</a>
+                                    <p><strong>Sold by:</strong> {{object.user.sellerprofile.ShopDetails.ShopName}}</p>
+                                    <small>{{ Order_item.quantity }} x {% if Order_item.item.discountPrice%}
+                                        ৳ {{ Order_item.item.discountPrice }}
+                                        {%else%}
+                                        ৳ {{ Order_item.item.price }}
+                                        {%endif%}</small>
                                 </div>
                             </div>
-                            <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg"
-                                                                                    alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
-                                        class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend
-                                    Caro Pane Shirt</a>
-                                    <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
-                                </div>
-                            </div>
+                            {%endfor%}
                         </div>
                         <div class="ps-cart__footer">
-                            <h3>Sub Total:<strong>$59.99</strong></h3>
-                            <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn"
-                                                                                                href="checkout.html">Checkout</a>
+                            <h3>Sub Total:<strong>{{total}}</strong></h3>
+                            <figure><a class="ps-btn" href="/cart">View Cart</a><a class="ps-btn"
+                                                                                   href="/checkout">Checkout</a>
                             </figure>
                         </div>
                     </div>
                 </div>
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right"><a href="my-account.html">Login</a><a
-                            href="my-account.html">Register</a></div>
+                    <div class="ps-block__right">{% if request.user.is_authenticated %}
+                        <a href="{% url 'core:userprofile' %}">{{request.user.username}}</a>
+                        {%else%}
+                        <a href="{% url 'core:login'%}">Login</a><a
+                                href="{% url 'core:signup'%}">Register</a>
+                        {%endif%}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="ps-search--mobile">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+
+        <form class="ps-form--search-mobile" action="/search/" method="get">
             <div class="form-group--nest">
-                <input class="form-control" type="text" placeholder="Search something...">
-                <button><i class="icon-magnifier"></i></button>
+                <input class="form-control" type="search" placeholder="Search something...">
+                <button type="submit"><i class="icon-magnifier"></i></button>
             </div>
         </form>
     </div>
+
 </header>
 <div class="ps-panel--sidebar" id="cart-mobile">
     <div class="ps-panel__header">
@@ -774,19 +797,30 @@
     <div class="navigation__content">
         <div class="ps-cart--mobile">
             <div class="ps-cart__content">
+                {% for Order_item in cart %}
                 <div class="ps-product--cart-mobile">
-                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a>
+                    <div class="ps-product__thumbnail"><a
+                            href="{% url 'core:productDetail' Order_item.item.slug %}"><img
+                            src="{{ Order_item.item.mainImage.url }}" alt=""></a>
                     </div>
-                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i
-                            class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In
-                        Black</a>
-                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                    <div class="ps-product__content">
+                        <a class="ps-product__remove" href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                           onclick="return confirm('Are you sure to Delete?')"><i
+                                class="icon-cross"></i></a>
+                        <a href="{% url 'core:productDetail' Order_item.item.slug %}">{{Order_item.item.name}}</a>
+                        <p><strong>Sold by:</strong> {{object.user.sellerprofile.ShopDetails.ShopName}}</p><small>
+                        {{ Order_item.quantity }} x {% if Order_item.item.discountPrice%}
+                        ৳ {{ Order_item.item.discountPrice }}
+                        {%else%}
+                        ৳ {{ Order_item.item.price }}
+                        {%endif%}</small>
                     </div>
                 </div>
+                {%endfor%}
             </div>
             <div class="ps-cart__footer">
-                <h3>Sub Total:<strong>$59.99</strong></h3>
-                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a>
+                <h3>Sub Total:<strong>৳ {{total}}</strong></h3>
+                <figure><a class="ps-btn" href="/cart">View Cart</a><a class="ps-btn" href="/checkout">Checkout</a>
                 </figure>
             </div>
         </div>
@@ -798,95 +832,7 @@
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li><a href="#">Hot Promotions</a>
-            </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span
-                    class="sub-toggle"></span>
-                <div class="mega-menu">
-                    <div class="mega-menu__column">
-                        <h4>Electronic<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="#">Home Audio &amp; Theathers</a>
-                            </li>
-                            <li><a href="#">TV &amp; Videos</a>
-                            </li>
-                            <li><a href="#">Camera, Photos &amp; Videos</a>
-                            </li>
-                            <li><a href="#">Cellphones &amp; Accessories</a>
-                            </li>
-                            <li><a href="#">Headphones</a>
-                            </li>
-                            <li><a href="#">Videosgames</a>
-                            </li>
-                            <li><a href="#">Wireless Speakers</a>
-                            </li>
-                            <li><a href="#">Office Electronic</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="#">Digital Cables</a>
-                            </li>
-                            <li><a href="#">Audio &amp; Video Cables</a>
-                            </li>
-                            <li><a href="#">Batteries</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li><a href="#">Clothing &amp; Apparel</a>
-            </li>
-            <li><a href="#">Home, Garden &amp; Kitchen</a>
-            </li>
-            <li><a href="#">Health &amp; Beauty</a>
-            </li>
-            <li><a href="#">Yewelry &amp; Watches</a>
-            </li>
-            <li class="menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span
-                    class="sub-toggle"></span>
-                <div class="mega-menu">
-                    <div class="mega-menu__column">
-                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
-                        <ul class="mega-menu__list">
-                            <li><a href="#">Computer &amp; Tablets</a>
-                            </li>
-                            <li><a href="#">Laptop</a>
-                            </li>
-                            <li><a href="#">Monitors</a>
-                            </li>
-                            <li><a href="#">Networking</a>
-                            </li>
-                            <li><a href="#">Drive &amp; Storages</a>
-                            </li>
-                            <li><a href="#">Computer Components</a>
-                            </li>
-                            <li><a href="#">Security &amp; Protection</a>
-                            </li>
-                            <li><a href="#">Gaming Laptop</a>
-                            </li>
-                            <li><a href="#">Accessories</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li><a href="#">Babies &amp; Moms</a>
-            </li>
-            <li><a href="#">Sport &amp; Outdoor</a>
-            </li>
-            <li><a href="#">Phones &amp; Accessories</a>
-            </li>
-            <li><a href="#">Books &amp; Office</a>
-            </li>
-            <li><a href="#">Cars &amp; Motocycles</a>
-            </li>
-            <li><a href="#">Home Improments</a>
-            </li>
-            <li><a href="#">Vouchers &amp; Services</a>
-            </li>
+            {%categories_mobile%}
         </ul>
     </div>
 </div>
@@ -900,10 +846,12 @@
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
     <div class="ps-panel__header">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+
+        <form class="ps-form--search-mobile" action='/search/' method="get">
             <div class="form-group--nest">
-                <input class="form-control" type="text" placeholder="Search something...">
-                <button><i class="icon-magnifier"></i></button>
+                <input class="form-control" name="search" type="search" required="required"
+                       placeholder="Search something...">
+                <button type="submit"><i class="icon-magnifier"></i></button>
             </div>
         </form>
     </div>
@@ -1124,7 +1072,7 @@
         </ul>
     </div>
 </div>
-
+<div id="back2top"><i class="icon icon-arrow-up"></i></div>
 
 <script src="{%static 'core/plugins/jquery.min.js'%}"></script>
 <script src="{%static 'core/plugins/nouislider/nouislider.min.js'%}"></script>
