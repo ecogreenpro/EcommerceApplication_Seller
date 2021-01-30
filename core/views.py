@@ -297,7 +297,7 @@ def updateProfile(request):
                                                          country=country,
                                                          Phone=phone)
     messages.info(request, 'Profile Updated ')
-    return render(request, 'account/userprofile.html', context)
+    return HttpResponseRedirect('/updateProfile/')
 
 
 def userprofile(request):

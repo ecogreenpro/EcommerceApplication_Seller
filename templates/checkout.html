@@ -2,264 +2,355 @@
 {% load cart_template_tags%}
 {% load checkout_templates_tags%}
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Checkout | Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 
 
+{%include 'header.html'%}
 
-
-
-
-
-
-
-
-
-
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
 <body>
-
-<div class="d-flex" id="wrapper">
-    {%include "sideNav.html"%}
-    <!-- Sidebar -->
-
-    <!--Main View Start-->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <main role="main"><br>
-                <div class="container">
-                    <div class="py-5 text-center">
-                        <h2>Complete Steps to Place Your Order</h2>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 order-md-2 mb-4 ">
-                            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-muted">Your cart</span>
-                                <span class="badge badge-pill " style="background: #B18729; color:#fff;">{% cartCount user.id as count %}
-                                                <span>{{ count }}</span></span>
-                            </h4>
-                            <ul class="list-group mb-3 card bg-light mb-3">
-                                {% for Order_item in cart %}
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">{{ Order_item.item.name }}</h6>
-
-                                    </div>
-                                    <span class="text-muted">{{Order_item.get_final_price}}</span>
-                                </li>
-                                {%endfor%}
-                                {%shipping_li%}
-                                <!--<li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div class="form-group">
-                                        <label for="sel1">Shipping Charge:</label>
-                                        <select class="form-control" id="sel1">
-                                            {% shipping_li %}
-                                        </select>
-
-                                    </div>
-                                </li>-->
-                                <!--<li class="list-group-item d-flex justify-content-between bg-light alert alert-success">
-                                    <div class="text-success">
-                                        <h6 class="my-0">Promo code</h6>
-                                        <small>EXAMPLECODE</small>
-                                    </div>
-                                    <span class="text-success">-$5</span>
-                                </li>-->
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <div>
-                                        <span>Total </span>
-                                        <small class="text-muted">(include shipping charge)</small>
-                                    </div>
-
-                                    <strong>{{final_total}} BDT</strong>
-                                </li>
-                            </ul>
-
-                            <form class="card p-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Promo code">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8 order-md-1 card">
-                            <br>
-                            <h4 class="mb-3">Billing address</h4>
-                            <form class="needs-validation" novalidate method="post">
-                                {% csrf_token%}
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="firstName">First name</label>
-                                        <input name="firstName" type="text" class="form-control" id="firstName"
-                                               placeholder=""
-                                               value="{{ user.first_name }}" required>
-                                        <div class="invalid-feedback">
-                                            Valid first name is required.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lastName">Last name</label>
-                                        <input name="lastName" type="text" class="form-control" id="lastName"
-                                               placeholder=""
-                                               value="{{ user.last_name }}" required>
-                                        <div class="invalid-feedback">
-                                            Valid last name is required.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="mobile">Phone <span class="text-muted"></span></label>
-                                    <input name="mobile" type="text" class="form-control" id="mobile"
-                                           placeholder="" value="{{userProfile.Phone}}" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid Phone Number.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                                    <input name="email" type="email" class="form-control" id="email"
-                                           placeholder="you@example.com" value="{{user.email}}" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address for shipping updates.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="address">Address</label>
-                                    <textarea name="address" class="form-control " id="address"
-                                              placeholder="House number and street name, Apartment, suite, flat, etc.."
-                                              required>
-                                        {{userProfile.address}}
-                                    </textarea>
-                                    <div class="invalid-feedback">
-                                        Please enter your shipping address.
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-5 mb-3">
-                                        <label for="country">Country</label>
-                                        <select name="country" class="custom-select d-block w-100" id="country"
-                                                required>
-                                            <option selected value="{{userProfile.country}}">{{userProfile.country}}
-                                            </option>
-                                            <option>Others</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid country.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="city">City</label>
-                                        <select name="city" class="custom-select d-block w-100" id="city" required>
-                                            <option selected value="{{userProfile.city}}">{{userProfile.city}}</option>
-                                            <option>Others</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid district.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="zip">Zip</label>
-                                        <input name="zip" type="text" class="form-control" id="zip" placeholder="">
-                                        <div class="invalid-feedback">
-                                            Zip code required.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="note">Order Note <span
-                                            class="text-muted">(Optional)</span></label>
-                                    <textarea name="note" class="form-control " id="note"
-                                              placeholder="Notes about your order, e.g. special notes for delivery."
-                                              rows="2" cols="5"></textarea>
-                                </div>
-                                <hr class="mb-4">
-
-                                <h4 class="mb-3">Payment</h4>
-
-                                <div class="d-block my-3">
-                                    <div class="custom-control custom-radio">
-                                        <input id="Cash" value="Cash On Delivery" name="paymentMethod" type="radio"
-                                               class="custom-control-input" checked required>
-                                        <label class="custom-control-label" for="Cash"> <i
-                                                class="far fa-money-bill-alt"></i> Cash On Delivery</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="bkash" value="Bkash" name="paymentMethod" type="radio"
-                                               class="custom-control-input" required>
-                                        <label class="custom-control-label" for="bkash"> <img
-                                                src="{%static 'media/bkash.png'%}" width="40%" height="50px">
-                                            bkash</label>
-                                    </div>
-                                </div>
-
-                                <input name="orderStatus" id="orderStatus" value="Processing" hidden>
-
-                                <hr class="mb-4">
-                                <div class="mb-3">
-                                    <button class="btn  btn-lg " type="submit" style="background: #B18729; color:#fff;">
-                                        Place Order
-                                    </button>
-                                </div>
-
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-                <br>
-            </main>
+<div class="ps-checkout ps-section--shopping">
+    <div class="container">
+        <div class="ps-section__header">
+            <h1>Checkout</h1>
         </div>
+        <div class="ps-section__content">
 
+            <form class="needs-validation" novalidate method="post">
+                {%csrf_token%}
+                <div class="row">
+                    <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12  ">
+                        <div class="ps-form__billing-info">
+                            <h3 class="ps-form__heading">Billing Details</h3>
+                            <div class="form-group">
+                                <label for="firstName">First Name<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input class="form-control" name="firstName" type="text" id="firstName"
+                                           value="{{ user.first_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input name="lastName" id="lastName" class="form-control" type="text"
+                                           value="{{user.last_name }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input id="email" name="email" value="{{user.email}}" class="form-control"
+                                           type="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile">Phone<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input id="mobile" name="mobile" value="{{userProfile.Phone}}"
+                                           class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input name="address" id="address" value="{{userProfile.address}}"
+                                           class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country<sup>*</sup>
+                                </label>
+                                <div class="form-group__content">
+                                    <input id="country" name="country" value="{{userProfile.country}}"
+                                           class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <div>
+                                    <input id="city" name="city" value="{{userProfile.city}}"
+                                           class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Zip</label>
+                                <div class="form-group__content">
+                                    <input name="zip" type="text" class="form-control" id="zip" placeholder="">
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                 <div class="custom-control custom-radio">
+                                     <input id="Cash" value="Cash On Delivery" name="paymentMethod" type="radio"
+                                            class="custom-control-input" checked required>
+                                     <label class="custom-control-label" for="Cash"> <i
+                                             class="far fa-money-bill-alt"></i> Cash On Delivery</label>
+                                 </div>
+                                 <div class="custom-control custom-radio">
+                                     <input id="bkash" value="Bkash" name="paymentMethod" type="radio"
+                                            class="custom-control-input" required>
+                                     <label class="custom-control-label" for="bkash">
+                                       <img src="../media/bkash.png" height="50" width="50"/>bkash</label>
+                                 </div>
+                             </div>
+                                <input name="orderStatus" id="orderStatus" value="Processing" hidden>
+                                <h3 class="mt-40"> Additional information</h3>
+                                <div class="form-group">
+                                    <label for="note">Order Notes</label>
+                                    <div class="form-group__content">
+                                        <textarea id="note" name="note" class="form-control" rows="7"
+                                                  placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12  ">
+                            <div class="ps-form__total">
+                                <h3 class="ps-form__heading">Your Order</h3>
+                                <div class="content">
+                                    <div class="ps-block--checkout-total">
+                                        <div class="ps-block__header">
+                                            <p>Products</p>
+
+                                        </div>
+
+                                        <div class="ps-block__content">
+                                            <table class="table ps-block__products">
+                                                {% for Order_item in cart %}
+                                                <tbody>
+                                                <tr>
+                                                    <td><a> <strong>{{ Order_item.item.name }}</strong></a></td>
+                                                    <td><strong>{{Order_item.get_final_price}}</strong></td>
+                                                </tr>
+                                                </tbody>
+                                                {%endfor%}
+                                            </table>
+                                            {%shipping_li%}
+
+                                            <h3>Total <span>{{final_total}}</span></h3>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="ps-btn ps-btn--fullwidth">Place Your Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
     </div>
-
-    <!--Main View End-->
 </div>
+</div>
+<!--<div class="d-flex" id="wrapper">-->
+<!--    {%include "sideNav.html"%}-->
+<!--    &lt;!&ndash; Sidebar &ndash;&gt;-->
+
+<!--    &lt;!&ndash;Main View Start&ndash;&gt;-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <div class="container-fluid">-->
+<!--            <main role="main"><br>-->
+<!--                <div class="container">-->
+<!--                    <div class="py-5 text-center">-->
+<!--                        <h2>Complete Steps to Place Your Order</h2>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-4 order-md-2 mb-4 ">-->
+<!--                            <h4 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                                <span class="text-muted">Your cart</span>-->
+<!--                                <span class="badge badge-pill " style="background: #B18729; color:#fff;">{% cartCount user.id as count %}-->
+<!--                                                <span>{{ count }}</span></span>-->
+<!--                            </h4>-->
+<!--                            <ul class="list-group mb-3 card bg-light mb-3">-->
+<!--                                {% for Order_item in cart %}-->
+<!--                                <li class="list-group-item d-flex justify-content-between lh-condensed">-->
+<!--                                    <div>-->
+<!--                                        <h6 class="my-0">{{ Order_item.item.name }}</h6>-->
+
+<!--                                    </div>-->
+<!--                                    <span class="text-muted">{{Order_item.get_final_price}}</span>-->
+<!--                                </li>-->
+<!--                                {%endfor%}-->
+<!--                                {%shipping_li%}-->
+<!--                                &lt;!&ndash;<li class="list-group-item d-flex justify-content-between lh-condensed">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="sel1">Shipping Charge:</label>-->
+<!--                                        <select class="form-control" id="sel1">-->
+<!--                                            {% shipping_li %}-->
+<!--                                        </select>-->
+
+<!--                                    </div>-->
+<!--                                </li>&ndash;&gt;-->
+<!--                                &lt;!&ndash;<li class="list-group-item d-flex justify-content-between bg-light alert alert-success">-->
+<!--                                    <div class="text-success">-->
+<!--                                        <h6 class="my-0">Promo code</h6>-->
+<!--                                        <small>EXAMPLECODE</small>-->
+<!--                                    </div>-->
+<!--                                    <span class="text-success">-$5</span>-->
+<!--                                </li>&ndash;&gt;-->
+<!--                                <li class="list-group-item d-flex justify-content-between">-->
+<!--                                    <div>-->
+<!--                                        <span>Total </span>-->
+<!--                                        <small class="text-muted">(include shipping charge)</small>-->
+<!--                                    </div>-->
+
+<!--                                    <strong>{{final_total}} BDT</strong>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+
+<!--                            <form class="card p-2">-->
+<!--                                <div class="input-group">-->
+<!--                                    <input type="text" class="form-control" placeholder="Promo code">-->
+<!--                                    <div class="input-group-append">-->
+<!--                                        <button type="submit" class="btn btn-secondary">Redeem</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-8 order-md-1 card">-->
+<!--                            <br>-->
+<!--                            <h4 class="mb-3">Billing address</h4>-->
+<!--                            <form class="needs-validation" novalidate method="post">-->
+<!--                                {% csrf_token%}-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-6 mb-3">-->
+<!--                                        <label for="firstName">First name</label>-->
+<!--                                        <input name="firstName" type="text" class="form-control" id="firstName"-->
+<!--                                               placeholder=""-->
+<!--                                               value="{{ user.first_name }}" required>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Valid first name is required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 mb-3">-->
+<!--                                        <label for="lastName">Last name</label>-->
+<!--                                        <input name="lastName" type="text" class="form-control" id="lastName"-->
+<!--                                               placeholder=""-->
+<!--                                               value="{{ user.last_name }}" required>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Valid last name is required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="mobile">Phone <span class="text-muted"></span></label>-->
+<!--                                    <input name="mobile" type="text" class="form-control" id="mobile"-->
+<!--                                           placeholder="" value="{{userProfile.Phone}}" required>-->
+<!--                                    <div class="invalid-feedback">-->
+<!--                                        Please enter a valid Phone Number.-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="email">Email <span class="text-muted">(Optional)</span></label>-->
+<!--                                    <input name="email" type="email" class="form-control" id="email"-->
+<!--                                           placeholder="you@example.com" value="{{user.email}}" required>-->
+<!--                                    <div class="invalid-feedback">-->
+<!--                                        Please enter a valid email address for shipping updates.-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="address">Address</label>-->
+<!--                                    <textarea name="address" class="form-control " id="address"-->
+<!--                                              placeholder="House number and street name, Apartment, suite, flat, etc.."-->
+<!--                                              required>-->
+<!--                                        {{userProfile.address}}-->
+<!--                                    </textarea>-->
+<!--                                    <div class="invalid-feedback">-->
+<!--                                        Please enter your shipping address.-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-5 mb-3">-->
+<!--                                        <label for="country">Country</label>-->
+<!--                                        <select name="country" class="custom-select d-block w-100" id="country"-->
+<!--                                                required>-->
+<!--                                            <option selected value="{{userProfile.country}}">{{userProfile.country}}-->
+<!--                                            </option>-->
+<!--                                            <option>Others</option>-->
+<!--                                        </select>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Please select a valid country.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4 mb-3">-->
+<!--                                        <label for="city">City</label>-->
+<!--                                        <select name="city" class="custom-select d-block w-100" id="city" required>-->
+<!--                                            <option selected value="{{userProfile.city}}">{{userProfile.city}}</option>-->
+<!--                                            <option>Others</option>-->
+<!--                                        </select>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Please provide a valid district.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-3 mb-3">-->
+<!--                                        <label for="zip">Zip</label>-->
+<!--                                        <input name="zip" type="text" class="form-control" id="zip" placeholder="">-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Zip code required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="note">Order Note <span-->
+<!--                                            class="text-muted">(Optional)</span></label>-->
+<!--                                    <textarea name="note" class="form-control " id="note"-->
+<!--                                              placeholder="Notes about your order, e.g. special notes for delivery."-->
+<!--                                              rows="2" cols="5"></textarea>-->
+<!--                                </div>-->
+<!--                                <hr class="mb-4">-->
+
+<!--                                <h4 class="mb-3">Payment</h4>-->
+
+<!--                                <div class="d-block my-3">-->
+<!--                                    <div class="custom-control custom-radio">-->
+<!--                                        <input id="Cash" value="Cash On Delivery" name="paymentMethod" type="radio"-->
+<!--                                               class="custom-control-input" checked required>-->
+<!--                                        <label class="custom-control-label" for="Cash"> <i-->
+<!--                                                class="far fa-money-bill-alt"></i> Cash On Delivery</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="custom-control custom-radio">-->
+<!--                                        <input id="bkash" value="Bkash" name="paymentMethod" type="radio"-->
+<!--                                               class="custom-control-input" required>-->
+<!--                                        <label class="custom-control-label" for="bkash"> <img-->
+<!--                                                src="{%static 'media/bkash.png'%}" width="40%" height="50px">-->
+<!--                                            bkash</label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <input name="orderStatus" id="orderStatus" value="Processing" hidden>-->
+
+<!--                                <hr class="mb-4">-->
+<!--                                <div class="mb-3">-->
+<!--                                    <button class="btn  btn-lg " type="submit" style="background: #B18729; color:#fff;">-->
+<!--                                        Place Order-->
+<!--                                    </button>-->
+<!--                                </div>-->
+
+<!--                            </form>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <br>-->
+<!--            </main>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash;Main View End&ndash;&gt;-->
+<!--</div>-->
 
 <!-- FOOTER -->
-{% include 'footer.html'%}
+
 </body>
+{% include 'footer.html'%}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

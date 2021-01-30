@@ -1,152 +1,36 @@
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>My Profile | Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 12px
-        }
-
-        .alert_info {
-            background-color: #4285f4;
-            border: 2px solid #4285f4
-        }
-
-        button.close {
-            -webkit-appearance: none;
-            padding: 0;
-            cursor: pointer;
-            background: 0 0;
-            border: 0
-        }
-
-        .close {
-            font-size: 20px;
-            color: #fff;
-            opacity: 0.9;
-            font-weight: normal
-        }
+{%include 'header.html'%}
 
 
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
-<main role="main">
-    <body>
-
-    <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        {%include "sideNav.html"%}
-        <!--Main View Start-->
-        <div id="page-content-wrapper">
-            <div>
-                {% for message in messages %}
-                <br>
-                <div class="col-md-8">
-                    <div class="alert alert_info">
-                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                        <strong>{{message}}!</strong></div>
-
-
-                </div>
-
-                {% endfor %}
-            </div>
-            <div class="container-fluid">
-                <main role="main"><br>
-
-
-                    <div class="container">
-
-                        <div class="row">
-
-
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold" style="color:#B18729;">Basic info</h6>
-
-                                    <a href="#"
-                                       class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
-                                       data-toggle="modal"
-                                       data-target="#orderManage" style="background: #B18729; color:#fff;">
-                                        Edit</a>
-                                </div>
-                                <!-- Card Body -->
-
-                                <div class="card-body">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-flex flex-column align-items-center text-center">
-                                                <img src="{{user.userprofile.image.url}}"
-                                                     alt="{{user.first_name}}" class="rounded-circle" width="150">
-                                                <div class="mt-3">
-                                                    <h4>{{request.user.first_name}}
-                                                        {{request.user.last_name}}</h4>
-
-                                                    <p class="text-muted font-size-sm">
-                                                        {{user.userprofile.address}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Email: </strong>
-                                            {{request.user.email}}
-                                        </li>
-                                        <li class="list-group-item"><strong>Phone:</strong>
-                                            {{user.userprofile.Phone}}
-                                        </li>
-                                        <li class="list-group-item"><strong>Company Name:</strong>
-                                            {{user.sellerprofile.CompanyName}}
-                                        </li>
-                                        <li class="list-group-item">
-                                            <a class=" btn btn-outline-primary alert-warnings "
-                                               href="{% url 'core:changePassword' %}">
-                                                Change Password
-                                            </a>
-                                        </li>
-                                        {% if user.sellerprofile.isSeller %}
+<body>
+<main class="ps-page--my-account">
+    <section class="ps-section--account">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ps-section__left">
+                        <aside class="ps-widget--account-dashboard">
+                            <div class="ps-widget__header"><img src="{{user.userprofile.image.url}}"
+                                                                alt="{{user.first_name}}" class="rounded-circle"
+                                                                width="150">
+                                <figure>
+                                    <figcaption>Hello</figcaption>
+                                    <p>{{user.email}}</p>
+                                </figure>
+                            </div>
+                            <div class="ps-widget__content">
+                                <ul>
+                                    <li class="active"><a href="{% url 'core:userprofile' %}"><i class="icon-user"></i>
+                                        Account Information</a></li>
+                                    <li><a href="{% url 'core:userOrder' %}"><i class="icon-papers"></i> My Orders</a>
+                                    </li>
+                                    <!--                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>-->
+                                    <!--                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>-->
+                                    <!--                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>-->
+                                    {% if user.sellerprofile.isSeller %}
                                         <li class="list-group-item">
                                             <a class=" btn btn-outline-primary alert-warnings "
                                                href="{% url 'vendorDashboard' %}">
@@ -155,104 +39,298 @@
                                             </a>
                                         </li>
                                         {%endif%}
-                                    </ul>
-                                </div>
-
+                                    <li><a href="{% url 'core:logout' %}"><i class="icon-power-switch"></i>Logout</a>
+                                    </li>
+                                </ul>
                             </div>
-
-                            <!--/tab-pane-->
-                        </div><!--/tab-content-->
-
+                        </aside>
                     </div>
-                </main>
-                <!--/col-9-->
-                <div class="modal fade " id="orderManage" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Edit your Profile</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                </div>
+                <div class="col-lg-8">
+                    <div class="ps-section__right">
+                        <form method="POST" enctype="multipart/form-data" action="/updateProfile/" class="ps-form--account-setting" >
+                           {% csrf_token %}
+                            <div class="ps-form__header">
+                                <h3> User Information</h3>
                             </div>
-                            <form method="POST" action="/updateProfile/">
-                                {% csrf_token %}
-
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="firstName" class="col-form-label">First Name:</label>
-                                            <input type="text" class="form-control" value="{{request.user.first_name}}"
-                                                   name="firstName" id="firstName" disabled>
-                                        </div>
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="lastName" class="col-form-label">Last Name:</label>
-                                            <input type="text" class="form-control" value="{{request.user.last_name}}"
-                                                   name="lastName" id="lastName" disabled>
-
+                            <div class="ps-form__content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input id="firstName" name="firstName" value="{{request.user.first_name}}"
+                                               class="form-control" type="text"
+                                               placeholder="Please enter your First name...">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="email" class="col-form-label">Email:</label>
-                                            <input type="text" class="form-control" disabled
-                                                   value="{{request.user.email}}"
-                                                   name="email" id="email">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input id="lastName" name="lastName" value="{{request.user.last_name}}" class="form-control" type="text"
+                                               placeholder="Please enter your First name...">
                                         </div>
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="phone" class="col-form-label">Phone:</label>
-                                            <input type="text" class="form-control" value="{{user.userprofile.Phone}}"
-                                                   name="phone" id="phone">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mobile">Phone Number</label>
+                                            <input id="mobile" name="phone" value={{user.userprofile.Phone}}
+                                                   class="form-control" type="text"
+                                                   placeholder="Please enter phone number...">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input id="email" name="email" value="{{user.email}}" class="form-control"
+                                                   type="text" placeholder="Please enter your email...">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input id="address" name="address" value=" {{user.userprofile.address}}" class="form-control" type="text"
+                                                   placeholder="Please enter your Address...">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input id="city" name="city" value=" {{user.userprofile.city}}" class="form-control" type="text"
+                                                   placeholder="Please enter your City...">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            <input id="country" name="country" value="{{user.userprofile.country}}" class="form-control" type="text"
+                                                   placeholder="Please enter your Country...">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="address" class="col-form-label">Address: </label>
-                                        <input type="text" value="{{user.userprofile.address}}"
-                                               class="form-control" name="address" id="address">
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="city" class="col-form-label">City:</label>
-                                            <input type="text" value="{{user.userprofile.city}}" class="form-control"
-                                                   name="city" id="city">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-3">
-                                            <label for="country" class="col-form-label">Country:</label>
-                                            <select class="form-control" name="country" id="country">
-                                                <option> Select Country</option>
-                                                <option value="BD"> Bangladesh</option>
-                                            </select>
+                                    <div class="col-sm-6">
+                                        <br>
+                                        <div class="form-group">
+                                            <label>User Image</label>
+                                            <input type="file" placeholder="Please enter your Country...">
                                         </div>
                                     </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Update Profile</button>
-                                    </div>
+                                    <!--                                        <div class="col-sm-6">-->
+                                    <!--                                            <div class="form-group">-->
+                                    <!--                                                <label>Gender</label>-->
+                                    <!--                                                <select class="form-control">-->
+                                    <!--                                                    <option value="1">Male</option>-->
+                                    <!--                                                    <option value="2">Female</option>-->
+                                    <!--                                                    <option value="3">Other</option>-->
+                                    <!--                                                </select>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
                                 </div>
-                            </form>
+                            </div>
+                            <div class="form-group submit">
+                                <button type="submit" class="ps-btn">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="ps-newsletter">
+        <div class="ps-container">
+            <form class="ps-form--newsletter" action="do_action" method="post">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__left">
+                            <h3>Newsletter</h3>
+                            <p>Subcribe to get information about products and coupons</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="form-group--nest">
+                                <input class="form-control" type="email" placeholder="Email address">
+                                <button class="ps-btn">Subscribe</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-
+            </form>
         </div>
     </div>
-    </body>
-
-    <!-- FOOTER -->
-    <footer>{% include 'footer.html'%}</footer>
-
 </main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/dashboard.js' %}"></script>
-<script src="{% static 'js/form-validation.js'%}"></script>
+<!--    <div class="d-flex" id="wrapper">-->
+
+<!--        &lt;!&ndash; Sidebar &ndash;&gt;-->
+<!--        {%include "sideNav.html"%}-->
+<!--        &lt;!&ndash;Main View Start&ndash;&gt;-->
+<!--        <div id="page-content-wrapper">-->
+<!--            <div>-->
+<!--                {% for message in messages %}-->
+<!--                <br>-->
+<!--                <div class="col-md-8">-->
+<!--                    <div class="alert alert_info">-->
+<!--                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>-->
+<!--                        <strong>{{message}}!</strong></div>-->
+
+
+<!--                </div>-->
+
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--            <div class="container-fluid">-->
+<!--                <main role="main"><br>-->
+
+
+<!--                    <div class="container">-->
+
+<!--                        <div class="row">-->
+
+
+<!--                            <div class="card shadow mb-4">-->
+<!--                                &lt;!&ndash; Card Header - Dropdown &ndash;&gt;-->
+<!--                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">-->
+<!--                                    <h6 class="m-0 font-weight-bold" style="color:#B18729;">Basic info</h6>-->
+
+<!--                                    <a href="#"-->
+<!--                                       class="d-none d-sm-inline-block btn btn-sm  shadow-sm"-->
+<!--                                       data-toggle="modal"-->
+<!--                                       data-target="#orderManage" style="background: #B18729; color:#fff;">-->
+<!--                                        Edit</a>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; Card Body &ndash;&gt;-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="card">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <div class="d-flex flex-column align-items-center text-center">-->
+<!--                                                <img src="{{user.userprofile.image.url}}"-->
+<!--                                                     alt="{{user.first_name}}" class="rounded-circle" width="150">-->
+<!--                                                <div class="mt-3">-->
+<!--                                                    <h4>{{request.user.first_name}}-->
+<!--                                                        {{request.user.last_name}}</h4>-->
+
+<!--                                                    <p class="text-muted font-size-sm">-->
+<!--                                                        {{user.userprofile.address}}</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <ul class="list-group list-group-flush">-->
+<!--                                        <li class="list-group-item"><strong>Email: </strong>-->
+<!--                                            {{request.user.email}}-->
+<!--                                        </li>-->
+<!--                                        <li class="list-group-item"><strong>Phone:</strong>-->
+<!--                                            {{user.userprofile.Phone}}-->
+<!--                                        </li>-->
+<!--                                        <li class="list-group-item"><strong>Company Name:</strong>-->
+<!--                                            {{user.sellerprofile.CompanyName}}-->
+<!--                                        </li>-->
+<!--                                        <li class="list-group-item">-->
+<!--                                            <a class=" btn btn-outline-primary alert-warnings "-->
+<!--                                               href="{% url 'core:changePassword' %}">-->
+<!--                                                Change Password-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        {% if user.sellerprofile.isSeller %}-->
+<!--                                        <li class="list-group-item">-->
+<!--                                            <a class=" btn btn-outline-primary alert-warnings "-->
+<!--                                               href="{% url 'vendorDashboard' %}">-->
+<!--                                                <i class="fas fa-tachometer-alt"></i>-->
+<!--                                                Go to Vendor Dashboard-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        {%endif%}-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash;/tab-pane&ndash;&gt;-->
+<!--                        </div>&lt;!&ndash;/tab-content&ndash;&gt;-->
+
+<!--                    </div>-->
+<!--                </main>-->
+<!--                &lt;!&ndash;/col-9&ndash;&gt;-->
+<!--                <div class="modal fade " id="orderManage" data-backdrop="static" data-keyboard="false" tabindex="-1"-->
+<!--                     aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog modal-dialog modal-dialog-centered">-->
+<!--                        <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                                <h5 class="modal-title" id="staticBackdropLabel">Edit your Profile</h5>-->
+<!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                    <span aria-hidden="true">&times;</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                            <form method="POST" action="/updateProfile/">-->
+<!--                                {% csrf_token %}-->
+
+<!--                                <div class="modal-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="firstName" class="col-form-label">First Name:</label>-->
+<!--                                            <input type="text" class="form-control" value="{{request.user.first_name}}"-->
+<!--                                                   name="firstName" id="firstName" disabled>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="lastName" class="col-form-label">Last Name:</label>-->
+<!--                                            <input type="text" class="form-control" value="{{request.user.last_name}}"-->
+<!--                                                   name="lastName" id="lastName" disabled>-->
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="email" class="col-form-label">Email:</label>-->
+<!--                                            <input type="text" class="form-control" disabled-->
+<!--                                                   value="{{request.user.email}}"-->
+<!--                                                   name="email" id="email">-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="phone" class="col-form-label">Phone:</label>-->
+<!--                                            <input type="text" class="form-control" value="{{user.userprofile.Phone}}"-->
+<!--                                                   name="phone" id="phone">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="address" class="col-form-label">Address: </label>-->
+<!--                                        <input type="text" value="{{user.userprofile.address}}"-->
+<!--                                               class="form-control" name="address" id="address">-->
+
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="city" class="col-form-label">City:</label>-->
+<!--                                            <input type="text" value="{{user.userprofile.city}}" class="form-control"-->
+<!--                                                   name="city" id="city">-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group col-md-6 mb-3">-->
+<!--                                            <label for="country" class="col-form-label">Country:</label>-->
+<!--                                            <select class="form-control" name="country" id="country">-->
+<!--                                                <option> Select Country</option>-->
+<!--                                                <option value="BD"> Bangladesh</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="submit" class="btn btn-primary">Update Profile</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
 </body>
+
+
+{% include 'footer.html'%}
+
+
 </html>
