@@ -3,9 +3,9 @@
 <head>
     <title> {{object.name}} | Jewellery</title>
 </head>
-<header>
+
     {%include 'header.html'%}
-</header>
+
 <body>
 <nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="{{ object.get_add_to_cart_url }}">Add to
     cart</a><a
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="ps-product__desc">
-                            <p>Sold By: <a href="shop-default.html"><strong>
+                            <p>Sold By: <a href="#"><strong>
                                 {{object.user.sellerprofile.ShopDetails.ShopName}}</strong></a><br>
                                 </a>Status:<strong class="ps-tag--out-stock">
                                     {% if object.stockQuantity > 0%}
@@ -112,7 +112,7 @@
                         </figure>
                         <a class="ps-btn" href="/cart">View Cart</a>
                         {%else%}
-                        <button type="button" class="ps-btn ps-btn--black "disabled>Out Of Stock</button>
+                        <button type="button" class="ps-btn ps-btn--black " disabled>Out Of Stock</button>
                         <a class="ps-btn" href="/cart">View Cart</a>
                         {%endif%}
                         <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i> Add to whishlist</a><a

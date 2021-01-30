@@ -1,72 +1,10 @@
 {% load static %}
 {% load cart_template_tags%}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>My Cart| Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+{%include 'header.html'%}
+<body>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      .form-count {
-  display: block;
-  width: 40%;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-
-
-
-
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/wishlist.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
-<main role="main">
-    <body>
-
-    <div class="d-flex " id="wrapper">
-
-        <!-- Sidebar -->
-        {%include "sideNav.html"%}
-        <br> <br>
-        <!--Main View Start-->
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
         <div id="page-content-wrapper">
             {% for message in messages %}
             <br>
@@ -80,177 +18,144 @@
             </div>
 
             {% endfor %}
-            <main role="main"><br>
-                <div class="cart-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 rounded mx-auto d-block">
-                                {%if empty%}
-                                <div class="card-body cart">
-                                    <div class="col-sm-12 empty-cart-cls text-center"><img
-                                            src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
-                                            class="img-fluid mb-4 mr-3">
-                                        <h3><strong>Your Bag is Empty</strong></h3>
-                                        <h4>Add something to make me happy :)</h4> <a href="{%url 'core:shop'%}"
-                                                                                      class="btn btn-primary cart-btn-transform m-3"
-                                                                                      data-abc="true">Continue
-                                            shopping</a>
-                                    </div>
-                                </div>
+        </div>
+        <div class="ps-section--shopping ps-shopping-cart">
+            {%if empty%}
+            <div class="card-body cart">
+                <div class="col-sm-12 empty-cart-cls text-center"><img
+                        src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+                        class="img-fluid mb-4 mr-3">
+                    <h3><strong>Your Bag is Empty</strong></h3>
+                    <h4>Add something to make me happy :)</h4> <a href="{%url 'core:shop'%}"
+                                                                  class="btn btn-primary cart-btn-transform m-3"
+                                                                  data-abc="true">Continue
+                        shopping</a>
+                </div>
+            </div>
 
-                                {%else%}
-                                <div class="py-3 text-center alert" style="background: #B18729; color:#fff;">
-                                    <h2>Your Shopping Cart Summary</h2>
-                                </div>
-                                <div class="table-wishlist py-3">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th width="15%">No.</th>
-                                            <th width="15%">Image</th>
-                                            <th width="15%">Product Name</th>
-                                            <th width="15%" class="text-center">Unit Price</th>
-                                            <th width="15%" class="text-center">Quantity</th>
-                                            <th width="15%" class="text-center">Total</th>
-                                            <th width="15%"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        {% for Order_item in cart %}
-                                        <tr>
-                                            <th scope="row">{{ forloop.counter }}</th>
-                                            <td width="20%">
-                                                <div class="display-flex align-center">
-                                                    <div class="img-product">
-                                                        <img src="{{ Order_item.item.mainImage.url }}" alt=""
-                                                             class="mCS_img_loaded">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><a href="{% url 'core:productDetail' Order_item.item.slug %}" style="text-decoration:none;"> {{ Order_item.item.name }}</a></td>
-                                            <td width="10%" class="text-center">
-                                                {% if Order_item.item.discountPrice%}
-                                                {{ Order_item.item.discountPrice }}
-                                                {%else%}
-                                                {{ Order_item.item.price }}
-                                                {%endif%}
-                                            </td>
-
-
-                                            <td width="10%" class="text-center"><a
-                                                    href="{% url 'core:remove-single-from-cart' Order_item.item.slug %}"
-                                                    class="trash-icon "><i
-                                                    class="fas fa-minus mr-3"></i></a>{{ Order_item.quantity }}
-                                                <a href="{% url 'core:add-to-cart' Order_item.item.slug %}"
-                                                   class="trash-icon "><i class="fas fa-plus ml-3"></i></a>
-                                            </td>
-
-                                            <td width="10%" class="text-center">
-                                                {{Order_item.get_final_price}}
-                                            </td>
-                                            <td width="10%" class="text-center ">
-                                                <a href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
-                                                   onclick="return confirm('Are you sure to Delete?')"
-                                                   class="trash-icon "><i class="far fa-trash-alt "></i></a>
-                                            </td>
-                                        </tr>
-
-                                        {% endfor %}
-
-                                        </tbody>
-
-                                        <tfoot>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td width="10%" class="text-center "><strong>Subtotal</strong></td>
-                                            <td width="10%" class="text-center table-success">{{total}}</td>
-                                        </tr>
-
-                                        </tfoot>
-
-                                    </table>
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-12">
-
-                                            <div class="row col-lg-12">
-                                                <div class="col-md-8">
-                                                    <br>
-                                                    <div class="responsive text-left">
-                                                        <br>
-                                                        <button type="button"
-                                                                class=" text-center btn btn-warning">
-                                                            <a
-                                                                    class="nav-link text-white"
-                                                                    href="{% url 'core:shop'%}">
-                                                                Continue Shopping
-                                                            </a>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="row d-flex justify-content-between px-4">
-
-
-                                                    </div>
-
-                                                    <div class="row d-flex justify-content-between px-4">
-
-                                                    </div>
-                                                    <div class="row d-flex justify-content-between px-4"
-                                                         id="tax">
-
-                                                    </div>
-                                                    <br>
-                                                </div>
-
-                                                <div class="col-6 col-md-4">
-                                                    <div class="row">
-
-
-                                                        &nbsp;<div class="responsive"></div>
-                                                        <div class="responsive">
-                                                            <br>
-
-                                                            <button type="button"
-                                                                    class="text-center btn "
-                                                                    style="background: #B18729; color:#fff;"><a
-                                                                    class="nav-link text-white"
-                                                                    href="{% url 'core:checkout'%}">
-                                                                Checkout <i class="fas fa-play"> </i> </a>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                            </div>
-
+            {%else%}
+            <div class="container">
+                <div class="ps-section__header">
+                    <h1>Shopping Cart</h1>
+                </div>
+                <div class="ps-section__content">
+                    <div class="table-responsive">
+                        <table class="table ps-table--shopping-cart ps-table--responsive">
+                            <thead>
+                            <tr>
+                                <th>Product name</th>
+                                <th>PRICE</th>
+                                <th>QUANTITY</th>
+                                <th>TOTAL</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for Order_item in cart %}
+                            <tr>
+                                <td data-label="Product">
+                                    <div class="ps-product--cart">
+                                        <div class="ps-product__thumbnail"><a
+                                                href="{% url 'core:productDetail' Order_item.item.slug %}"><img
+                                                src="{{ Order_item.item.mainImage.url }}" alt=""></a></div>
+                                        <div class="ps-product__content"><a
+                                                href="{% url 'core:productDetail' Order_item.item.slug %}">{{Order_item.item.name}}</a>
+                                            <p>Sold By:<strong>
+                                                {{Order_item.item.user.sellerprofile.ShopDetails.ShopName}}</strong></p>
                                         </div>
                                     </div>
+                                </td>
+                                <td class="price" data-label="Price">{% if Order_item.item.discountPrice%}
+                                    {{ Order_item.item.discountPrice }}
+                                    {%else%}
+                                    {{ Order_item.item.price }}
+                                    {%endif%}
+                                </td>
+                                <td data-label="Quantity">
+                                    <div class="form-group--number">
+                                        <a
+                                                href="{% url 'core:remove-single-from-cart' Order_item.item.slug %}"
+                                                class="trash-icon "><i
+                                                class="icon-minus"></i> </a><strong>{{ Order_item.quantity }}</strong>
+                                        <a href="{% url 'core:add-to-cart' Order_item.item.slug %}"
+                                           class="trash-icon "><i class="icon-plus"></i></a>
 
-                                </div>
-                                {%endif%}
+                                    </div>
+                                </td>
+                                <td data-label="Total">{{Order_item.get_final_price}}</td>
+                                <td data-label="Actions"><a
+                                        href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                                        onclick="return confirm('Are you sure to Delete?')"><i
+                                        class="icon-cross"></i></a></td>
+                            </tr>
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ps-section__cart-actions"><a class="ps-btn" href="{%url 'core:shop'%}"><i
+                            class="icon-arrow-left"></i> Back to Shop</a>
+                        <!--<a class="ps-btn ps-btn&#45;&#45;outline" href="shop-default.html"><i
+                            class="icon-sync"></i> Update cart</a></div>-->
+                    </div>
+                    <div class="ps-section__footer">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                                <figure>
+                                    <figcaption>Coupon Discount</figcaption>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="ps-btn ps-btn--outline">Apply</button>
+                                    </div>
+                                </figure>
                             </div>
-
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                                <!--<figure>
+                                    <figcaption>Calculate shipping</figcaption>
+                                    <div class="form-group">
+                                        <select class="ps-select">
+                                            <option value="1">America</option>
+                                            <option value="2">Italia</option>
+                                            <option value="3">Vietnam</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Town/City">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Postcode/Zip">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="ps-btn ps-btn&#45;&#45;outline">Update</button>
+                                    </div>
+                                </figure>-->
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block--shopping-total">
+                                    <div class="ps-block__header">
+                                        <strong>Shipping</strong> {%shipping_li%}
+                                    </div>
+                                    <div class="ps-block__content">
+                                        <ul class="ps-block__product">
+                                            {% for Order_item in cart %}
+                                            <li><span class="ps-block__shop">{{Order_item.item.user.sellerprofile.ShopDetails.ShopName}}</span>
+                                                <a href="{% url 'core:productDetail' Order_item.item.slug %}">
+                                                    {{Order_item.item.name}}</a></span></li>
+                                            {%endfor%}
+                                        </ul>
+                                        <h3>Total <span>{{total}}</span></h3>
+                                    </div>
+                                </div>
+                                <a class="ps-btn ps-btn--fullwidth" href="{% url 'core:checkout'%}">Proceed to
+                                    checkout</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {%endif%}
+            </div>
         </div>
-        <br>
-</main>
-</div>
-
-</div>
-<!--Main View End-->
-</div>
+        {% include 'footer.html'%}
 </body>
-</main>
-{% include 'footer.html'%}
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-</html>
+

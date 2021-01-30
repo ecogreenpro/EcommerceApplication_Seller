@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 
-from core.models import CartProducts, Order, Products
+from core.models import CartProducts, Order, Products, Shipping
 
 register = template.Library()
 
@@ -69,3 +69,15 @@ def cartPage_total():
          </tr>
          """.format(i.get_total())
     return mark_safe(items_li)
+
+
+@register.simple_tag
+def shipping_li():
+    items = Shipping.objects.filter(isActive=True)
+    shipping_li = ""
+    for i in items:
+        shipping_li += """
+               <p>{} <span> {}</span></p>              
+         """.format(
+            i.location, i.charge)
+    return mark_safe(shipping_li)

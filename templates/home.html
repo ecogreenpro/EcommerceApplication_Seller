@@ -3,10 +3,9 @@
 <html lang="en">
 <head>
 </head>
-<header>
+
     {%include 'header.html'%}
 
-</header>
 <body>
 <main role="main">
 
@@ -113,14 +112,13 @@
                                 </div>
                                 {%endif%}
                                 <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i
+                                    <li><a href="{% url 'core:add-to-cart' item.slug %}" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i
                                             class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal"
-                                           data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i
+                                    <li><a href="{% url 'core:productDetail' item.slug %}" data-placement="top" title="Quick View" ><i class="icon-eye"></i></a></li>
+                                    <!--<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i
                                             class="icon-heart"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i
-                                            class="icon-chart-bars"></i></a></li>
+                                            class="icon-chart-bars"></i></a></li>-->
                                 </ul>
                             </div>
                             <div class="ps-product__container">
@@ -196,14 +194,13 @@
                                     src="{{item.mainImage.url}}" alt="" height="220" width="220"></a>
                                 <div class="ps-product__badge">-{{item.get_percentage}}%</div>
                                 <ul class="ps-product__actions">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i
+                                    <li><a href="{% url 'core:add-to-cart' item.slug %}" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i
                                             class="icon-bag2"></i></a></li>
-                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal"
-                                           data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i
+                                    <li><a href="{% url 'core:productDetail' item.slug %}" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                    <!--<li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i
                                             class="icon-heart"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i
-                                            class="icon-chart-bars"></i></a></li>
+                                            class="icon-chart-bars"></i></a></li>-->
                                 </ul>
                             </div>
                             <div class="ps-product__container"><a class="ps-product__vendor" href="#">

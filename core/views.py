@@ -411,7 +411,7 @@ def cart(request):
             'Settings': setting,
         }
     else:
-        context = {"empty": True}
+        context = {"empty": True,'Settings': setting}
 
     return render(request, 'cart.html', context)
 
