@@ -92,6 +92,7 @@ class vandorOrderDetails(DetailView):
             'oderTotal': order.OrderTotal,
             'Delivery': order.payment,
             'OrderNote': order.order_note,
+            'OrderStatus':order.order_status
         }
         return render(self.request, "vendor/vendorOrderDetails.html", context)
 

@@ -1,187 +1,222 @@
 {%load static%}
+{% load widget_tweaks %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/eco.png' %}"/>
-    <title>Add Product | Vendor | Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
+    <title>Add New Product | Jewllery Seller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'seller/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/fonts/Linearicons/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/fonts/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/owl-carousel/assets/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/summernote/summernote-bs4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/apexcharts-bundle/dist/apexcharts.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/css/style.css' %}">
     <style>
-        .item .item-content {
-            padding: 30px 35px
-        }
-
-        .image-upload {
-            width: 100%;
-            height: 300px;
-            border: 1px dashed #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            position: relative;
-            text-align: center;
-            background: #f8f8f9;
-            color: #666;
-            overflow: hidden
-        }
-
-        .item-wrapper form img {
-            margin-bottom: 20px;
-            width: auto;
-            height: auto;
-            max-height: 400px;
-            width: auto;
-            border-radius: 5px;
-            overflow: hidden
-        }
-
-        .image-upload img {
-            height: 100% !important;
-            width: auto !important;
-            border-radius: 0px;
-            margin: 0 auto
-        }
-
-        .image-upload i {
-            font-size: 6em;
-            color: #ccc
-        }
-
-        .image-upload input {
-            cursor: pointer;
-            opacity: 0;
-            height: 100%;
-            width: 100%;
-            z-index: 10;
-            position: absolute;
-            top: 0;
-            left: 0
-        }
-
-        .item-wrapper input {
-            height: 43px;
-            line-height: 43px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 20px
-        }
-
 
     </style>
 
 </head>
 
-<body id="page-top">
-
-<!-- Page Wrapper -->
-<div id="wrapper">
-
-    <!-- Sidebar -->
-    {%include 'vendor/sidebar.html'%}
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
-        <div id="content">
-
-            <!-- Topbar -->
-            {%include 'vendor/topbar.html'%}
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-7">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Add Products</h6>
+<body>
+<header class="header--mobile">
+    <div class="header__left">
+        <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
+        <img src="" alt="">
+    </div>
+    <div class="header__center"><a class="ps-logo" href="#"><img src="img/logo.png" alt=""></a></div>
+    <div class="header__right"><a class="header__site-link" href="#"><i class="icon-exit-right"></i></a></div>
+</header>
+<aside class="ps-drawer--mobile">
+    <div class="ps-drawer__header">
+        <h4> Menu</h4>
+        <button class="ps-drawer__close"><i class="icon icon-cross"></i></button>
+    </div>
+    <div class="ps-drawer__content">
+        <ul class="menu">
+            <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a></li>
+            <li><a class="active" href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+            <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+            <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+        </ul>
+    </div>
+</aside>
+<div class="ps-site-overlay"></div>
+<main class="ps-main">
+    <div class="ps-main__sidebar">
+        <div class="ps-sidebar">
+            <div class="ps-sidebar__top">
+                <div class="ps-block--user-wellcome">
+                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50"
+                                                     width="50" alt=""/></div>
+                    <div class="ps-block__right">
+                        <p>Hello,<a href="#">{{user.sellerprofile.ShopDetails.Name}}</a></p>
                     </div>
-                    <div class="card-body">
-                        <form method="post" class="needs-validation" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                {{form.media}}
-                                {{form.as_p}}
-
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <button class="btn btn-primary" type="submit">Update
-                                    Product
-                                </button>
-
-                            </div>
-                        </form>
-                    </div>
-
+                    <div class="ps-block__action"><a href="#"><i class="icon-exit"></i></a></div>
+                </div>
+                <div class="ps-block--earning-count"><small>Earning</small>
+                    <h3>৳ ০,০০,০০০</h3>
                 </div>
             </div>
-
-        </div>
-        <!-- /.container-fluid -->
-        <br>
-        <div class="container-fluid">
-
-        </div>
-    </div>
-
-</div>
-</div>
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Ecogreen Pro Global 2020</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+            <div class="ps-sidebar__content">
+                <div class="ps-sidebar__center">
+                    <ul class="menu">
+                        <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
+                        </li>
+                        <li><a class="active" href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+                        <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+                        <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+                    </ul>
+                </div>
+                <div class="ps-sidebar__footer">
+                    <div class="ps-copyright"><img src="img/logo.png" alt="">
+                        <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="ps-main__wrapper">
+        <header class="header--dashboard">
+            <div class="header__left">
+                <h3>New Product</h3>
+                <p>Add new product</p>
+            </div>
+            <div class="header__center">
+                <form class="ps-form--search-bar" action="index.html" method="get">
+                    <input class="form-control" type="text" placeholder="Search something"/>
+                    <button><i class="icon-magnifier"></i></button>
+                </form>
+            </div>
+            <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i
+                    class="icon-exit-right"></i></a></div>
+        </header>
+        <section class="ps-new-item">
+             <form method="post" class="needs-validation" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <figure class="ps-block--form-box">
+                            <figcaption>General</figcaption>
+                            <div class="ps-block__content">
+                                <div class="form-group">
+                                    <label>Product Name<sup>*</sup>
+                                    </label>
+                                    {% render_field form.name type="text" class="form-control" placeholder="Product Name" %}
+                                    {% render_field form.user class="form-control"%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Slug<sup>*</sup>
+                                    </label>
+                                    {% render_field form.slug class="form-control" placeholder="Product Slug"%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Specification<sup>*</sup>
+                                    </label>
+                                    {% render_field form.shortDescription%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Regular Price<sup>*</sup>
+                                    </label>
+                                    {% render_field form.price class="form-control" placeholder="Product Price"%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Sale Price<sup>*</sup>
+                                    </label>
+                                    {% render_field form.discountPrice class="form-control" placeholder="Discount Price"%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Sale Quantity<sup>*</sup>
+                                    </label>
+                                    {% render_field form.stockQuantity class="form-control "%}
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <figure class="ps-block--form-box">
+                            <figcaption>Product Images</figcaption>
+                            <div class="ps-block__content">
+                                <div class="form-group">
+                                    <label>Product Thumbnail</label>
+                                    {% render_field form.mainImage class="form-control"%}
+                                </div>
+                                <div class="form-group">
+                                    <label>Product Gallery</label>
+                                    {% render_field form.altImageOne class="form-control"%}
+                                </div>
+                                {% render_field form.altImageTwo class="form-control"%}
+                            </div>
+                        </figure>
+                        <figure class="ps-block--form-box">
+                            <figcaption>Inventory</figcaption>
+                            <div class="ps-block__content">
+                                <div class="form-group form-group--select">
+                                    <label>Category
+                                    </label>
+                                    <div class="form-group__content">
+                                        {% render_field form.category class="ps-select"%}
+                                    </div>
+                                </div>
+                                <div class="form-group form-group--select">
+                                    <label>Brand
+                                    </label>
+                                    <div class="form-group__content">
+                                        {% render_field form.brand class="ps-select"%}
+                                    </div>
+                                </div>
+                                <div class="form-group form-group--select">
+                                    <label>Label
+                                    </label>
+                                    <div class="form-group__content">
+                                        {% render_field form.label class="ps-select"%}
+                                    </div>
+                                </div>
+                                <div class="form-group form-group--select">
+                                    <label>Description
+                                    </label>
+                                    <div class="form-group__content">
+                                        {% render_field form.longDescirption class="form-control"%}
+                                    </div>
+                                </div>
 
+                            </div>
+                        </figure>
+
+                    </div>
+
+                    <div class="ps-form__bottom"><a class="ps-btn ps-btn--black" href="/all-product/">Back</a>
+                        <button class="ps-btn success" type="submit">Update</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+<script src="{% static 'seller/plugins/jquery.min.js' %}"></script>
+<script src="{% static 'seller/plugins/popper.min.js' %}"></script>
+<script src="{% static 'seller/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'seller/plugins/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static 'seller/plugins/select2/dist/js/select2.full.min.js' %}"></script>
+<script src="{% static 'seller/plugins/summernote/summernote-bs4.min.js' %}"></script>
+<script src="{% static 'seller/plugins/apexcharts-bundle/dist/apexcharts.min.js' %}"></script>
+<script src="{% static 'seller/js/chart.js' %}"></script>
+<!-- custom code-->
+<script src="{% static 'seller/js/main.js' %}"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/form-validation.js'%}"></script>
-<script src="{% static 'vendorstatic/vendor/datatables/jquery.dataTables.min.js'%}"></script>
-<script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
-<!-- Page level custom scripts -->
-<script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
+
 </html>

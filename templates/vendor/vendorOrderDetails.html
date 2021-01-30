@@ -3,222 +3,219 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/eco.png' %}"/>
-    <title>Oder | Vendor | Ecogreen</title>
-
-    <!-- Custom fonts for this template -->
-    <link href="{% static 'vendorstatic/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
+    <title>{{OrderNo}} | {{Billed_firstName}} {{Billed_lastName}} | Jewllery Seller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="{% static 'vendorstatic/css/sb-admin-2.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'seller/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/fonts/Linearicons/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/fonts/Linearicons/Font/demo-files/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/owl-carousel/assets/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/summernote/summernote-bs4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/plugins/apexcharts-bundle/dist/apexcharts.css' %}">
+    <link rel="stylesheet" href="{% static 'seller/css/style.css' %}">
 
 </head>
 
-<body id="page-top">
-
-<!-- Page Wrapper -->
-<div id="wrapper">
-
-    <!-- Sidebar -->
-    {%include 'vendor/sidebar.html'%}
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
-        <div id="content">
-
-            <!-- Topbar -->
-            {%include 'vendor/topbar.html'%}
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-body">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="staticBackdropLabel">Order No #{{OrderNo}} </h3>
-                        </div>
-                        <form >
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h5>Shipping to</h5>
-                                        <label><span
-                                                class="ml-1"><strong>{{Billed_firstName}} {{Billed_lastName}}</strong></span></label><br>
-                                        <label><span
-                                                class="ml-1">{{Address}}, {{District}}, {{Country}}</span></label>
-                                        <label> <span class="ml-1">{{District}}</span></label>
-                                        <label> <span class="ml-1">{{Email}}</span></label><br>
-                                        <label> <span class="ml-1">{{Phone}}</span></label><br>
-                                    </div>
-
+<body>
+<header class="header--mobile">
+    <div class="header__left">
+        <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
+        <img src="" alt="">
+    </div>
+    <div class="header__center"><a class="ps-logo" href="#"><img src="img/logo.png" alt=""></a></div>
+    <div class="header__right"><a class="header__site-link" href="#"><i class="icon-exit-right"></i></a></div>
+</header>
+<aside class="ps-drawer--mobile">
+    <div class="ps-drawer__header">
+        <h4> Menu</h4>
+        <button class="ps-drawer__close"><i class="icon icon-cross"></i></button>
+    </div>
+    <div class="ps-drawer__content">
+        <ul class="menu">
+            <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a></li>
+            <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+            <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+            <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+        </ul>
+    </div>
+</aside>
+<div class="ps-site-overlay"></div>
+<main class="ps-main">
+    <div class="ps-main__sidebar">
+        <div class="ps-sidebar">
+            <div class="ps-sidebar__top">
+                <div class="ps-block--user-wellcome">
+                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50"
+                                                     width="50" alt=""/></div>
+                    <div class="ps-block__right">
+                        <p>Hello,<a href="#">{{user.sellerprofile.ShopDetails.Name}}</a></p>
+                    </div>
+                    <div class="ps-block__action"><a href="#"><i class="icon-exit"></i></a></div>
+                </div>
+                <div class="ps-block--earning-count"><small>Earning</small>
+                    <h3>৳ ০,০০,০০০</h3>
+                </div>
+            </div>
+            <div class="ps-sidebar__content">
+                <div class="ps-sidebar__center">
+                    <ul class="menu">
+                        <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
+                        </li>
+                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+                        <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+                        <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+                    </ul>
+                </div>
+                <div class="ps-sidebar__footer">
+                    <div class="ps-copyright"><img src="img/logo.png" alt="">
+                        <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ps-main__wrapper">
+            <header class="header--dashboard">
+                <div class="header__left">
+                    <h3>#{{OrderNo}}</h3>
+                    <p>Order detail of #{{OrderNo}}</p>
+                </div>
+                <div class="header__center">
+                    <form class="ps-form--search-bar" action="index.html" method="get">
+                        <input class="form-control" type="text" placeholder="Search something" />
+                        <button><i class="icon-magnifier"></i></button>
+                    </form>
+                </div>
+                <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i class="icon-exit-right"></i></a></div>
+            </header>
+            <section class="ps-dashboard">
+                <div class="ps-section__left">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ps-card ps-card--order-information ps-card--small">
+                                <div class="ps-card__header">
+                                    <h4>Shipping Information</h4>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead">
+                                <div class="ps-card__content">
+                                    <h5>{{Billed_firstName}} {{Billed_lastName}}</h5>
+                                    <p><strong>Address:</strong> {{Address}}, {{District}}, {{Country}}</p>
+                                    <p><strong>Phone No.:</strong> {{Phone}}</p>
+                                    <p><strong>Email:</strong> {{Email}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ps-card ps-card--order-information ps-card--small">
+                                <div class="ps-card__header">
+                                    <h4>Billing Information</h4>
+                                </div>
+                                <div class="ps-card__content">
+                                    <p><strong>Payment :</strong> {{Delivery}}</p>
+                                    <p><strong>Order Date:</strong> {{OrderDate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-card ps-card--track-order">
+                        <div class="ps-card__header">
+                            <h4>#{{OrderNo}}</h4>
+                        </div>
+                        <div class="ps-card__content">
+                            <div class="table-responsive">
+                                <table class="table ps-table">
+                                    <thead>
                                         <tr>
-                                            <th>Item</th>
+                                            <th>Product</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
                                             <th>Total</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        {%for productList in Product%}
+                                    </thead>
+                                    <tbody>
+                                     {%for productList in Product%}
                                         <tr>
-                                            <td><strong>{{productList.product.name}}</strong></td>
+                                            <td><a href="#">{{productList.product.name}}</a></td>
                                             <td>{{productList.price}}</td>
                                             <td>{{productList.quantity}}</td>
                                             <td>{{productList.amount}}</td>
                                         </tr>
-                                        {%endfor%}
+                                     {%endfor%}
 
-                                        <!--<tr>
-                                            <td></td>
-                                            <td>Subtotal:</td>
-                                            <td></td>
-                                            <td><strong>৳ {{oderTotal}}</strong></td>
-                                        </tr>-->
                                         <tr>
-                                            <td></td>
-                                            <td>Shipping Charge: <br>
-                                            </td>
-                                            <td></td>
-                                            <td><strong>৳ 100</strong></td>
+                                            <td colspan="3"><strong>Shipping Charge:</strong></td>
+                                            <td><strong>100.00</strong></td>
                                         </tr>
 
                                         <tr>
-                                            <td><strong>Order Note : </strong>{{OrderNote}}</td>
-                                            <td>Total:</td>
-                                            <td></td>
+                                            <td colspan="3"><strong>Total:</strong></td>
                                             <td><strong>৳ {{oderTotal}}</strong></td>
                                         </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <hr>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-
-
-                                    </div>
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-
-                                        <label>Order Status</label>
-                                        <select class="form-control form-control-sm" required>
-                                            <option>Processing</option>
-                                            <option>Pending</option>
-                                            <option>Complete</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please Select AT LEAST ONE category
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-section__right">
+                    <div class="ps-card ps-card--track-order">
+                        <div class="ps-card__header">
+                            <h4>Track Order</h4>
+                        </div>
+                        <div class="ps-card__content">
+                            <div class="ps-block--track-order">
+                                <div class="ps-block__header">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <figure>
+                                                <figcaption>Order ID:</figcaption>
+                                                <p>#{{OrderNo}}</p>
+                                            </figure>
+                                        </div>
+                                        <div class="col-6">
+                                            <figure>
+                                                <figcaption>Status:</figcaption>
+                                                <p>{{OrderStatus}}</p>
+                                            </figure>
                                         </div>
                                     </div>
                                 </div>
+                                <!--<div class="ps-block__content">
+                                    <div class="ps-block__timeline">
+                                        <figure class="active">
+                                            <figcaption>Order Placed</figcaption>
+                                            <p>Sep 19, 2020 <small>7:00am</small></p>
+                                        </figure>
 
-                            </div>
-                            <div class="modal-footer">
-
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
                     </div>
-
                 </div>
-
-            </div>
-            <!-- /.container-fluid -->
-
+            </section>
         </div>
-
-    </div>
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Ecogreen Pro Global 2020</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-
-
+</main>
+<script src="{% static 'seller/plugins/jquery.min.js' %}"></script>
+<script src="{% static 'seller/plugins/popper.min.js' %}"></script>
+<script src="{% static 'seller/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'seller/plugins/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static 'seller/plugins/select2/dist/js/select2.full.min.js' %}"></script>
+<script src="{% static 'seller/plugins/summernote/summernote-bs4.min.js' %}"></script>
+<script src="{% static 'seller/plugins/apexcharts-bundle/dist/apexcharts.min.js' %}"></script>
+<script src="{% static 'seller/js/chart.js' %}"></script>
+<!-- custom code-->
+<script src="{% static 'seller/js/main.js' %}"></script>
 </body>
-
-<script src="{% static 'vendorstatic/vendor/jquery/jquery.min.js'%}"></script>
-<script src="{% static 'vendorstatic/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="{% static 'vendorstatic/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="{% static 'vendorstatic/js/sb-admin-2.min.js'%}"></script>
-
-<!-- Page level plugins -->
-<script src="{% static 'vendorstatic/vendor/chart.js/Chart.min.js'%}"></script>
-
-<!-- Page level custom scripts -->
-<script src="{% static 'vendorstatic/js/demo/chart-area-demo.js'%}"></script>
-<script src="{% static 'vendorstatic/js/demo/chart-pie-demo.js'%}"></script>
-
-<script src="{% static 'vendorstatic/vendor/datatables/jquery.dataTables.min.js'%}"></script>
-<script src="{% static 'vendorstatic/vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
-<!-- Page level custom scripts -->
-<script src="{% static 'vendorstatic/js/demo/datatables-demo.js'%}"></script>
-
 
 </html>

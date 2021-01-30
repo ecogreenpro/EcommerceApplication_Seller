@@ -72,8 +72,8 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class updateForm(forms.ModelForm):
-    shortDescription = forms.CharField(widget=CKEditorWidget()),
-    longDescirption = forms.CharField(widget=CKEditorWidget()),
+    # shortDescription = forms.CharField(widget=CKEditorWidget()),
+    # longDescirption = forms.CharField(widget=CKEditorWidget()),
 
     class Meta:
         model = Products
