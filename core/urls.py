@@ -40,8 +40,8 @@ urlpatterns = [
     path('create-user/', views.createUser, name="createUser"),
     path('forgotpassword/', views.forgotpassword, name="forgotpassword"),
     path('change-password/', views.changePassword, name="changePassword"),
-    path('userprofile/', views.userprofile, name="userprofile"),
-    path('updateProfile/', views.updateProfile, name="updateProfile"),
+    path('user-profile/', views.userprofile, name="userprofile"),
+    path('update-Profile/', views.updateProfile, name="updateProfile"),
     path('userorder/', views.userOrder, name="userOrder"),
     path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
 

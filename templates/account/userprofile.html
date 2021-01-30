@@ -27,9 +27,9 @@
                                         Account Information</a></li>
                                     <li><a href="{% url 'core:userOrder' %}"><i class="icon-papers"></i> My Orders</a>
                                     </li>
-                                    <!--                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>-->
-                                    <!--                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>-->
-                                    <!--                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>-->
+                                    <!--                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>
+                                                                            <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
+                                                                            <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>-->
                                     {% if user.sellerprofile.isSeller %}
                                         <li class="list-group-item">
                                             <a class=" btn btn-outline-primary alert-warnings "
@@ -60,14 +60,14 @@
                                         <label for="firstName">First Name</label>
                                         <input id="firstName" name="firstName" value="{{request.user.first_name}}"
                                                class="form-control" type="text"
-                                               placeholder="Please enter your First name...">
+                                               placeholder="Please enter your First name..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                         <label for="lastName">Last Name</label>
                                         <input id="lastName" name="lastName" value="{{request.user.last_name}}" class="form-control" type="text"
-                                               placeholder="Please enter your First name...">
+                                               placeholder="Please enter your First name..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -75,61 +75,46 @@
                                             <label for="mobile">Phone Number</label>
                                             <input id="mobile" name="phone" value={{user.userprofile.Phone}}
                                                    class="form-control" type="text"
-                                                   placeholder="Please enter phone number...">
+                                                   placeholder="Please enter phone number..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input id="email" name="email" value="{{user.email}}" class="form-control"
-                                                   type="text" placeholder="Please enter your email...">
+                                                   type="text" placeholder="Please enter your email..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="address">Address</label>
                                             <input id="address" name="address" value=" {{user.userprofile.address}}" class="form-control" type="text"
-                                                   placeholder="Please enter your Address...">
+                                                   placeholder="Please enter your Address..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="city">City</label>
                                             <input id="city" name="city" value=" {{user.userprofile.city}}" class="form-control" type="text"
-                                                   placeholder="Please enter your City...">
+                                                   placeholder="Please enter your City..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="country">Country</label>
                                             <input id="country" name="country" value="{{user.userprofile.country}}" class="form-control" type="text"
-                                                   placeholder="Please enter your Country...">
+                                                   placeholder="Please enter your Country..." disabled>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <br>
-                                        <div class="form-group">
-                                            <label>User Image</label>
-                                            <input type="file" placeholder="Please enter your Country...">
-                                        </div>
-                                    </div>
-                                    <!--                                        <div class="col-sm-6">-->
-                                    <!--                                            <div class="form-group">-->
-                                    <!--                                                <label>Gender</label>-->
-                                    <!--                                                <select class="form-control">-->
-                                    <!--                                                    <option value="1">Male</option>-->
-                                    <!--                                                    <option value="2">Female</option>-->
-                                    <!--                                                    <option value="3">Other</option>-->
-                                    <!--                                                </select>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </div>-->
+
                                 </div>
                             </div>
-                            <div class="form-group submit">
-                                <button type="submit" class="ps-btn">Update</button>
-                            </div>
+
                         </form>
+                        <div >
+                                <a href="{%url 'core:updateProfile'%}" type="submit" class="ps-btn">Update Profile</a>
+                            </div>
                     </div>
                 </div>
             </div>

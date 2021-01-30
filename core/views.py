@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 
-from .forms import ProfileModelForm
+from .forms import ProfileUpdateForm
 from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
@@ -390,50 +390,27 @@ def createUser(request):
         return render(request, 'account/login.html', context)
 
 
+@login_required(login_url='/login')  # Check login
 def updateProfile(request):
     setting = Settings.objects.get()
-    if request.user.is_authenticated:
-        cart = CartProducts.objects.filter(user=request.user)
-        total = 0
-        for rs in cart:
-            if rs.item.discountPrice:
-                total += rs.item.discountPrice * rs.quantity
-            else:
-                total += rs.item.price * rs.quantity
-        context = {
-            'Settings': setting,
-            'cart': cart,
-            'total': total
-        }
-        address = request.POST['address']
-        country = request.POST['country']
-        city = request.POST['city']
-        phone = request.POST['phone']
-
-        userProfile.objects.filter(user=request.user).update(address=address, city=city,
-                                                             country=country,
-                                                             Phone=phone)
-        messages.info(request, 'Profile Updated ')
-        return render(request, 'account/userprofile.html', context)
+    if request.method == 'POST':
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Your account has been updated!')
+            return HttpResponseRedirect('/user-profile/')
     else:
-
+        profile_form = ProfileUpdateForm(instance=request.user.userprofile)
         context = {
+            'form': profile_form,
             'Settings': setting,
         }
-        address = request.POST['address']
-        country = request.POST['country']
-        city = request.POST['city']
-        phone = request.POST['phone']
-
-        userProfile.objects.filter(user=request.user).update(address=address, city=city,
-                                                             country=country,
-                                                             Phone=phone)
-        messages.info(request, 'Profile Updated ')
-        return HttpResponseRedirect('/updateProfile/')
+        return render(request, 'account/updateProfile.html', context)
 
 
 def userprofile(request):
     setting = Settings.objects.get()
+    profile_form = ProfileUpdateForm(instance=request.user.userprofile)
     if request.user.is_authenticated:
         cart = CartProducts.objects.filter(user=request.user)
         total = 0
@@ -445,13 +422,15 @@ def userprofile(request):
         context = {
             'Settings': setting,
             'cart': cart,
-            'total': total
+            'total': total, 'form': profile_form,
+
         }
         return render(request, 'account/userprofile.html', context)
     else:
 
         context = {
             'Settings': setting,
+            'form': profile_form,
         }
         return render(request, 'account/userprofile.html', context)
 
