@@ -29,192 +29,6 @@
     <link rel="stylesheet" href="{% static 'core/plugins/select2/dist/css/select2.min.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
-<!--<section class="header-main border-bottom">
-    <div class="header_main">
-        <div class="container">
-            <div class="row">
-                &lt;!&ndash; Logo &ndash;&gt;
-                <div class="col-lg-2 col-sm-3 col-3 order-1">
-                    <div class="logo_container">
-                        <div class="logo"><a href="{% url 'core:home'%}">
-                            <img id="logo"
-                                 class="rounded mx-auto d-block"
-                                 src="{{Settings.logo.url}}" alt=""
-                                 width="110" height="72"> </a></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                    <div class="header_search">
-                        <div class="header_search_content">
-                            <div class="header_search_form_container">
-                                <form action='/search/' class="header_search_form clearfix">
-
-                                    <input style="font-family: 'Rubik';" name="search" type="search"
-                                           required="required" class="header_search_input"
-                                           placeholder="Search for products(e.g. Phone, dresses)">
-                                    <button type="submit" class="header_search_button trans_300" value="Submit"
-                                            style="background: #AC801C;!important;"><i
-                                            class="fas fa-search text-white"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> &lt;!&ndash; Wishlist &ndash;&gt;
-                <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-                    <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                        <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                            &lt;!&ndash;<a href="#">
-                                <div class="wishlist_icon"><img
-                                        src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png"
-                                        alt=""></div>
-                                <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="#" class="text-dark"
-                                                                  style="font-family: 'Rubik';">Wishlist</a>
-                                    </div>
-                                    <div class="badge badge-pill badge-primary"
-                                         style="font-family: 'Rubik'; background: #AC801C; ">0
-                                    </div>
-                                </div>
-                            </a>&ndash;&gt;
-                        </div> &lt;!&ndash; Cart &ndash;&gt;
-                        <div class="bag">
-                            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                <a href="{% url 'core:cart' %}" style="font-family: 'Rubik';">
-                                    <div class="cart_icon"><img
-                                            src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png"
-                                            alt="">
-                                        <div class="cart_count" style="font-family: 'Rubik'; background: #AC801C;">
-                                            {% cartCount user.id as count %}
-                                            <span>{{ count }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="cart_content">
-                                        <div class="cart_text text-dark">Bag
-
-                                </a>
-                            </div>
-                            {%cartTotal user.id as total%}
-                            <div class="cart_price" style="font-family: 'Rubik';">BDT {{total}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<nav class="navbar navbar-expand-md navbar-dark " style="background-color: #000!important;">
-    <button class="btn " id="menu-toggle" width="70" height="40"
-            style="background-color: #ac801cc2!important; color: #fff; font-family: 'Rubik';"><i
-            class="fas fa-bars"></i> Catagories
-    </button> &nbsp; &nbsp; &nbsp;
-    &lt;!&ndash;<a class="navbar-brand" href="#">
-        <img src="{% static 'media/avatar.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""
-             loading="lazy">
-        Ecogreen eShop
-    </a>-&ndash;&gt;
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse" style="font-family: 'Rubik';">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'core:home'%}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'core:shop'%}">Shop <span class="sr-only">(current)</span></a>
-            </li>
-
-        </ul>
-
-        <ul>
-            <li class="nav-item dropdown no-arrow">
-                {% if request.user.is_authenticated %}
-                <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
-                   role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="far fa-user"></i> Hello! <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
-                </a>
-                &lt;!&ndash; Dropdown - User Information &ndash;&gt;
-                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"
-                     aria-labelledby="userDropdown">
-                    &lt;!&ndash; <a class="dropdown-item" href="#">
-                         <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
-                     </a>&ndash;&gt;
-
-                    <a class="dropdown-item" href="{% url 'core:userprofile' %}">
-                        <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
-                        My Profile
-                    </a>
-
-                    <a class="dropdown-item" href="{% url 'core:userOrder' %}">
-                        <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
-                        My Order
-                    </a>
-
-                    &lt;!&ndash;<a class="dropdown-item" href="#">
-                        <i class="fas fa-money-check-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Balance
-                    </a>
-
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Chat
-                    </a>&ndash;&gt;
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#my-modal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
-                    {%else%}
-                    <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
-                       role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-user"></i> Hello!</a>
-                    {%endif%}
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border-0">
-                <div class="modal-body p-0">
-                    <div class="card border-0 p-sm-3 p-2 justify-content-center">
-                        <div class="card-header pb-0 bg-white border-0 ">
-                            <div class="row">
-                                <div class="col ml-auto">
-                                    <button type="button" class="close"
-                                            data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                </div>
-                            </div>
-                            <p class="font-weight-bold mb-2"> Are you sure you wanna logout?</p>
-
-                        </div>
-                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
-                            <div class="row justify-content-end no-gutters">
-                                <div class="col-auto">
-                                    <button type="button"
-                                            class="btn btn-light text-muted"
-                                            data-dismiss="modal">Cancel
-                                    </button>
-                                </div> &nbsp;
-                                <div class="col-auto">
-                                    <a href="{% url 'core:logout' %} " type="button" class="btn btn-danger px-4">
-                                        logout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>-->
 <header class="header header--1" data-sticky="true">
     <div class="header__top" style="background: whitesmoke!important;">
         <div class="ps-container">
@@ -727,8 +541,9 @@
         </div>
     </div>-->
     <div class="navigation--mobile" style="background: whitesmoke!important;">
-        <div class="navigation__left"><a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}" alt=""
-                                                                                height="60" width="100"></a>
+        <div class="navigation__left"><a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}"
+                                                                                          alt=""
+                                                                                          height="60" width="100"></a>
         </div>
         <div class="navigation__right">
             <div class="header__actions">
@@ -744,7 +559,8 @@
                                         src="{{ Order_item.item.mainImage.url }}" alt=""></a></div>
                                 <div class="ps-product__content">
                                     <a class="ps-product__remove"
-                                       href="{% url 'core:productDetail' Order_item.item.slug %}"><i
+                                       href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                                       onclick="return confirm('Are you sure to Delete?')"><i
                                             class="icon-cross"></i></a><a
                                         href="{% url 'core:productDetail' Order_item.item.slug %}">
                                     {{ Order_item.item.name }}</a>
