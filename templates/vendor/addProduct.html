@@ -25,9 +25,6 @@
     <link rel="stylesheet" href="{% static 'seller/plugins/summernote/summernote-bs4.min.css' %}">
     <link rel="stylesheet" href="{% static 'seller/plugins/apexcharts-bundle/dist/apexcharts.css' %}">
     <link rel="stylesheet" href="{% static 'seller/css/style.css' %}">
-    <style>
-        #cke_id_shortDescription  { width: 510px;!important; }
-    </style>
 
 </head>
 
@@ -60,8 +57,7 @@
         <div class="ps-sidebar">
             <div class="ps-sidebar__top">
                 <div class="ps-block--user-wellcome">
-                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50"
-                                                     width="50" alt=""/></div>
+                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50" width="50" alt=""/></div>
                     <div class="ps-block__right">
                         <p>Hello,<a href="#">{{user.sellerprofile.ShopDetails.Name}}</a></p>
                     </div>
@@ -90,124 +86,169 @@
         </div>
     </div>
     <div class="ps-main__wrapper">
-        <header class="header--dashboard">
-            <div class="header__left">
-                <h3>New Product</h3>
-                <p>Add new product</p>
-            </div>
-            <div class="header__center">
-                <form class="ps-form--search-bar" action="index.html" method="get">
-                    <input class="form-control" type="text" placeholder="Search something"/>
-                    <button><i class="icon-magnifier"></i></button>
-                </form>
-            </div>
-            <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i
-                    class="icon-exit-right"></i></a></div>
-        </header>
-        <section class="ps-new-item">
+            <header class="header--dashboard">
+                <div class="header__left">
+                    <h3>New Product</h3>
+                    <p>Add new product</p>
+                </div>
+                <div class="header__center">
+                    <form class="ps-form--search-bar" action="index.html" method="get">
+                        <input class="form-control" type="text" placeholder="Search something" />
+                        <button><i class="icon-magnifier"></i></button>
+                    </form>
+                </div>
+                <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i class="icon-exit-right"></i></a></div>
+            </header>
+            <section class="ps-new-item">
 
             <form method="post" class="needs-validation" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.media }}
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <figure class="ps-block--form-box">
-                            <figcaption>General</figcaption>
-                            <div class="ps-block__content">
-                                <div class="form-group">
-                                    <label>Product Name<sup>*</sup>
-                                    </label>
+                            {% csrf_token %}
+                            {{ form.media }}
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     {% render_field form.name type="text" class="form-control" placeholder="Product Name" %}
                                     {% render_field form.user class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Product name is required.
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Slug<sup>*</sup>
-                                    </label>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
                                     {% render_field form.slug class="form-control" placeholder="Product Slug"%}
+                                    <div class="invalid-feedback">
+                                        Slug is required.
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Specification<sup>*</sup>
-                                    </label>
-                                    {% render_field form.shortDescription%}
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">৳</span>
+
+                                        {% render_field form.price class="form-control" placeholder="Product Price"%}
+
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Price is required.
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Regular Price<sup>*</sup>
-                                    </label>
-                                    {% render_field form.price class="form-control" placeholder="Product Price"%}
+                                <div class="col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">৳</span>
+                                        {% render_field form.discountPrice class="form-control" placeholder="Discount Price"%}
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Sale Price<sup>*</sup>
-                                    </label>
-                                    {% render_field form.discountPrice class="form-control" placeholder="Discount Price"%}
+                            </div>
+                            <div class="form-group">
+                                {% render_field form.shortDescription class="form-control ckeditor"%}
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="Category"> Category Name <span class="text-danger">*</span></label>
+                                    {% render_field form.category class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE category
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Sale Quantity<sup>*</sup>
-                                    </label>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="brand"> Brand Name</label>
+                                    {% render_field form.brand class="form-control"%}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="label"> Label <span class="text-danger">*</span></label>
+                                    {% render_field form.label class="form-control"%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE Label
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="stockQuantity"> Stock Quantity <span
+                                            class="text-danger">*</span></label>
                                     {% render_field form.stockQuantity class="form-control "%}
+                                    <div class="invalid-feedback">
+                                        Please Select AT LEAST ONE Label
+                                    </div>
                                 </div>
                             </div>
-                        </figure>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                        <figure class="ps-block--form-box">
-                            <figcaption>Product Images</figcaption>
-                            <div class="ps-block__content">
-                                <div class="form-group">
-                                    <label>Product Thumbnail</label>
-                                    {% render_field form.mainImage class="form-control"%}
+
+                            <div class="item-inner">
+                                <div class="item-content">
+                                    <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br> <i
+                                            class="fas fa-fw fa-cloud-upload-alt"></i>
+                                        <div class="h-100">
+                                            <div class="dplay-tbl">
+                                                <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                    <h5><b>Upload Product image</b></h5>
+                                                    <h6 class="mt-10 mb-70">Or Drop </h6>
+                                                    <div class="invalid-feedback">
+                                                        Please Select Product image
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--upload-content--> {% render_field form.mainImage class="form-control"%}
+
+                                    </label></div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Product Gallery</label>
-                                    {% render_field form.altImageOne class="form-control"%}
-                                </div>
-                                {% render_field form.altImageTwo class="form-control"%}
+                                <!--item-content-->
                             </div>
-                        </figure>
-                        <figure class="ps-block--form-box">
-                            <figcaption>Inventory</figcaption>
-                            <div class="ps-block__content">
-                                <div class="form-group form-group--select">
-                                    <label>Category
-                                    </label>
-                                    <div class="form-group__content">
-                                        {% render_field form.category class="ps-select"%}
-                                    </div>
-                                </div>
-                                <div class="form-group form-group--select">
-                                    <label>Brand
-                                    </label>
-                                    <div class="form-group__content">
-                                        {% render_field form.brand class="ps-select"%}
-                                    </div>
-                                </div>
-                                <div class="form-group form-group--select">
-                                    <label>Label
-                                    </label>
-                                    <div class="form-group__content">
-                                        {% render_field form.label class="ps-select"%}
-                                    </div>
-                                </div>
-                                <div class="form-group form-group--select">
-                                    <label>Description
-                                    </label>
-                                    <div class="form-group__content">
-                                        {% render_field form.longDescirption class="form-control"%}
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="item-inner">
+                                        <div class="item-content">
+                                            <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br>
+                                                <i
+                                                        class="fas fa-fw fa-cloud-upload-alt"></i>
+                                                <div class="h-100">
+                                                    <div class="dplay-tbl">
+                                                        <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                            <h5><b>Add image gallery</b></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% render_field form.altImageOne class="form-control"%}
+                                            </label></div>
+                                        </div>
                                     </div>
                                 </div>
 
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="item-inner">
+                                        <div class="item-content">
+                                            <div class="image-upload"><label style="cursor: pointer;" for="file_upload"><br>
+                                                <i
+                                                        class="fas fa-fw fa-cloud-upload-alt"></i>
+                                                <div class="h-100">
+                                                    <div class="dplay-tbl">
+                                                        <div class="dplay-tbl-cell"><i class="fa fa-cloud-upload"></i>
+                                                            <h5><b>Add image gallery</b></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% render_field form.altImageTwo class="form-control"%}
+                                            </label></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </figure>
+                            <div class="form-group">
+                                {{form.longDescirption}}
 
-                    </div>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i> Add
+                                    Product
+                                </button>
 
-                    <div class="ps-form__bottom"><a class="ps-btn ps-btn--black" href="/all-product/">Back</a>
-                        <button class="ps-btn" type="submit"><i
-                    class="icon icon-plus mr-2"></i> Add Product</button>
-                    </div>
-                </div>
-            </form>
-        </section>
-    </div>
+                            </div>
+                        </form>
+            </section>
+        </div>
 </main>
 <script src="{% static 'seller/plugins/jquery.min.js' %}"></script>
 <script src="{% static 'seller/plugins/popper.min.js' %}"></script>
