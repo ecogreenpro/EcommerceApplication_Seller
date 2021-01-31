@@ -1,178 +1,196 @@
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Sign Up | Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+{%include 'header.html'%}
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-
-
-
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
-<main role="main">
-    <body>
-
-    <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        {%include "sideNav.html"%}
-
-        <!--Main View Start-->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <main role="main"><br>
-                    <div class="container">
-                        <div class="py text-center">
-                            <h2>Create Account</h2>
+<body>
+<div class="ps-my-account">
+    <div class="container">
+        <form class="ps-form--account ps-tab-root" method="get">
+            <ul class="ps-tab-list">
+                <li><a>Register</a></li>
+            </ul>
+            <div class="ps-tabs">
+                <div class="ps-tab active" id="sign-in">
+                    <div class="ps-form__content">
+                        <h5>Create a New Account</h5>
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName"
+                                   required>
                         </div>
-                        <div class="col-md-6 rounded mx-auto d-block">
-
-                            <form method="post" action="/create-user/" class="needs-validation" novalidate>
-                                {% csrf_token %}
-                                {% for message in messages %}
-                                <div class="form-group ">
-                                    <div class="col-md-12">
-
-                                        <p class="form-control alert alert-danger" id="messages">{{message}}</p>
-
-                                    </div>
-                                </div>
-                                {% endfor %}
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" name="firstName" id="firstName"
-                                               required>
-                                        <div class="invalid-feedback">
-                                            Valid first name is required.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lastName">Last name</label>
-                                        <input type="text" class="form-control" name="lastName" id="lastName" required>
-                                        <div class="invalid-feedback">
-                                            Valid last name is required.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="username">Username</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">@</span>
-                                        </div>
-                                        <input type="text" class="form-control" name="username" id="username"
-                                               placeholder="Username"
-                                               required>
-                                        <div class="invalid-feedback" style="width: 100%;">
-                                            Your username is required.
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           placeholder="you@example.com"
-                                           required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address for Sign Up.
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="Password">Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                            </div>
-                                            <input type="password" class="form-control" id="password" name="password"
-                                                   placeholder="Password" minlength="8"
-                                                   title="Must contain 8 or more characters" required>
-                                            <div class="invalid-feedback" style="width: 100%;">
-                                                Invalid Password
-                                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="Password"> Confirm Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                            </div>
-                                            <input type="password" class="form-control" id="confirm_password"
-                                                   name="confirm_password"
-                                                   placeholder="Password" required>
-                                            <div class="invalid-feedback" style="width: 100%;">
-                                                Password Not Mactched.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr class="mb-4">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit"><i
-                                            class="fas fa-user-plus"></i> Register
-                                    </button>
-                                </div>
-
-                            </form>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="username"
+                                   placeholder="Username"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="email"
+                                       placeholder="example@gmail.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Password" minlength="8"
+                                   title="Must contain 8 or more characters" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                                Invalid Password-->
+                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                            </div>
 
                         </div>
 
+                        <div class="form-group">
+                            <label for="Password"> Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password"
+                                   name="confirm_password"
+                                   placeholder="Password" required>
+                            <div class="invalid-feedback" style="width: 100%;">
+                                Password Not Mactched.
+                            </div>
+
+                        </div>
+
+                        <div class="form-group submit">
+                            <button class="ps-btn ps-btn--fullwidth">Register</button>
+                        </div>
                     </div>
-                </main>
+                    <div class="ps-form__footer">
+                    </div>
+                </div>
 
             </div>
-
-        </div>
-        <!--Main View End-->
+        </form>
     </div>
+</div>
+<!--    <div class="d-flex" id="wrapper">-->
+
+<!--        &lt;!&ndash; Sidebar &ndash;&gt;-->
+<!--        {%include "sideNav.html"%}-->
+
+<!--        &lt;!&ndash;Main View Start&ndash;&gt;-->
+<!--        <div id="page-content-wrapper">-->
+<!--            <div class="container-fluid">-->
+<!--                <main role="main"><br>-->
+<!--                    <div class="container">-->
+<!--                        <div class="py text-center">-->
+<!--                            <h2>Create Account</h2>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 rounded mx-auto d-block">-->
+
+<!--                            <form method="post" action="/create-user/" class="needs-validation" novalidate>-->
+<!--                                {% csrf_token %}-->
+<!--                                {% for message in messages %}-->
+<!--                                <div class="form-group ">-->
+<!--                                    <div class="col-md-12">-->
+
+<!--                                        <p class="form-control alert alert-danger" id="messages">{{message}}</p>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                {% endfor %}-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-6 mb-3">-->
+<!--                                        <label for="firstName">First name</label>-->
+<!--                                        <input type="text" class="form-control" name="firstName" id="firstName"-->
+<!--                                               required>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Valid first name is required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 mb-3">-->
+<!--                                        <label for="lastName">Last name</label>-->
+<!--                                        <input type="text" class="form-control" name="lastName" id="lastName" required>-->
+<!--                                        <div class="invalid-feedback">-->
+<!--                                            Valid last name is required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="username">Username</label>-->
+<!--                                    <div class="input-group">-->
+<!--                                        <div class="input-group-prepend">-->
+<!--                                            <span class="input-group-text">@</span>-->
+<!--                                        </div>-->
+<!--                                        <input type="text" class="form-control" name="username" id="username"-->
+<!--                                               placeholder="Username"-->
+<!--                                               required>-->
+<!--                                        <div class="invalid-feedback" style="width: 100%;">-->
+<!--                                            Your username is required.-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
 
-    </body>
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="email">Email</label>-->
+<!--                                    <input type="email" class="form-control" id="email" name="email"-->
+<!--                                           placeholder="you@example.com"-->
+<!--                                           required>-->
+<!--                                    <div class="invalid-feedback">-->
+<!--                                        Please enter a valid email address for Sign Up.-->
+<!--                                    </div>-->
 
-    <!-- FOOTER -->
-    <footer>
-        {% include 'footer.html'%}
-    </footer>
-</main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/form-validation.js'%}"></script>
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="Password">Password</label>-->
+<!--                                        <div class="input-group">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                            </div>-->
+<!--                                            <input type="password" class="form-control" id="password" name="password"-->
+<!--                                                   placeholder="Password" minlength="8"-->
+<!--                                                   title="Must contain 8 or more characters" required>-->
+<!--                                            <div class="invalid-feedback" style="width: 100%;">-->
+<!--                                                Invalid Password-->
+<!--                                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="Password"> Confirm Password</label>-->
+<!--                                        <div class="input-group">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                            </div>-->
+<!--                                            <input type="password" class="form-control" id="confirm_password"-->
+<!--                                                   name="confirm_password"-->
+<!--                                                   placeholder="Password" required>-->
+<!--                                            <div class="invalid-feedback" style="width: 100%;">-->
+<!--                                                Password Not Mactched.-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                    <hr class="mb-4">-->
+<!--                                    <button class="btn btn-primary btn-lg btn-block" type="submit"><i-->
+<!--                                            class="fas fa-user-plus"></i> Register-->
+<!--                                    </button>-->
+<!--                                </div>-->
+
+<!--                            </form>-->
+
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                </main>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        &lt;!&ndash;Main View End&ndash;&gt;-->
+<!--    </div>-->
+
+
+</body>
+
+
+{% include 'footer.html'%}
 </html>
