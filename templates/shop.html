@@ -226,7 +226,9 @@
                                                     href="{% url 'core:productDetail' item.slug %}"><img
                                                     src="{{item.mainImage.url}}" alt="" width="240" height="240"></a>
                                                 <div class="ps-product__badge">
+                                                    {%if item.discountPrice%}
                                                     -{{item.get_percentage}}%
+                                                    {%endif%}
                                                 </div>
                                                 <ul class="ps-product__actions">
                                                     <li><a href="{% url 'core:add-to-cart' item.slug %}"

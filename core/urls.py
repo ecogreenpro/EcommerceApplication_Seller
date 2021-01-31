@@ -11,7 +11,7 @@ from .views import (
     # checkoutView,
     BrandView,
     remove_from_cart,
-    remove_single_item_from_cart, invoiceView
+    remove_single_item_from_cart, invoiceView,sellerDetails
 
 )
 
@@ -43,7 +43,9 @@ urlpatterns = [
     path('user-profile/', views.userprofile, name="userprofile"),
     path('update-Profile/', views.updateProfile, name="updateProfile"),
     path('userorder/', views.userOrder, name="userOrder"),
+    path('store-list/', views.storeList, name="storeList"),
     path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
+    path('seller/<pk>/', sellerDetails.as_view(), name='sellerDetails'),
 
     # path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),

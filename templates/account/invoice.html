@@ -42,14 +42,14 @@
             <div class="p-3 bg-white rounded">
                 <div class="row">
                     <div class="col-md-6 ">
-                        <img src="{% static 'media/Jewellery.png' %}" alt="" width="200" height="130">
+                        <img src="{{Settings.logo.url}}" alt="" width="200" height="130">
                     </div>
                     <div class="col-md-5 text-right mt-3">
-                        <h4 style="color: darkgoldenrod">Jewellery</h4>
-                        <span>jewellery.com.bd</span><br>
-                        <span>757/1 West Sewrapara, Mirpur, Dhaka-1216</span><br>
-                        <span>Contact: +8801973404973, 01873404971</span>
-                        <span>info@jewellery.com.bd</span>
+                        <h4 style="color: darkgoldenrod">{{Settings.siteTitle}}</h4>
+                        <span><strong>{{Settings.description}}</strong></span><br>
+                        <span>{{Settings.address}}</span><br>
+                        <span>Contact: {{Settings.phone}}</span><br>
+                        <span>{{Settings.email}}</span>
                     </div>
 
                 </div>
