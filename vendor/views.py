@@ -26,7 +26,7 @@ def becomeSeller(request):
 
         if form.is_valid():
             form.save()
-            messages.info(request, 'Registration Confirmed')
+            messages.info(request, 'Seller Registration Confirmed, We Will mail you shortly')
             return HttpResponseRedirect('/login/')
     else:
         form = SellerRegistrationForm()

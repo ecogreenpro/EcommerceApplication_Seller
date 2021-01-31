@@ -201,7 +201,7 @@ def login(request):
                 messages.info(request, 'Invalid Login')
         else:
             return render(request, 'account/login.html', context)
-        return render(request, 'account/login.html', context)
+        return HttpResponseRedirect(request, '/user-profile/', context)
     else:
         context = {
             'Settings': setting,
@@ -350,11 +350,11 @@ def createUser(request):
         password = request.POST['password']
         if User.objects.filter(email=email).exists():
             messages.warning(request, 'This Email already taken')
-            return redirect('signup')
+            return redirect('account/signup.html')
         else:
             if User.objects.filter(username=username).exists():
                 messages.warning(request, 'This username already taken,Please Choose another one')
-                return redirect('signup')
+                return redirect('account/signup.html')
             else:
                 userRegistration = User.objects.create_user(username=username, first_name=first_name,
                                                             last_name=last_name,
@@ -375,11 +375,11 @@ def createUser(request):
         password = request.POST['password']
         if User.objects.filter(email=email).exists():
             messages.warning(request, 'This Email already taken')
-            return redirect('signup')
+            return redirect('account/signup.html')
         else:
             if User.objects.filter(username=username).exists():
                 messages.warning(request, 'This username already taken,Please Choose another one')
-                return redirect('signup')
+                return redirect('account/signup.html')
             else:
                 userRegistration = User.objects.create_user(username=username, first_name=first_name,
                                                             last_name=last_name,
@@ -571,14 +571,7 @@ def checkout(request):
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
     setting = Settings.objects.get()
-    total_cart = 0
     total = 100
-
-    for rs in cart:
-        if rs.item.discountPrice:
-            total_cart += rs.item.discountPrice * rs.quantity
-        else:
-            total_cart += rs.item.price * rs.quantity
 
     for rs in cart:
         if rs.item.discountPrice:
@@ -627,11 +620,9 @@ def checkout(request):
     context = {
         'cart': cart,
         'category': category,
-        'final_total': total,
+        'total': total,
         'userProfile': userprofile,
         'Settings': setting,
-        'cart': cart,
-        'total': total_cart
     }
     return render(request, 'checkout.html', context)
 
