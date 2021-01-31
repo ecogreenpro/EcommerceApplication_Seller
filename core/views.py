@@ -276,15 +276,14 @@ def changePassword(request):
                 user = form.save()
                 update_session_auth_hash(request, user)  # Important!
                 messages.success(request, 'Your password was successfully updated!')
-                return HttpResponseRedirect('/userprofile')
+                return HttpResponseRedirect('/user-profile/')
             else:
                 messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
                 return HttpResponseRedirect('/change-password/')
         else:
 
             form = PasswordChangeForm(request.user)
-            return render(request, 'account/ChangePassword.html', {'form': form, }, context)
-        return render(request, 'account/ChangePassword.html', context)
+            return render(request, 'account/ChangePassword.html', {'form': form,  'Settings': setting})
     else:
         context = {
             'Settings': setting,
