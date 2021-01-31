@@ -291,7 +291,8 @@
 </header>
 <header class="header header--mobile" data-sticky="true">
     <div class="navigation--mobile" style="background: whitesmoke!important;">
-        <div class="navigation__left"><a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}"
+        <div class="navigation__left">
+            <a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}"
                                                                                           alt=""
                                                                                           height="60" width="100"></a>
         </div>
@@ -439,9 +440,9 @@
                         Account Information</a></li>
                     <li><a href="{% url 'core:userOrder' %}"><i class="icon-papers"></i> My Orders</a>
                     </li>
-                    <li class="active"><a href="{% url 'core:changePassword' %}"><i class="icon-power-switch"></i>Change
+                    <li class="active"><a href="{% url 'core:changePassword' %}"><i class="icon-user-lock"></i> Change
                         Password</a>
-                    <li><a href="{% url 'core:logout' %}"><i class="icon-power-switch"></i>Logout</a>
+                    <li><a href="{% url 'core:logout' %}"><i class="icon-power-switch"></i> Logout</a>
                     </li>
                 </ul>
             </li>
