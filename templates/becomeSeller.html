@@ -1,207 +1,106 @@
 {% load static %}
 {% load widget_tweaks %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Apply to Be a Seller| Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+{%include 'header.html'%}
 
 
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
 <body>
-
-<div class="d-flex" id="wrapper">
-    {%include "sideNav.html"%}
-    <!-- Sidebar -->
-
-    <!--Main View Start-->
-    <div id="page-content-wrapper">
-        {% for message in messages %}
-        <br>
-        <div class="col-md-8">
-            <div class="alert alert-info">
-                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                <strong>{{message}}!</strong></div>
+<div class="ps-page--my-account">
+    <div class="ps-my-account-2">
+        <div class="container">
+            <div class="ps-section__wrapper">
+                {% for message in messages %}
+                <br>
+                <div class="col-md-8">
+                    <div class="alert alert-info">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{message}}!</strong></div>
 
 
-        </div>
+                </div>
 
-        {% endfor %}
-        <div class="container-fluid">
-            <main role="main"><br>
-                <div class="container col-md-6">
-                    <div class="py-5 text-center bg-info" style="color:#fff ">
-                        <h2>BECOME A SELLER </h2>
+                {% endfor %}
+                <div class="ps-section__left">
+                    <h1 class="align-content-center">&nbsp;&nbsp; Become a seller</h1>
 
-                    </div>
-                    <hr>
-                    <!--<form method="post" enctype="multipart/form-data">
+                       <form class="ps-form--account ps-tab-root" enctype="multipart/form-data" method="post" >
                         {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6 mb-3 ">
-                                {{form.as_p}}
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-danger " type="submit"><i class="fas fa-sign-in-alt"></i>
-                            Submit
-                        </button>
-                    </form>-->
-                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="Name"> Name <span class="text-danger">*</span></label>
-                                {% render_field form.Name class="form-control" placeholder="Your name"%}
-                                <div class="invalid-feedback">
-                                    Valid name is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-
-                                {% render_field form.ShopName class="form-control" placeholder="Your Shop name" %}
-                                <div class="invalid-feedback">
-                                    Valid Shop Name is required.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="ShopLogo">Shop Logo <span class="text-danger">*</span></label><br>
-                                {% render_field form.ShopLogo placeholder="Shop Logo" %}
-                                <div class="invalid-feedback">
-                                    Shop Logo is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="Phone">Phone <span class="text-danger">*</span></label>
-                                {% render_field form.Phone class="form-control" placeholder="Contact Number" %}
-                                <div class="invalid-feedback">
-                                    Please enter your Phone No.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="Email">Email <span class="text-danger">*</span></label>
-                                {% render_field form.Email class="form-control" placeholder="name@example.com" %}
-                                <div class="invalid-feedback">
-                                    Please enter a valid Email.
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="Address">Address <span class="text-danger">*</span></label>
-                                {% render_field form.Address class="form-control" placeholder="Shop Address"%}
-                                <div class="invalid-feedback">
-                                    Please enter a valid address
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="NID">NID <span class="text-danger">*</span></label>
-                                {% render_field form.NID class="form-control" id="firstname" %}
-                                <div class="invalid-feedback">
-                                    Valid NID Number is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="TradeLicense">Trade License<span class="text-danger">*</span></label>
-                                {% render_field form.TradeLicense class="form-control" placeholder="" %}
-                                <div class="invalid-feedback">
-                                    Valid Trade License Number is required.
+                        <div class="ps-tabs">
+                            <div class="ps-tab active" id="sign-in">
+                                <div class="ps-form__content">
+                                    <div class="form-group">
+                                        {% render_field form.Name class="form-control" placeholder="Your name"%}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.ShopName class="form-control" placeholder="Your Shop name" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        <label>Shop Logo</label>
+                                        {% render_field form.ShopLogo placeholder="Shop Logo" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.Phone class="form-control" placeholder="Contact Number" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.Email class="form-control" placeholder="name@example.com" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.Address class="form-control" placeholder="Shop Address"%}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.NID class="form-control" id="firstname" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        {% render_field form.TradeLicense class="form-control" placeholder="" %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        <label>NID Image</label>
+                                        {% render_field form.NIDImage %}
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        <label>Trade Licence Image</label>
+                                        {% render_field form.TradeImage %}
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="remember-me"
+                                                   name="remember-me">
+                                            <label for="remember-me">Rememeber me</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group submit">
+                                        <button class="ps-btn ps-btn--fullwidth" type="submit">Submit</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="NID">NID Image<span class="text-danger">*</span></label><br>
-                                {% render_field form.NIDImage %}
-                                <!--<input data-required="image" type="file"
-                                       name="NIDImage"
-                                       id="nid_file"
-                                       class="image-input"
-                                       data-traget-resolution="image_resolution"
-                                       height="100" value="">-->
-                                <div class="invalid-feedback">
-                                    Valid NID Image is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="TradeLicense">Trade License Image<span
-                                        class="text-danger">*</span></label><br>
-                                {% render_field form.TradeImage %}
-                                <!--<input data-required="image" type="file"
-                                       name="TradeImage"
-                                       id="trade_file"
-                                       class="image-input"
-                                       data-traget-resolution="image_resolution"
-                                       height="100" value="">-->
-                                <div class="invalid-feedback">
-                                    Valid Trade License Number is required.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <button class="btn btn-primary btn-danger " type="submit"><i
-                                        class="fas fa-sign-in-alt"></i>
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-
                     </form>
                 </div>
-                <br>
-            </main>
+                <div class="ps-section__right">
+                    <figure class="ps-section__desc">
+                        <figcaption>Sign up today and you will be able to:</figcaption>
+                        <p>MartFury Buyer Protection has you covered from click to delivery. Sign up or sign in and you
+                            will be able to:</p>
+                        <ul class="ps-list">
+                            <li><i class="icon-credit-card"></i><span>SPEED YOUR WAY THROUGH CHECKOUT</span></li>
+                            <li><i class="icon-clipboard-check"></i><span>TRACK YOUR ORDERS EASILY</span></li>
+                            <li><i class="icon-bag2"></i><span>KEEP A RECORD OF ALL YOUR PURCHASES</span></li>
+                        </ul>
+                    </figure>
+                    <div class="ps-section__coupon"><span>$25</span>
+                        <aside>
+                            <h5>A small gift for your first purchase</h5>
+                            <p>Martfury give $25 as a small gift for your first purchase. Welcome to Martfury!</p>
+                        </aside>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-    <!--Main View End-->
 </div>
-
-<!-- FOOTER -->
-{% include 'footer.html'%}
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/form-validation.js' %}"></script>
+
+
+{% include 'footer.html'%}
+
+
 </html>

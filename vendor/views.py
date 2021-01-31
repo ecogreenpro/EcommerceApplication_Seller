@@ -8,7 +8,7 @@ from django.contrib import messages, auth
 # Create your views here.
 from django.views.generic import ListView, DetailView, View, UpdateView
 
-from core.models import Products, OrderProduct, Order
+from core.models import Products, OrderProduct, Order, Settings
 from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
 from vendor.models import SellerRegistration
 
@@ -19,18 +19,18 @@ def vendorDashboard(request):
     return render(request, 'vendor/vendorDashboard.html', context)
 
 
-@login_required(login_url='/login')
 def becomeSeller(request):
+    setting = Settings.objects.get()
     if request.method == 'POST':
         form = SellerRegistrationForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
             messages.info(request, 'Registration Confirmed')
-            return render(request, 'account/login.html')
+            return HttpResponseRedirect('/login/')
     else:
         form = SellerRegistrationForm()
-    return render(request, 'becomeSeller.html', {'form': form})
+    return render(request, 'becomeSeller.html', {'form': form, 'Settings': setting})
 
 
 # class allProduct(ListView):
@@ -40,7 +40,7 @@ def becomeSeller(request):
 
 @login_required(login_url='/login')
 def allProduct(request):
-    product = Products.objects.all()
+    product = Products.objects.filter(user=request.user)
     context = {
         'product': product
     }

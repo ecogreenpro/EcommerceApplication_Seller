@@ -13,16 +13,16 @@ class SellerRegistrationForm(forms.ModelForm):
                   'TradeImage']
 
         widgets = {
-            'Name': forms.TextInput(attrs={'class': 'form-control'}),
-            'ShopName': forms.TextInput(attrs={'class': 'form-control'}),
-            'ShopLogo': forms.FileInput(attrs={'required': True, }),
-            'Phone': forms.NumberInput(attrs={'class': 'form-control'}),
-            'Email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'Address': forms.TextInput(attrs={'class': 'form-control'}),
-            'NID': forms.NumberInput(attrs={'class': 'form-control'}),
-            'TradeLicense': forms.NumberInput(attrs={'class': 'form-control'}),
-            'NIDImage': forms.FileInput(attrs={'required': True, }),
-            'TradeImage': forms.FileInput(attrs={'required': True, }),
+            'Name': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
+            'ShopName': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
+            'ShopLogo': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
+            'Phone': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
+            'Email': forms.EmailInput(attrs={'required': True, 'class': 'form-control'}),
+            'Address': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
+            'NID': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
+            'TradeLicense': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
+            'NIDImage': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
+            'TradeImage': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
 
         }
 
