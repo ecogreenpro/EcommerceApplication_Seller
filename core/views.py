@@ -48,7 +48,8 @@ def header(request):
 
 
 def footer(request):
-    context = {}
+    setting = Settings.objects.get()
+    context = {'Settings': setting}
     return render(request, 'footer.html', context)
 
 

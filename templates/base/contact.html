@@ -1,99 +1,71 @@
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <title>Contact | Jewellery </title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 
 
+{%include 'header.html'%}
 
 
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
-<main role="main">
-    <body>
-
-    <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        {%include "sideNav.html"%}
-        <!--Main View Start-->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <main role="main"><br>
-                    <div class="cart-wrap">
-                        <div class="container">
-                            <div class="py-3 text-center">
-                                        <h2>Contact us</h2>
-                                        <hr>
-                                    </div>
-                            <div class="row featurette">
-
-                                <div class="col-md-5">
-
-                                     {{ Settings.contact|safe }}
-
-                                </div>
-<!--                                <div class="col-md-7">-->
-
-
-<!--                                    <div class="embed-responsive embed-responsive-16by9 card">-->
-<!--                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14602.919746659834!2d90.3742631!3d23.7926294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd263ffe2d280424d!2sEcogreen%20%C2%AE!5e0!3m2!1sen!2sbd!4v1607152310943!5m2!1sen!2sbd"-->
-<!--                                                width="600" height="300" frameborder="0" style="border:0;"-->
-<!--                                                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </main>
+<body>
+<div class="ps-page--single" id="contact-us">
+    <div class="ps-contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14602.919746659834!2d90.3742631!3d23.7926294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd263ffe2d280424d!2sEcogreen%20%C2%AE!5e0!3m2!1sen!2sbd!4v1607152310943!5m2!1sen!2sbd"
+                height="500"></iframe>
+    </div>
+    <div class="ps-contact-info">
+        <div class="container">
+            <div class="ps-section__header">
+                <h3>Contact Us For Any Questions</h3>
             </div>
-
+            <div class="ps-section__content">
+                <div class="row">
+                    {{ Settings.contact|safe }}
+                </div>
+            </div>
         </div>
-        <!--Main View End-->
     </div>
 
+</div>
 
-    </body>
-    {% include 'footer.html'%}
-</main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<!--<div class="d-flex" id="wrapper">-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <div class="container-fluid">-->
+<!--            <main role="main"><br>-->
+<!--                <div class="cart-wrap">-->
+<!--                    <div class="container">-->
+<!--                        <div class="py-3 text-center">-->
+<!--                            <h2>Contact us</h2>-->
+<!--                            <hr>-->
+<!--                        </div>-->
+<!--                        <div class="row featurette">-->
+
+<!--                            <div class="col-md-5">-->
+
+<!--                                {{ Settings.contact|safe }}-->
+
+<!--                            </div>-->
+<!--                            &lt;!&ndash;                                <div class="col-md-7">&ndash;&gt;-->
+
+
+<!--                            &lt;!&ndash;                                    <div class="embed-responsive embed-responsive-16by9 card">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14602.919746659834!2d90.3742631!3d23.7926294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd263ffe2d280424d!2sEcogreen%20%C2%AE!5e0!3m2!1sen!2sbd!4v1607152310943!5m2!1sen!2sbd"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                                width="600" height="300" frameborder="0" style="border:0;"&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </div>&ndash;&gt;-->
+
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <br>-->
+<!--            </main>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+<!--</div>-->
+
+
+</body>
+{% include 'footer.html'%}
 </html>
