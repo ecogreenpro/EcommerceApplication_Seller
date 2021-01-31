@@ -409,6 +409,7 @@ def updateProfile(request):
         return render(request, 'account/updateProfile.html', context)
 
 
+@login_required(login_url='/login')
 def userprofile(request):
     setting = Settings.objects.get()
     profile_form = ProfileUpdateForm(instance=request.user.userprofile)
@@ -436,6 +437,7 @@ def userprofile(request):
         return render(request, 'account/userprofile.html', context)
 
 
+@login_required(login_url='/login')
 def userOrder(request):
     orders = Order.objects.filter(user=request.user)
     setting = Settings.objects.get()
@@ -463,6 +465,7 @@ def userOrder(request):
         return render(request, 'account/userOrder.html', context)
 
 
+@login_required(login_url='/login')
 def balance(request):
     setting = Settings.objects.get()
     if request.user.is_authenticated:
@@ -492,6 +495,7 @@ class invoiceView(View):
     def get(self, *args, **kwargs):
         order = Order.objects.get(order_Number=self.kwargs['order_Number'])
         orderProdcut = OrderProduct.objects.filter(order=order)
+        setting = Settings.objects.get()
         context = {
             'Product': orderProdcut,
             'Billed_firstName': order.first_name,
@@ -506,10 +510,12 @@ class invoiceView(View):
             'oderTotal': order.OrderTotal,
             'Delivery': order.payment,
             'OrderNote': order.order_note,
+            'Settings': setting,
         }
         return render(self.request, "account/invoice.html", context)
 
 
+@login_required(login_url='/login')
 def chat(request):
     setting = Settings.objects.get()
     if request.user.is_authenticated:
@@ -662,6 +668,7 @@ def orderTrack(request):
         return render(request, 'orderTrack.html', context)
 
 
+@login_required(login_url='/login')
 def wishlist(request):
     setting = Settings.objects.get()
     if request.user.is_authenticated:
@@ -970,3 +977,59 @@ def remove_from_cart(request, slug):
     CartProducts.objects.filter(item=item).delete()
     messages.success(request, "Your item deleted form Cart.")
     return HttpResponseRedirect("/cart")
+
+
+def storeList(request):
+    seller = sellerProfile.objects.all()
+    setting = Settings.objects.get()
+    if request.user.is_authenticated:
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
+        context = {
+            'Settings': setting,
+            'cart': cart,
+            'total': total,
+            'sellers': seller,
+        }
+        return render(request, 'storeList.html', context)
+    else:
+        context = {
+            'Settings': setting,
+            'sellers': seller,
+        }
+        return render(request, 'storeList.html', context)
+
+
+class sellerDetails(View):
+    def get(self, request,pk, *args, **kwargs):
+        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
+        product = Products.objects.filter(user_id=sellerUser.id)
+        setting = Settings.objects.get()
+        if request.user.is_authenticated:
+            cart = CartProducts.objects.filter(user=request.user)
+            total = 0
+            for rs in cart:
+                if rs.item.discountPrice:
+                    total += rs.item.discountPrice * rs.quantity
+                else:
+                    total += rs.item.price * rs.quantity
+            context = {
+                'product': product,
+                'Settings': setting,
+                'cart': cart,
+                'total': total,
+                'seller': sellerUser,
+            }
+            return render(self.request, "SellerDetails.html", context)
+        else:
+            context = {
+                'product': product,
+                'Settings': setting,
+                'seller': sellerUser,
+            }
+            return render(self.request, "SellerDetails.html", context)

@@ -13,11 +13,13 @@ from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, 
 from vendor.models import SellerRegistration
 
 
+@login_required(login_url='/login')
 def vendorDashboard(request):
     context = {}
     return render(request, 'vendor/vendorDashboard.html', context)
 
 
+@login_required(login_url='/login')
 def becomeSeller(request):
     if request.method == 'POST':
         form = SellerRegistrationForm(request.POST, request.FILES)
@@ -36,7 +38,7 @@ def becomeSeller(request):
 #     paginate_by = 16
 #     template_name = "vendor/allProduct.html"
 
-
+@login_required(login_url='/login')
 def allProduct(request):
     product = Products.objects.all()
     context = {
@@ -45,6 +47,7 @@ def allProduct(request):
     return render(request, 'vendor/allProduct.html', context)
 
 
+@login_required(login_url='/login')
 def addProduct(request):
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES, request=request)
@@ -61,11 +64,13 @@ def addProduct(request):
     return render(request, 'vendor/addProduct.html', {'form': form})
 
 
+@login_required(login_url='/login')
 def vendoerStockmanager(request):
     context = {}
     return render(request, 'vendor/vendoerStockmanager.html', context)
 
 
+@login_required(login_url='/login')
 def vendoerOrderManager(request):
     orders = Order.objects.all()
     context = {
@@ -92,31 +97,36 @@ class vandorOrderDetails(DetailView):
             'oderTotal': order.OrderTotal,
             'Delivery': order.payment,
             'OrderNote': order.order_note,
-            'OrderStatus':order.order_status
+            'OrderStatus': order.order_status
         }
         return render(self.request, "vendor/vendorOrderDetails.html", context)
 
 
+@login_required(login_url='/login')
 def vendorReviewManager(request):
     context = {}
     return render(request, 'vendor/vendorReview.html', context)
 
 
+@login_required(login_url='/login')
 def salesReport(request):
     context = {}
     return render(request, 'vendor/salesReport.html', context)
 
 
+@login_required(login_url='/login')
 def topSelling(request):
     context = {}
     return render(request, 'vendor/topSelling.html', context)
 
 
+@login_required(login_url='/login')
 def accountsReport(request):
     context = {}
     return render(request, 'vendor/accountsReport.html', context)
 
 
+@login_required(login_url='/login')
 def settings(request):
     return render(request, 'vendor/sellerProfile.html')
 
@@ -126,7 +136,7 @@ def updateProduct(request, slug):
     product = Products.objects.filter(slug=slug).first()
     if request.method == 'POST':
         productUpdateForm = updateForm(request.POST, request.FILES,
-                                           instance=product)
+                                       instance=product)
         if productUpdateForm.is_valid():
             productUpdateForm.save()
             messages.success(request, 'Your Product has been updated!')

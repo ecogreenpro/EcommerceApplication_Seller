@@ -206,7 +206,7 @@
                             <div class="ps-product__container"><a class="ps-product__vendor" href="#">
                                 {{item.user.sellerprofile.ShopDetails.ShopName | truncatechars_html:12}}</a>
                                 <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">
+                                                                    href="{% url 'core:productDetail' item.slug %}">
                                     {{item.name}}</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
