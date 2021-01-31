@@ -19,7 +19,6 @@ def vendorDashboard(request):
     return render(request, 'vendor/vendorDashboard.html', context)
 
 
-@login_required(login_url='/login')
 def becomeSeller(request):
     if request.method == 'POST':
         form = SellerRegistrationForm(request.POST, request.FILES)
