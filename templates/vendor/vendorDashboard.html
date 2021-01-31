@@ -33,8 +33,9 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="img/logo.png" alt=""></a></div>
-    <div class="header__right"><a class="header__site-link" href="#"><i class="icon-exit-right"></i></a></div>
+    <div class="header__center"><img src="{%static 'media/Jewellery.png'%}" width="70"
+                                     height="70" alt=""></a></div>
+    <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i class="icon-exit-right"></i></a></div>
 </header>
 <aside class="ps-drawer--mobile">
     <div class="ps-drawer__header">
@@ -56,11 +57,12 @@
         <div class="ps-sidebar">
             <div class="ps-sidebar__top">
                 <div class="ps-block--user-wellcome">
-                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50" width="50" alt=""/></div>
+                    <div class="ps-block__left"><img src="{{user.sellerprofile.ShopDetails.ShopLogo.url}}" height="50"
+                                                     width="50" alt=""/></div>
                     <div class="ps-block__right">
                         <p>Hello,<a href="#">{{user.sellerprofile.ShopDetails.Name}}</a></p>
                     </div>
-                    <div class="ps-block__action"><a href="#"><i class="icon-exit"></i></a></div>
+                    <div class="ps-block__action"><a href="{% url 'core:logout' %}"><i class="icon-exit"></i></a></div>
                 </div>
                 <div class="ps-block--earning-count"><small>Earning</small>
                     <h3>৳ ০,০০,০০০</h3>
@@ -77,7 +79,7 @@
                     </ul>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="img/logo.png" alt="">
+                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>

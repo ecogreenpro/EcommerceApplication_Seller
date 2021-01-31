@@ -33,8 +33,9 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="img/logo.png" alt=""></a></div>
-    <div class="header__right"><a class="header__site-link" href="#"><i class="icon-exit-right"></i></a></div>
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
+                                                                 height="70" alt=""></a></div>
+    <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i class="icon-exit-right"></i></a></div>
 </header>
 <aside class="ps-drawer--mobile">
     <div class="ps-drawer__header">
@@ -61,7 +62,7 @@
                     <div class="ps-block__right">
                         <p>Hello,<a href="#">{{user.sellerprofile.ShopDetails.Name}}</a></p>
                     </div>
-                    <div class="ps-block__action"><a href="#"><i class="icon-exit"></i></a></div>
+                    <div class="ps-block__action"><a href="{% url 'core:logout' %}"><i class="icon-exit"></i></a></div>
                 </div>
                 <div class="ps-block--earning-count"><small>Earning</small>
                     <h3>৳ ০,০০,০০০</h3>
@@ -73,12 +74,13 @@
                         <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
                         </li>
                         <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
-                        <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+                        <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a>
+                        </li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                     </ul>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="img/logo.png" alt="">
+                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -86,125 +88,126 @@
         </div>
     </div>
     <div class="ps-main__wrapper">
-            <header class="header--dashboard">
-                <div class="header__left">
-                    <h3>#{{OrderNo}}</h3>
-                    <p>Order detail of #{{OrderNo}}</p>
-                </div>
-                <div class="header__center">
-                    <form class="ps-form--search-bar" action="index.html" method="get">
-                        <input class="form-control" type="text" placeholder="Search something" />
-                        <button><i class="icon-magnifier"></i></button>
-                    </form>
-                </div>
-                <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i class="icon-exit-right"></i></a></div>
-            </header>
-            <section class="ps-dashboard">
-                <div class="ps-section__left">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="ps-card ps-card--order-information ps-card--small">
-                                <div class="ps-card__header">
-                                    <h4>Shipping Information</h4>
-                                </div>
-                                <div class="ps-card__content">
-                                    <h5>{{Billed_firstName}} {{Billed_lastName}}</h5>
-                                    <p><strong>Address:</strong> {{Address}}, {{District}}, {{Country}}</p>
-                                    <p><strong>Phone No.:</strong> {{Phone}}</p>
-                                    <p><strong>Email:</strong> {{Email}}</p>
-                                </div>
+        <header class="header--dashboard">
+            <div class="header__left">
+                <h3>#{{OrderNo}}</h3>
+                <p>Order detail of #{{OrderNo}}</p>
+            </div>
+            <div class="header__center">
+                <form class="ps-form--search-bar" method="get">
+                    <input class="form-control" type="text" placeholder="Search something"/>
+                    <button><i class="icon-magnifier"></i></button>
+                </form>
+            </div>
+            <div class="header__right"><a class="header__site-link" href="#"><span>View your store</span><i
+                    class="icon-exit-right"></i></a></div>
+        </header>
+        <section class="ps-dashboard">
+            <div class="ps-section__left">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ps-card ps-card--order-information ps-card--small">
+                            <div class="ps-card__header">
+                                <h4>Shipping Information</h4>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="ps-card ps-card--order-information ps-card--small">
-                                <div class="ps-card__header">
-                                    <h4>Billing Information</h4>
-                                </div>
-                                <div class="ps-card__content">
-                                    <p><strong>Payment :</strong> {{Delivery}}</p>
-                                    <p><strong>Order Date:</strong> {{OrderDate}}</p>
-                                </div>
+                            <div class="ps-card__content">
+                                <h5>{{Billed_firstName}} {{Billed_lastName}}</h5>
+                                <p><strong>Address:</strong> {{Address}}, {{District}}, {{Country}}</p>
+                                <p><strong>Phone No.:</strong> {{Phone}}</p>
+                                <p><strong>Email:</strong> {{Email}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="ps-card ps-card--track-order">
-                        <div class="ps-card__header">
-                            <h4>#{{OrderNo}}</h4>
-                        </div>
-                        <div class="ps-card__content">
-                            <div class="table-responsive">
-                                <table class="table ps-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                     {%for productList in Product%}
-                                        <tr>
-                                            <td><a href="#">{{productList.product.name}}</a></td>
-                                            <td>{{productList.price}}</td>
-                                            <td>{{productList.quantity}}</td>
-                                            <td>{{productList.amount}}</td>
-                                        </tr>
-                                     {%endfor%}
-
-                                        <tr>
-                                            <td colspan="3"><strong>Shipping Charge:</strong></td>
-                                            <td><strong>100.00</strong></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td colspan="3"><strong>Total:</strong></td>
-                                            <td><strong>৳ {{oderTotal}}</strong></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div class="col-md-4">
+                        <div class="ps-card ps-card--order-information ps-card--small">
+                            <div class="ps-card__header">
+                                <h4>Billing Information</h4>
+                            </div>
+                            <div class="ps-card__content">
+                                <p><strong>Payment :</strong> {{Delivery}}</p>
+                                <p><strong>Order Date:</strong> {{OrderDate}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="ps-section__right">
-                    <div class="ps-card ps-card--track-order">
-                        <div class="ps-card__header">
-                            <h4>Track Order</h4>
+                <div class="ps-card ps-card--track-order">
+                    <div class="ps-card__header">
+                        <h4>#{{OrderNo}}</h4>
+                    </div>
+                    <div class="ps-card__content">
+                        <div class="table-responsive">
+                            <table class="table ps-table">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {%for productList in Product%}
+                                <tr>
+                                    <td><a href="#">{{productList.product.name}}</a></td>
+                                    <td>{{productList.price}}</td>
+                                    <td>{{productList.quantity}}</td>
+                                    <td>{{productList.amount}}</td>
+                                </tr>
+                                {%endfor%}
+
+                                <tr>
+                                    <td colspan="3"><strong>Shipping Charge:</strong></td>
+                                    <td><strong>100.00</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3"><strong>Total:</strong></td>
+                                    <td><strong>৳ {{oderTotal}}</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="ps-card__content">
-                            <div class="ps-block--track-order">
-                                <div class="ps-block__header">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <figure>
-                                                <figcaption>Order ID:</figcaption>
-                                                <p>#{{OrderNo}}</p>
-                                            </figure>
-                                        </div>
-                                        <div class="col-6">
-                                            <figure>
-                                                <figcaption>Status:</figcaption>
-                                                <p>{{OrderStatus}}</p>
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--<div class="ps-block__content">
-                                    <div class="ps-block__timeline">
-                                        <figure class="active">
-                                            <figcaption>Order Placed</figcaption>
-                                            <p>Sep 19, 2020 <small>7:00am</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-section__right">
+                <div class="ps-card ps-card--track-order">
+                    <div class="ps-card__header">
+                        <h4>Track Order</h4>
+                    </div>
+                    <div class="ps-card__content">
+                        <div class="ps-block--track-order">
+                            <div class="ps-block__header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <figure>
+                                            <figcaption>Order ID:</figcaption>
+                                            <p>#{{OrderNo}}</p>
                                         </figure>
-
+                                    </div>
+                                    <div class="col-6">
+                                        <figure>
+                                            <figcaption>Status:</figcaption>
+                                            <p>{{OrderStatus}}</p>
+                                        </figure>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
+                            <!--<div class="ps-block__content">
+                                <div class="ps-block__timeline">
+                                    <figure class="active">
+                                        <figcaption>Order Placed</figcaption>
+                                        <p>Sep 19, 2020 <small>7:00am</small></p>
+                                    </figure>
+
+                                </div>
+                            </div>
+                        </div>-->
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+        </section>
+    </div>
 </main>
 <script src="{% static 'seller/plugins/jquery.min.js' %}"></script>
 <script src="{% static 'seller/plugins/popper.min.js' %}"></script>

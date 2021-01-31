@@ -40,15 +40,18 @@ def becomeSeller(request):
 
 @login_required(login_url='/login')
 def allProduct(request):
+    setting = Settings.objects.all()
     product = Products.objects.filter(user=request.user)
     context = {
-        'product': product
+        'product': product,
+        'Settings': setting,
     }
     return render(request, 'vendor/allProduct.html', context)
 
 
 @login_required(login_url='/login')
 def addProduct(request):
+    setting = Settings.objects.get()
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES, request=request)
 
@@ -72,15 +75,18 @@ def vendoerStockmanager(request):
 
 @login_required(login_url='/login')
 def vendoerOrderManager(request):
+    setting = Settings.objects.get()
     orders = Order.objects.all()
     context = {
-        'myOrders': orders
+        'myOrders': orders,
+        'Settings': setting,
     }
     return render(request, 'vendor/vendoerOrderManager.html', context)
 
 
 class vandorOrderDetails(DetailView):
     def get(self, *args, **kwargs):
+        setting = Settings.objects.get()
         order = Order.objects.get(order_Number=self.kwargs['order_Number'])
         orderProdcut = OrderProduct.objects.filter(order=order)
         context = {
@@ -97,42 +103,50 @@ class vandorOrderDetails(DetailView):
             'oderTotal': order.OrderTotal,
             'Delivery': order.payment,
             'OrderNote': order.order_note,
-            'OrderStatus': order.order_status
+            'OrderStatus': order.order_status,
+            'Settings': setting,
         }
         return render(self.request, "vendor/vendorOrderDetails.html", context)
 
 
 @login_required(login_url='/login')
 def vendorReviewManager(request):
-    context = {}
+    setting = Settings.objects.get()
+    context = {'Settings': setting, }
     return render(request, 'vendor/vendorReview.html', context)
 
 
 @login_required(login_url='/login')
 def salesReport(request):
-    context = {}
+    setting = Settings.objects.get()
+    context = {'Settings': setting, }
     return render(request, 'vendor/salesReport.html', context)
 
 
 @login_required(login_url='/login')
 def topSelling(request):
-    context = {}
+    setting = Settings.objects.get()
+    context = {'Settings': setting, }
     return render(request, 'vendor/topSelling.html', context)
 
 
 @login_required(login_url='/login')
 def accountsReport(request):
-    context = {}
+    setting = Settings.objects.get()
+    context = {'Settings': setting, }
     return render(request, 'vendor/accountsReport.html', context)
 
 
 @login_required(login_url='/login')
 def settings(request):
-    return render(request, 'vendor/sellerProfile.html')
+    setting = Settings.objects.get()
+    context = {'Settings': setting, }
+    return render(request, 'vendor/sellerProfile.html', context)
 
 
 @login_required(login_url='/login')
 def updateProduct(request, slug):
+    setting = Settings.objects.get()
     product = Products.objects.filter(slug=slug).first()
     if request.method == 'POST':
         productUpdateForm = updateForm(request.POST, request.FILES,
@@ -146,13 +160,15 @@ def updateProduct(request, slug):
         productUpdateForm = updateForm(instance=product)
         context = {
 
-            'form': productUpdateForm
+            'form': productUpdateForm,
+            'Settings': setting,
         }
         return render(request, 'vendor/updateProduct.html', context)
 
 
 @login_required(login_url='/login')  # Check login
 def sellerUpdate(request):
+    setting = Settings.objects.get()
     shopDetails = SellerRegistration.objects.filter(ShopName=request.user.sellerprofile.ShopDetails.ShopName).first()
     if request.method == 'POST':
         shopDetailsForm = ProfileUpdateForm(request.POST, request.FILES,
@@ -166,13 +182,15 @@ def sellerUpdate(request):
         shopDetailsForm = ProfileUpdateForm(instance=shopDetails)
         context = {
 
-            'shopDetailsForm': shopDetailsForm
+            'shopDetailsForm': shopDetailsForm,
+            'Settings': setting,
         }
         return render(request, 'vendor/sellerDetailsUpdate.html', context)
 
 
 @login_required(login_url='/login')
 def sellerChangePassword(request):
+    setting = Settings.objects.get()
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
