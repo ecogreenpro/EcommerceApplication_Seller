@@ -1006,7 +1006,7 @@ def storeList(request):
 
 
 class sellerDetails(View):
-    def get(self, request,pk, *args, **kwargs):
+    def get(self, request, pk, *args, **kwargs):
         sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
         product = Products.objects.filter(user_id=sellerUser.id)
         setting = Settings.objects.get()
