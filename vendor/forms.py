@@ -15,14 +15,14 @@ class SellerRegistrationForm(forms.ModelForm):
         widgets = {
             'Name': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
             'ShopName': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
-            'ShopLogo': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
+            'ShopLogo': forms.FileInput(attrs={'required': True, 'class': 'form-control'}),
             'Phone': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
             'Email': forms.EmailInput(attrs={'required': True, 'class': 'form-control'}),
             'Address': forms.TextInput(attrs={'required': True, 'class': 'form-control'}),
             'NID': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
             'TradeLicense': forms.NumberInput(attrs={'required': True, 'class': 'form-control'}),
-            'NIDImage': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
-            'TradeImage': forms.FileInput(attrs={'required': True,'class': 'form-control' }),
+            'NIDImage': forms.FileInput(attrs={'required': True, 'class': 'form-control'}),
+            'TradeImage': forms.FileInput(attrs={'required': True, 'class': 'form-control'}),
 
         }
 
@@ -60,12 +60,14 @@ class AddProductForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = SellerRegistration
-        fields = ('Name', 'ShopName', 'Phone', 'Email', 'Address', 'ShopLogo',)
+        fields = ('Name', 'ShopName', 'Phone', 'Email', 'FacebookLink', 'About', 'Address', 'ShopLogo',)
         widgets = {
             'Name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
             'ShopName': TextInput(attrs={'class': 'form-control', 'placeholder': 'Shop Name'}),
             'Phone': TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
             'Email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'FacebookLink': TextInput(attrs={'class': 'form-control', 'placeholder': 'Facebook'}),
+            'About': TextInput(attrs={'class': 'form-control', 'placeholder': 'About Your Shop'}),
             'Address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
             'ShopLogo': forms.FileInput(attrs={'required': True, }),
         }

@@ -179,8 +179,8 @@
         <br>
         <div class="ps-product-list ps-garden-kitchen">
             <div class="ps-container">
-                <div class="ps-section__header">
-                    <h3>On Sale Product</h3>
+                <div class="ps-section__header" style="background: #d09918;!important;">
+                    <h3 class="text-center" style="color: whitesmoke">On Sale Product</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--responsive owl-slider" data-owl-auto="true" data-owl-loop="true"
@@ -299,6 +299,40 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
                                                                                   href="/shop"><img
                             src="{{image.Home_Adv_Bottom_Short.url}}" alt="" height="282"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ps-product-list ps-new-arrivals">
+            <br>
+            <div class="ps-container">
+                <div class="ps-section__header" style="background: #d09918;!important;">
+                    <h3 class="text-center" style="color: whitesmoke">Best Seller</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+                        {%for seller in sellers%}
+                        {% if seller.isSeller%}
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-product--horizontal">
+                                <div class="ps-product__thumbnail" style="border: #0D0A0A"><a
+                                        href="{% url 'core:sellerDetails' seller.user.id %}"><img
+                                        src="{{seller.user.sellerprofile.ShopDetails.ShopLogo.url}}" alt=""></a></div>
+                                <div class="ps-product__content">
+                                    <a class="ps-product__title" href="{% url 'core:sellerDetails' seller.user.id %}">
+                                        <h4>{{seller.user.sellerprofile.ShopDetails.ShopName}}</h4>
+                                        <br>
+                                    </a>
+                                    <br>
+                                    <a href="{% url 'core:sellerDetails' seller.user.id %}"
+                                       style="background: tomato;!important;" class="ps-btn btn-danger"
+                                       href="#">Visit Store</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {%endif%}
+                        {%endfor%}
                     </div>
                 </div>
             </div>

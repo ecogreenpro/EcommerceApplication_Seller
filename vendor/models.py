@@ -11,6 +11,8 @@ class SellerRegistration(models.Model):
     ShopName = models.CharField(max_length=50, unique=True, verbose_name='Shop Name')
     ShopLogo = models.ImageField(upload_to='Photos', verbose_name='Shop Logo')
     Phone = models.CharField(max_length=15)
+    FacebookLink = models.CharField(max_length=40,null=True,verbose_name="Facebook")
+    About = models.TextField(null=True)
     Email = models.EmailField(unique=True)
     Address = models.TextField(unique=True)
     NID = models.CharField(max_length=50, unique=True)

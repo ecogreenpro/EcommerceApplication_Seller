@@ -26,13 +26,13 @@
                             </div>
                             <span class="ps-block__divider"></span>
                             <div class="ps-block__content">
-                                <p><strong>{{seller.user.sellerprofile.ShopDetails.ShopName}}</strong></p><span
+                                <p><strong>{{seller.user.sellerprofile.ShopDetails.ShopName}}</strong> {{seller.user.sellerprofile.ShopDetails.About}}</p><span
                                     class="ps-block__divider"></span>
                                 <p><strong>Address</strong> {{seller.user.sellerprofile.ShopDetails.Address}}</p>
                                 <figure>
                                     <figcaption>Follow us on social</figcaption>
                                     <ul class="ps-list--social-color">
-                                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a target="_blank"  class="facebook" href="{{seller.user.sellerprofile.ShopDetails.FacebookLink}}"><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </figure>
                             </div>

@@ -808,6 +808,7 @@ def home(request):
     product = Products.objects.all()
     setting = Settings.objects.get()
     images = CarouselAdvImage.objects.get()
+    seller = sellerProfile.objects.all()
     if request.user.is_authenticated:
         cart = CartProducts.objects.filter(user=request.user)
         total = 0
@@ -822,6 +823,7 @@ def home(request):
             'image': images,
             'product': product,
             'total': total,
+            'sellers': seller,
         }
         return render(request, 'home.html', context)
     else:
@@ -829,6 +831,7 @@ def home(request):
             'Settings': setting,
             'image': images,
             'product': product,
+            'sellers': seller,
         }
         return render(request, 'home.html', context)
 
