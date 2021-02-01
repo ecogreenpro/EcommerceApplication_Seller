@@ -1,130 +1,32 @@
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Ecogreen E-Commerece Application</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+<title>Seller Store | Jewellery | Jewellery.com.bd</title>
+{%include 'header.html'%}
 
 
-
-
-
-
-
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/wishlist.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
 <body>
-
-<div class="d-flex" id="wrapper">
-    {%include "sideNav.html"%}
-    <!-- Sidebar -->
-
-    <!--Main View Start-->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <main role="main"><br>
-                <div class="cart-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="py-5 text-center alert alert-danger">
-                                    <h2>My Wishlist</h2>
-                                </div>
-                                <div class="table-wishlist">
-                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                        <thead>
-                                        <tr>
-                                            <th width="45%">Product Name</th>
-                                            <th width="15%">Unit Price</th>
-                                            <th width="15%">Stock Status</th>
-                                            <th width="15%"></th>
-                                            <th width="10%"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td width="45%">
-                                                <div class="display-flex align-center">
-                                                    <div class="img-product">
-                                                        <img src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
-                                                             alt="" class="mCS_img_loaded">
-                                                    </div>
-                                                    <div class="name-product">
-                                                        <a href="#">Apple iPad Mini</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td width="15%" class="price">$110.00</td>
-                                            <td width="15%"><span class="in-stock-box">In Stock</span></td>
-                                            <td width="15%">
-                                                <button class="round-black-btn small-btn"><i
-                                                        class="fas fa-cart-plus"></i> Add to
-                                                    Cart
-                                                </button>
-                                            </td>
-                                            <td width="10%" class="text-center"><a href="#" class="trash-icon"><i
-                                                    class="far fa-trash-alt"></i></a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+ <div class="ps-page--comming-soon">
+        <div class="container">
+            <div class="ps-page__header"><a class="ps-logo" href="index.html"><img src="img/coming-soon-logo.png" alt=""></a>
+                <h1> Coming Soon</h1>
                 </div>
-            </main>
+            <div class="ps-page__content"><img src="{%static 'coming-soon.jpg'%}" alt="">
+
+            </div>
+            <div class="ps-page__footer">
+                <ul class="ps-list--social">
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-
-</div>
-
-</div>
-
-<!--Main View End-->
-</div>
-
-
-<!-- FOOTER -->
-
+    <div id="back2top"><i class="icon icon-arrow-up"></i></div>
 </body>
 
+
 {% include 'footer.html'%}
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/form-validation.js' %}"></script>
+
+
 </html>
