@@ -1,5 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
+<title>Seller Store | Jewellery | Jewellery.com.bd</title>
 {%include 'header.html'%}
 
 
@@ -28,7 +29,8 @@
                                         {% render_field form.Name class="form-control" placeholder="Your name"%}
                                     </div>
                                     <div class="form-group form-forgot">
-                                        {% render_field form.ShopName class="form-control" placeholder="Your Shop name" %}
+                                        {% render_field form.ShopName class="form-control" placeholder="Your Shop name"
+                                        %}
                                     </div>
                                     <div class="form-group form-forgot">
                                         <label>Shop Logo</label>
@@ -38,7 +40,8 @@
                                         {% render_field form.Phone class="form-control" placeholder="Contact Number" %}
                                     </div>
                                     <div class="form-group form-forgot">
-                                        {% render_field form.Email class="form-control" placeholder="name@example.com" %}
+                                        {% render_field form.Email class="form-control" placeholder="name@example.com"
+                                        %}
                                     </div>
                                     <div class="form-group form-forgot">
                                         {% render_field form.Address class="form-control" placeholder="Shop Address"%}
@@ -83,8 +86,8 @@
                     </figure>
                     <div class="ps-section__coupon"><span></span>
                         <aside>
-                            <h5>Jewellery.com.bd</h5>
-                            <p>Martfury give $25 as a small gift for your first purchase. Welcome to Martfury!</p>
+                            <h5>{{Settings.siteTitle}}</h5>
+                            <p>{{Settings.description}}</p>
                         </aside>
                     </div>
                 </div>
