@@ -274,9 +274,8 @@
             </div>
             <div class="navigation__right">
                 <ul class="menu">
-                    <li class="menu-item-has-children"><a href="#">Home</a><span class="sub-toggle"></span>
+                    <li class="menu-item-has-children"><a href="{%url 'core:home'%}">Home</a><span class="sub-toggle"></span>
                         <ul class="sub-menu">
-                            <li><a href="#">About us</a>
                         </ul>
                     </li>
                 </ul>
@@ -433,6 +432,7 @@
             <li><a href="/store-list/">Store</a></li>
             <li><a href="/shop/">Shop Now</a></li>
             <li><a href="/become-seller/">Sell on Jewellery</a></li>
+            {% if request.user.is_authenticated %}
             <li class="menu-item-has-children"><a href="{% url 'core:userprofile' %}">My Profile</a><span
                     class="sub-toggle"></span>
                 <ul class="sub-menu">
@@ -446,7 +446,7 @@
                     </li>
                 </ul>
             </li>
-
+            {%endif%}
         </ul>
     </div>
 </div>
