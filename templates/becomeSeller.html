@@ -8,21 +8,18 @@
     <div class="ps-my-account-2">
         <div class="container">
             <div class="ps-section__wrapper">
-                {% for message in messages %}
-                <br>
-                <div class="col-md-8">
-                    <div class="alert alert-info">
-                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+
+                <div class="ps-section__left">
+                    {% for message in messages %}
+                    <br>
+                    <div class="alert alert-warning">
+                        <button aria-hidden="true" data-dismiss="alert " class="close" type="button">×</button>
                         <strong>{{message}}!</strong></div>
 
-
-                </div>
-
-                {% endfor %}
-                <div class="ps-section__left">
+                    {% endfor %}
                     <h1 class="align-content-center">&nbsp;&nbsp; Become a seller</h1>
 
-                       <form class="ps-form--account ps-tab-root" enctype="multipart/form-data" method="post" >
+                    <form class="ps-form--account ps-tab-root" enctype="multipart/form-data" method="post">
                         {% csrf_token %}
                         <div class="ps-tabs">
                             <div class="ps-tab active" id="sign-in">
@@ -77,18 +74,16 @@
                 </div>
                 <div class="ps-section__right">
                     <figure class="ps-section__desc">
-                        <figcaption>Sign up today and you will be able to:</figcaption>
-                        <p>MartFury Buyer Protection has you covered from click to delivery. Sign up or sign in and you
-                            will be able to:</p>
+                        <figcaption>Become our Seller today and you will be able to:</figcaption>
                         <ul class="ps-list">
-                            <li><i class="icon-credit-card"></i><span>SPEED YOUR WAY THROUGH CHECKOUT</span></li>
-                            <li><i class="icon-clipboard-check"></i><span>TRACK YOUR ORDERS EASILY</span></li>
-                            <li><i class="icon-bag2"></i><span>KEEP A RECORD OF ALL YOUR PURCHASES</span></li>
+                            <li><i class="icon-credit-card"></i><span>Sell Your Products</span></li>
+                            <li><i class="icon-clipboard-check"></i><span>Engage with more Customer</span></li>
+                            <li><i class="icon-bag2"></i><span>KEEP A RECORD OF ALL YOUR Products and Orders</span></li>
                         </ul>
                     </figure>
-                    <div class="ps-section__coupon"><span>$25</span>
+                    <div class="ps-section__coupon"><span></span>
                         <aside>
-                            <h5>A small gift for your first purchase</h5>
+                            <h5>Jewellery.com.bd</h5>
                             <p>Martfury give $25 as a small gift for your first purchase. Welcome to Martfury!</p>
                         </aside>
                     </div>
