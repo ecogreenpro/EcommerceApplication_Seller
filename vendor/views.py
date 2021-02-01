@@ -22,7 +22,7 @@ def vendorDashboard(request):
         return render(request, 'vendor/vendorDashboard.html')
     else:
         form = SellerRegistrationForm()
-
+        messages.warning(request, 'You are not a Jewellery Seller')
         return render(request, 'becomeSeller.html', {'form': form})
 
 
@@ -192,9 +192,20 @@ def accountsReport(request):
 
 @login_required(login_url='/login')
 def settings(request):
-    setting = Settings.objects.get()
-    context = {'Settings': setting, }
-    return render(request, 'vendor/sellerProfile.html', context)
+    user = request.user
+    seller = sellerProfile.objects.filter(user=user)
+    setting = Settings.objects.all()
+    if seller.exists():
+        context = {'Settings': setting, }
+        return render(request, 'vendor/sellerProfile.html', context)
+    else:
+        form = SellerRegistrationForm()
+        context = {
+            'Settings': setting,
+            'form': form,
+        }
+        messages.warning(request, 'You are not a Jewellery Seller')
+        return render(request, 'becomeSeller.html', context)
 
 
 @login_required(login_url='/login')
