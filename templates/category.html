@@ -35,8 +35,19 @@
             </div>
             <div class="ps-layout__right">
                 <div>
-                    <p class="col-sm-8">
-                    <h3>{{category_title}}</h3></p>
+                    <p class="col-6">
+                        <div class="row justify-content-md-center">
+    <div class="col col-lg-2">
+
+    </div>
+    <div class="col-md-auto">
+      <h3 class="rounded-pill border border text-white" style= "background: #D09918;">&nbsp;&nbsp;&nbsp;{{category_title}}&nbsp;&nbsp;&nbsp;</h3>
+    </div>
+    <div class="col col-lg-2">
+
+    </div>
+  </div>
+                    </p>
                     <p class="text-justify">{{category_description | safe}}</p>
                 </div>
                 <br>
@@ -53,11 +64,7 @@
                                 <option>Sort by price: high to low</option>
                             </select>
                             <div class="ps-shopping__view">
-                                <p>View</p>
-                                <ul class="ps-tab-list">
-                                    <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>
-                                    <li><a href="#tab-2"><i class="icon-list4"></i></a></li>
-                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -73,9 +80,12 @@
                                             <div class="ps-product__thumbnail"><a
                                                     href="{% url 'core:productDetail' item.slug %}"><img
                                                     src="{{item.mainImage.url}}" alt="" width="240" height="240"></a>
+                                                {%if item.discountPrice%}
                                                 <div class="ps-product__badge">
                                                     -{{item.get_percentage}}%
+
                                                 </div>
+                                                {%endif%}
                                                 <ul class="ps-product__actions">
                                                     <li><a href="{% url 'core:add-to-cart' item.slug %}"
                                                            data-toggle="tooltip" data-placement="top"
@@ -100,13 +110,25 @@
                                                     <a class="ps-product__title"
                                                        href="{% url 'core:productDetail' item.slug %}">
                                                         {{item.name | truncatechars_html:35 }}</a>
-                                                    <p class="ps-product__price">৳ {{item.price}}</p>
+                                                    {%if item.discountPrice%}
+                                    <p class="ps-product__price sale">৳ {{item.discountPrice}}
+                                        <del> ৳ {{item.price}}</del>
+                                    </p>
+                                    {%else%}
+                                    ৳ {{item.price}}
+                                    {%endif%}
                                                 </div>
                                                 <div class="ps-product__content hover">
                                                     <a class="ps-product__title"
                                                        href="{% url 'core:productDetail' item.slug %}">
                                                         {{item.name | truncatechars_html:35 }}</a>
-                                                    <p class="ps-product__price">৳ {{item.price}}</p>
+                                                    {%if item.discountPrice%}
+                                    <p class="ps-product__price sale">৳ {{item.discountPrice}}
+                                        <del> ৳ {{item.price}}</del>
+                                    </p>
+                                    {%else%}
+                                    ৳ {{item.price}}
+                                    {%endif%}
                                                 </div>
                                             </div>
                                         </div>

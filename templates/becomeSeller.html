@@ -1,6 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
-<title>Seller Store | Jewellery | Jewellery.com.bd</title>
+<title>Seller Register | Jewellery | Jewellery.com.bd</title>
 {%include 'header.html'%}
 
 
@@ -18,8 +18,20 @@
                         <strong>{{message}}!</strong></div>
 
                     {% endfor %}
-                    <h1 class="align-content-center">&nbsp;&nbsp; Become a seller</h1>
 
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2">
+                        </div>
+                        <div class="col-md-auto">
+
+                        <img src="{%static 'media/Become_Our_Seller.gif'%}" alt="" >
+                        </div>
+                        <br>
+                        <div class="col col-lg-2">
+
+                        </div>
+                    </div>
+                    <br>
                     <form class="ps-form--account ps-tab-root" enctype="multipart/form-data" method="post">
                         {% csrf_token %}
                         <div class="ps-tabs">
@@ -45,10 +57,10 @@
                                         {% render_field form.Address class="form-control" placeholder="Shop Address"%}
                                     </div>
                                     <div class="form-group form-forgot">
-                                        {% render_field form.NID class="form-control" id="firstname" %}
+                                        {% render_field form.NID class="form-control"  placeholder="NID No" %}
                                     </div>
                                     <div class="form-group form-forgot">
-                                        {% render_field form.TradeLicense class="form-control" placeholder="" %}
+                                        {% render_field form.TradeLicense class="form-control" placeholder="Trade License No" %}
                                     </div>
                                     <div class="form-group form-forgot">
                                         <label>NID Image</label>

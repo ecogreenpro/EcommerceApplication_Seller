@@ -190,18 +190,8 @@ def login(request):
             'cart': cart,
             'total': total
         }
-        if request.method == "POST":
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return render(request, 'account/userprofile.html')
-            else:
-                messages.info(request, 'Invalid Login')
-        else:
-            return render(request, 'account/login.html', context)
-        return HttpResponseRedirect(request, '/user-profile/', context)
+        return render(request, 'account/userprofile.html', context)
+
     else:
         context = {
             'Settings': setting,
@@ -319,7 +309,7 @@ def signup(request):
             'cart': cart,
             'total': total
         }
-        return render(request, 'account/signup.html', context)
+        return render(request, 'account/userprofile.html', context)
     else:
         context = {
             'Settings': setting,
@@ -362,7 +352,8 @@ def createUser(request):
                 userRegistration.is_staff = False
                 userRegistration.save()
                 messages.info(request, 'Registration Confirmed')
-        return render(request, 'account/login.html', context)
+            return render(request, 'account/login.html', context)
+        return render(request, 'account/userprofile.html', context)
     else:
         context = {
             'Settings': setting,
