@@ -2,6 +2,17 @@
 {% load category_template_tags%}
 <html lang="en">
 <head>
+    <style>
+        @media only screen
+        and (min-device-width: 320px)
+        and (max-device-width: 480px) {
+            .mobileHide {
+                display: none;
+            }
+        }
+
+        }
+    </style>
 </head>
 
 {%include 'header.html'%}
@@ -10,7 +21,7 @@
 <main role="main">
 
     <div id="homepage-1">
-        <div class="ps-home-banner ps-home-banner--1">
+        <div class="ps-home-banner ps-home-banner--1 ">
             <div class="ps-container">
                 <div class="ps-section__left">
                     <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true"
@@ -33,67 +44,18 @@
                             src="{{image.Home_Adv_top2.url}}" alt=""></a></div>
             </div>
         </div>
-        <div class="ps-site-features">
-            <div class="ps-container">
-                <div class="ps-block--site-features">
-                    <div class="ps-block__item">
-                        <div class="ps-block__left"><i class="icon-rocket"></i></div>
-                        <div class="ps-block__right">
-                            <h4>Free Delivery</h4>
-                            <p>For all oders over $99</p>
-                        </div>
-                    </div>
-                    <div class="ps-block__item">
-                        <div class="ps-block__left"><i class="icon-sync"></i></div>
-                        <div class="ps-block__right">
-                            <h4>90 Days Return</h4>
-                            <p>If goods have problems</p>
-                        </div>
-                    </div>
-                    <div class="ps-block__item">
-                        <div class="ps-block__left"><i class="icon-credit-card"></i></div>
-                        <div class="ps-block__right">
-                            <h4>Secure Payment</h4>
-                            <p>100% secure payment</p>
-                        </div>
-                    </div>
-                    <div class="ps-block__item">
-                        <div class="ps-block__left"><i class="icon-bubbles"></i></div>
-                        <div class="ps-block__right">
-                            <h4>24/7 Support</h4>
-                            <p>Dedicated support</p>
-                        </div>
-                    </div>
-                    <div class="ps-block__item">
-                        <div class="ps-block__left"><i class="icon-gift"></i></div>
-                        <div class="ps-block__right">
-                            <h4>Gift Service</h4>
-                            <p>Support gift service</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="ps-deal-of-day">
             <div class="ps-container">
-                <div class="ps-section__header">
+                <div class="ps-section__header ">
                     <div class="ps-block--countdown-deal">
                         <div class="ps-block__left">
-                            <h3>Deals of the day</h3>
+                            <h3 style="color:#D09918;">Deals of the day</h3>
                         </div>
                         <div class="ps-block__right">
-                            <!--<figure>
-                                <figcaption>End in:</figcaption>
-                                <ul class="ps-countdown" data-time="December 30, 2021 15:37:25">
-                                    <li><span class="days"></span></li>
-                                    <li><span class="hours"></span></li>
-                                    <li><span class="minutes"></span></li>
-                                    <li><span class="seconds"></span></li>
-                                </ul>
-                            </figure>-->
                         </div>
                     </div>
-                    <a href="#">View all</a>
+                    <a style="color:#D09918;" href="#">View all</a>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false"
@@ -180,7 +142,7 @@
         <div class="ps-product-list ps-garden-kitchen">
             <div class="ps-container">
                 <div class="ps-section__header" style="background: #d09918;!important;">
-                    <h3 class="text-center" style="color: whitesmoke">On Sale Product</h3>
+                    <h3 class="text-center" style="color: white">On Sale Product</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--responsive owl-slider" data-owl-auto="true" data-owl-loop="true"
@@ -261,16 +223,55 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                 <div class="ps-block__content">
-                                    <h3>Become Our Seller</h3>
-                                    <ul>
-                                        <li><h4>Register and list your products</h4></li>
-                                        <li><h4>Receive orders and sell your product</h4></li>
-                                        <li><h4>Package and ship with easy</h4></li>
-                                    </ul>
-                                    <div class="ps-block__content">
+                                    <div class="row justify-content-md-center">
+                                        <div class="col col-lg-2">
 
-                                        <a href="/become-seller/" class="ps-btn ps-btn--fullwidth" href="#">Start
-                                            Selling</a>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <h3 class="rounded-pill border border text-white"
+                                                style="background: #D09918;">&nbsp;&nbsp;&nbsp;Become Our Seller&nbsp;&nbsp;&nbsp;</h3>
+                                        </div>
+                                        <div class="col col-lg-2">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-md-center">
+                                        <div class="col col-lg-2">
+
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <ul>
+                                                <li><h4>Are you Startup?</h4></li>
+                                                <li><h4>Do you want to reach new customer or become a new
+                                                    entrepreneur?</h4></li>
+                                                <li><h4>Do you want to promote your business with maximum exposure in
+                                                    the best way?</h4></li>
+                                                <li><h4>Please provide your business and contact details.</h4></li>
+                                                <li><h4>Register and list your products</h4></li>
+                                                <li><h4>Receive orders and sell your product</h4></li>
+                                                <li><h4>Package and ship with easy</h4></li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="col col-lg-2">
+
+                                        </div>
+                                    </div>
+                                    <div class="ps-block__content">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col col-lg-2">
+
+                                            </div>
+                                            <div class="col-md-auto">
+                                                <a href="/become-seller/" class="ps-btn ps-btn" href="#">Sell With
+                                                    Us</a>
+                                            </div>
+                                            <div class="col col-lg-2">
+
+                                            </div>
+                                        </div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +283,7 @@
         <div class="ps-top-categories">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Top categories of the month</h3>
+                    <h3 style="color:#D09918;">Top categories of the month</h3>
                 </div>
                 <div class="row">
                     {% categories_home %}
@@ -298,7 +299,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection"
                                                                                   href="/shop"><img
-                            src="{{image.Home_Adv_Bottom_Short.url}}" alt="" height="282"></a>
+                            src="{{image.Home_Adv_Bottom_Short.url}}" alt="" height="355"></a>
                     </div>
                 </div>
             </div>
@@ -320,12 +321,13 @@
                                         src="{{seller.user.sellerprofile.ShopDetails.ShopLogo.url}}" alt=""></a></div>
                                 <div class="ps-product__content">
                                     <a class="ps-product__title" href="{% url 'core:sellerDetails' seller.user.id %}">
-                                        <h4>{{seller.user.sellerprofile.ShopDetails.ShopName}}</h4>
+                                        <h4 style="color: #D09918;!important;">
+                                            {{seller.user.sellerprofile.ShopDetails.ShopName}}</h4>
                                         <br>
                                     </a>
                                     <br>
                                     <a href="{% url 'core:sellerDetails' seller.user.id %}"
-                                       style="background: tomato;!important;" class="ps-btn btn-danger"
+                                       style="background: #D09918;!important;" class="ps-btn btn-danger"
                                        href="#">Visit Store</a>
                                 </div>
                             </div>
@@ -338,6 +340,47 @@
             </div>
         </div>
         <br>
+    </div>
+    <div class="ps-site-features">
+        <div class="ps-container">
+            <div class="ps-block--site-features">
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-rocket"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Free Delivery</h4>
+                        <p>For all oders over BDT 999</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-sync"></i></div>
+                    <div class="ps-block__right">
+                        <h4>90 Days Return</h4>
+                        <p>If goods have problems</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-credit-card"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Secure Payment</h4>
+                        <p>100% secure payment</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-bubbles"></i></div>
+                    <div class="ps-block__right">
+                        <h4>24/7 Support</h4>
+                        <p>Dedicated support</p>
+                    </div>
+                </div>
+                <div class="ps-block__item">
+                    <div class="ps-block__left"><i class="icon-gift"></i></div>
+                    <div class="ps-block__right">
+                        <h4>Gift Service</h4>
+                        <p>Support gift service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 {%include 'footer.html'%}

@@ -11,8 +11,8 @@ def categories():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<li><a href="/category/{}"><i class="icon-box"></i> {}</a></li>""".format(
-            i.slug, i.name)
+        items_li += """<li><a href="/category/{}"> <img src="/media/{}" width="27" height="27"> {}</a></li>""".format(
+            i.slug, i.image, i.name)
     return mark_safe(items_li)
 
 
@@ -62,6 +62,6 @@ def categories_mobile():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<li><a href="/category/{}">{}</a></li>""".format(
-            i.slug, i.name)
+        items_li += """<li><a href="/category/{}"><img src="/media/{}" width="27" height="27"> {}</a></li>""".format(
+            i.slug, i.image, i.name)
     return mark_safe(items_li)

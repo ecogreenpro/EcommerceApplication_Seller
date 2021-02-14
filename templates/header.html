@@ -3,7 +3,12 @@
 {% load category_template_tags%}
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .navigation__extra > li:after {
 
+    background-color: #fff!important;
+}
+</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +19,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" type="image/png" href="{{Settings.favIcon.url}}"/>
-    <title> Jewellery | Jewellery.com.bd</title>
+    <title> {{Settings.siteTitle}}</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
           rel="stylesheet">
     <link rel="stylesheet" href="{% static 'core/plugins/font-awesome/css/font-awesome.min.css' %}">
@@ -34,7 +39,7 @@
         <div class="ps-container">
             <div class="header__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                    <div class="menu__toggle"><i style="color:#D09918;" class="icon-menu"></i><span style="color:#D09918;"> Shop by Department</span></div>
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             {% categories %}
@@ -50,167 +55,14 @@
                     <div class="form-group--icon"></i>
                     </div>
                     <input class="form-control" name="search" type="search" required="required" type="text"
-                           placeholder="I'm shopping fo.." id="input-search">
-                    <button type="submit">Search</button>
-                    <!--<div class="ps-panel&#45;&#45;search-result">
-                        <div class="ps-panel__content">
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Apple iPhone Retina 6s
-                                    Plus 32GB</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span></span>
-                                    </div>
-                                    <p class="ps-product__price">$990.50</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Apple iPhone Retina 6s
-                                    Plus 64GB</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span></span>
-                                    </div>
-                                    <p class="ps-product__price">$1120.50</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/1.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Apple iPhone Retina 6s
-                                    Plus 128GB</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span></span>
-                                    </div>
-                                    <p class="ps-product__price">$1220.50</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/2.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Marshall Kilburn
-                                    Portable Wireless Speaker</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price">$36.78 – $56.99</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/3.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Herschel Leather Duffle
-                                    Bag In Brown Color</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                    </div>
-                                    <p class="ps-product__price">$125.30</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/4.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Xbox One Wireless
-                                    Controller Black Color</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                    </div>
-                                    <p class="ps-product__price">$55.30</p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/5.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Grand Slam Indoor Of
-                                    Show Jumping Novel</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>02</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$41.27
-                                        <del>$52.99</del>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product ps-product&#45;&#45;wide ps-product&#45;&#45;search-result">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img
-                                        src="img/products/arrivals/6.jpg" alt=""></a></div>
-                                <div class="ps-product__content"><a class="ps-product__title"
-                                                                    href="product-default.html">Sound Intone I65
-                                    Earphone White Version</a>
-                                    <div class="ps-product__rating">
-                                        <select class="ps-rating" data-read-only="true">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="2">5</option>
-                                        </select><span>01</span>
-                                    </div>
-                                    <p class="ps-product__price sale">$41.27
-                                        <del>$62.39</del>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-panel__footer text-center"><a href="shop-default.html">See all results</a></div>
-                    </div>-->
+                           placeholder="I'm shopping for ring, watch, bangles" id="input-search">
+                    <button type="submit" style="background:#D09918;">Search</button>
                 </form>
             </div>
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i>
-                        <span>{% cartCount user.id as count %}
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i style="color:#D09918;" class="icon-bag2"></i>
+                        <span style="background:#D09918;">{% cartCount user.id as count %}
                             <i>{{count}}</i></span></a>
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
@@ -246,12 +98,12 @@
                         </div>
                     </div>
                     <div class="ps-block--user-header">
-                        <div class="ps-block__left"><i class="icon-user"></i></div>
+                        <div class="ps-block__left"><i style="color:#D09918;" class="icon-user"></i></div>
                         <div class="ps-block__right">{% if request.user.is_authenticated %}
-                            <a href="{% url 'core:userprofile' %}">{{request.user.username}}</a>
+                            <a href="{% url 'core:userprofile' %}" style="color:#D09918;">{{request.user.username}}</a>
                             {%else%}
-                            <a href="{% url 'core:login'%}">Login</a><a
-                                    href="{% url 'core:signup'%}">Register</a>
+                            <a  href="{% url 'core:login'%}" style="color:#D09918;">Login</a><a
+                                    href="{% url 'core:signup'%}" style="color:#D09918;">Register</a>
                             {%endif%}
                         </div>
                     </div>
@@ -264,7 +116,7 @@
         <div class="ps-container">
             <div class="navigation__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                    <div class="menu__toggle"><i class="icon-menu text-white"></i><span class="text-white"> Shop by Department</span></div>
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             {% categories %}
@@ -274,15 +126,16 @@
             </div>
             <div class="navigation__right">
                 <ul class="menu">
-                    <li class="menu-item-has-children"><a href="{%url 'core:home'%}">Home</a><span class="sub-toggle"></span>
+                    <li class="menu"><a>&nbsp;</a><span class="sub-toggle"></span>
                         <ul class="sub-menu">
                         </ul>
                     </li>
                 </ul>
                 <ul class="navigation__extra">
-                    <li><a href="/store-list/">Store</a></li>
-                    <li><a href="/shop/">Shop Now</a></li>
-                    <li><a href="/become-seller/">Sell on Jewellery</a></li>
+                    <li><a class="text-white" href="/shop/"><span class="rounded border border-white bg-warning text-danger">&nbsp; Hot Deals &nbsp;</span></a></li>
+                    <li><a class="text-white" href="/jewelry-store/">Jewellery Store</a></li>
+                    <li><a class="text-white" href="/shop/">Shop Now</a></li>
+                    <li><a class="text-white" href="/become-seller/">Sell on Jewellery</a></li>
                 </ul>
             </div>
         </div>
@@ -297,8 +150,8 @@
         </div>
         <div class="navigation__right">
             <div class="header__actions">
-                <div class="ps-cart--mini"><a class="header__extra" href="#"><i
-                        class="icon-bag2"></i><span>{% cartCount user.id as count %}
+                <div class="ps-cart--mini"><a class="header__extra" href="#"><i style="color:#D09918;"
+                        class="icon-bag2"></i><span style="background:#D09918;">{% cartCount user.id as count %}
                             <i>{{count}}</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
@@ -333,32 +186,28 @@
                     </div>
                 </div>
                 <div class="ps-block--user-header">
-                    <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right">{% if request.user.is_authenticated %}
+                    {% if request.user.is_authenticated %}
+                    <div class="ps-block__left"><a href="{% url 'core:userprofile' %}"><i style="color:#D09918;" class="icon-user"></i></a></div>
+                    <div class="ps-block__right">
                         <a href="{% url 'core:userprofile' %}">{{request.user.username}}</a>
                         {%else%}
-                        <a href="{% url 'core:login'%}">Login</a><a
-                                href="{% url 'core:signup'%}">Register</a>
+
+                        <div class="ps-block ">
+                        <a href="{% url 'core:login'%}" style="color:#D09918;">Login</a>
+                        <br>
+                        <a href="{% url 'core:signup'%}" style="color:#D09918;">Register</a>
+                        </div>
                         {%endif%}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="ps-search--mobile">
-
-        <form class="ps-form--search-mobile" action="/search/" method="get">
-            <div class="form-group--nest">
-                <input class="form-control" type="search" placeholder="Search something...">
-                <button type="submit"><i class="icon-magnifier"></i></button>
-            </div>
-        </form>
-    </div>
 
 </header>
 <div class="ps-panel--sidebar" id="cart-mobile">
-    <div class="ps-panel__header">
-        <h3>Shopping Cart</h3>
+    <div class="ps-panel__header" style="background:#DF9D13;!important">
+        <h3> Shopping Cart</h3>
     </div>
     <div class="navigation__content">
         <div class="ps-cart--mobile">
@@ -393,7 +242,7 @@
     </div>
 </div>
 <div class="ps-panel--sidebar" id="navigation-mobile">
-    <div class="ps-panel__header">
+    <div class="ps-panel__header" style="background:#DF9D13;!important">
         <h3>Categories</h3>
     </div>
     <div class="ps-panel__content">
@@ -403,15 +252,15 @@
     </div>
 </div>
 <div class="navigation--list">
-    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i
-            class="icon-menu"></i><span> Menu</span></a><a class="navigation__item ps-toggle--sidebar"
-                                                           href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a><a
-            class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a><a
-            class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a>
+    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i style="color:#FAAE1A;"
+            class="icon-menu"></i><span style="color:#FAAE1A;"> Menu</span></a><a class="navigation__item ps-toggle--sidebar"
+                                                           href="#navigation-mobile"><i style="color:#FAAE1A;" class="icon-list4"></i><span style="color:#FAAE1A;"> Categories</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i style="color:#FAAE1A;" class="icon-magnifier"></i><span style="color:#FAAE1A;"> Search</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i style="color:#FAAE1A;" class="icon-bag2"></i><span style="color:#FAAE1A;"> Cart</span></a>
     </div>
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
-    <div class="ps-panel__header">
+    <div class="ps-panel__header" style="background:#DF9D13;!important">
 
         <form class="ps-form--search-mobile" action='/search/' method="get">
             <div class="form-group--nest">
@@ -424,14 +273,17 @@
     <div class="navigation__content"></div>
 </div>
 <div class="ps-panel--sidebar" id="menu-mobile">
-    <div class="ps-panel__header">
+    <div class="ps-panel__header" style="background:#DF9D13;!important">
         <h3>Menu</h3>
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li><a href="/store-list/">Store</a></li>
-            <li><a href="/shop/">Shop Now</a></li>
+            <li><a href="/shop/"><span class="rounded border border-warning bg-warning text-white">&nbsp; Hot Deals &nbsp;</span></a></li>
+            <li><a  href="/shop/"><span class="rounded border border-danger bg-danger text-white">&nbsp; Shop Now &nbsp;</span></a></li>
+             <li><a href="/jewelry-store/">Jewellery Store</a></li>
             <li><a href="/become-seller/">Sell on Jewellery</a></li>
+            <li><a href="/about/">About us</a></li>
+            <li><a href="/contact/">Contact</a></li>
             {% if request.user.is_authenticated %}
             <li class="menu-item-has-children"><a href="{% url 'core:userprofile' %}">My Profile</a><span
                     class="sub-toggle"></span>

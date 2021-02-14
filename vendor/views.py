@@ -127,7 +127,6 @@ def vendoerOrderManager(request):
 
 class vandorOrderDetails(DetailView):
     def get(self, request, *args, **kwargs):
-        setting = Settings.objects.get()
         order = Order.objects.get(order_Number=self.kwargs['order_Number'])
         orderProdcut = OrderProduct.objects.filter(order=order)
         user = request.user
