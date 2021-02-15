@@ -45,7 +45,7 @@ urlpatterns = [
     path('userorder/', views.userOrder, name="userOrder"),
     path('jewelry-store/', views.storeList, name="storeList"),
     path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
-    path('seller/<pk>/', sellerDetails.as_view(), name='sellerDetails'),
+    path('seller/<Seller_id>/', sellerDetails.as_view(), name='sellerDetails'),
 
     # path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),

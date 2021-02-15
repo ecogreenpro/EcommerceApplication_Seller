@@ -33,6 +33,7 @@ class SellerRegistration(models.Model):
 class sellerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ShopDetails = models.OneToOneField(SellerRegistration, on_delete=models.CASCADE, null=True)
+    Seller_id = models.CharField(max_length=100, unique=True)
     isSeller = models.BooleanField(default=False)
 
     def __str__(self):
