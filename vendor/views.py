@@ -1,5 +1,5 @@
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -9,7 +9,7 @@ from django.contrib import messages, auth
 # Create your views here.
 from django.views.generic import ListView, DetailView, View, UpdateView
 
-from core.models import Products, OrderProduct, Order, Settings
+from core.models import Products, OrderProduct, Order, Settings, userProfile
 from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
 from vendor.models import SellerRegistration
 
@@ -293,6 +293,74 @@ def sellerChangePassword(request):
 
             form = PasswordChangeForm(request.user)
             return render(request, 'vendor/sellerChangePassword.html', {'form': form, })
+    else:
+        form = SellerRegistrationForm()
+        context = {
+            'Settings': setting,
+            'form': form,
+        }
+        messages.warning(request, 'You are not a Jewellery Seller')
+        return render(request, 'becomeSeller.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required(login_url='/login/')
+def allSeller(request):
+    seller = sellerProfile.objects.all()
+    setting = Settings.objects.all()
+    if seller.exists():
+        context = {
+            'Settings': setting,
+            'sellers': seller
+
+        }
+        return render(request, 'superUser/allSeller.html', context)
+    else:
+        form = SellerRegistrationForm()
+        context = {
+            'Settings': setting,
+            'form': form,
+        }
+        messages.warning(request, 'You are not a Jewellery Seller')
+        return render(request, 'becomeSeller.html', context)
+
+
+class sellerDetails(View):
+    def get(self, request, pk, *args, **kwargs):
+        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
+        setting = Settings.objects.all()
+        context = {
+
+            'Settings': setting,
+            'seller': sellerUser,
+        }
+        return render(self.request, "superUser/superUserSellerDetails.html", context)
+
+
+class sellerInfoReport(View):
+    def get(self, request, pk, *args, **kwargs):
+        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
+        setting = Settings.objects.get()
+        context = {
+
+            'Settings': setting,
+            'seller': sellerUser,
+        }
+        return render(self.request, "superUser/sellerInfoReport.html", context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required(login_url='/login/')
+def sellerRequest(request):
+    sellerreq = SellerRegistration.objects.all()
+    setting = Settings.objects.all()
+    if sellerreq.exists():
+        context = {
+            'Settings': setting,
+            'sellers': sellerreq
+
+        }
+        return render(request, 'superUser/sellerRequest.html', context)
     else:
         form = SellerRegistrationForm()
         context = {

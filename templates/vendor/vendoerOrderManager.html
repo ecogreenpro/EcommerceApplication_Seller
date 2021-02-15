@@ -34,8 +34,9 @@
         <img src="" alt="">
     </div>
     <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
-                                     height="70" alt=""></a></div>
-    <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i class="icon-exit-right"></i></a></div>
+                                                                 height="70" alt=""></a></div>
+    <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
+            class="icon-exit-right"></i></a></div>
 </header>
 <aside class="ps-drawer--mobile">
     <div class="ps-drawer__header">
@@ -48,6 +49,10 @@
             <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
             <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
             <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+            {%if request.user.is_superuser%}
+            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+            {%endif%}
         </ul>
     </div>
 </aside>
@@ -74,9 +79,17 @@
                         <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
                         </li>
                         <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
-                        <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
+                        <li><a class="active" href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a>
+                        </li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+                        {%if request.user.is_superuser%}
+                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+                        {%endif%}
                     </ul>
+                    <br>
+                    <br>
+                    <br>
                 </div>
                 <div class="ps-sidebar__footer">
                     <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
@@ -97,7 +110,8 @@
                     <button><i class="icon-magnifier"></i></button>
                 </form>
             </div>
-            <div class="header__right"><a class="header__site-link" href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
+            <div class="header__right"><a class="header__site-link"
+                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
                     class="icon-exit-right"></i></a></div>
         </header>
         <section class="ps-items-listing">
@@ -140,7 +154,9 @@
                         <tbody>
                         {%for orders in myOrders%}
                         <tr>
-                            <td><a href="{% url 'vandorOrderDetails' orders.order_Number %}">#{{orders.order_Number}}</a></td>
+                            <td>
+                                <a href="{% url 'vandorOrderDetails' orders.order_Number %}">#{{orders.order_Number}}</a>
+                            </td>
                             <td><strong> {{orders.ordered_date}}</strong></td>
                             <td><a href="#"><strong>{{orders.first_name}} {{orders.last_name}}</strong></a></td>
                             <td><span class="ps-badge success">{{orders.payment}}</span>
@@ -153,7 +169,9 @@
                                                          aria-haspopup="true" aria-expanded="false"><i
                                         class="icon-ellipsis"></i></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
-                                            class="dropdown-item" href="{% url 'vandorOrderDetails' orders.order_Number %}">Edit</a><a class="dropdown-item" href="#">Delete</a>
+                                            class="dropdown-item"
+                                            href="{% url 'vandorOrderDetails' orders.order_Number %}">Edit</a><a
+                                            class="dropdown-item" href="#">Delete</a>
                                     </div>
                                 </div>
                             </td>

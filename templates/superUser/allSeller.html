@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
-    <title>My Profile | Jewllery Seller</title>
+    <title>Jewellery Seller | Jewllery Seller</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="{% static 'seller/plugins/font-awesome/css/font-awesome.min.css' %}">
@@ -48,9 +48,9 @@
             <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a></li>
             <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
-            <li><a class="active" href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+            <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
             {%if request.user.is_superuser%}
-            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+            <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
             <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
             {%endif%}
         </ul>
@@ -78,12 +78,11 @@
                     <ul class="menu">
                         <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
                         </li>
-                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a>
-                        </li>
+                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
-                        <li><a class="active" href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+                        <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
-                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+                        <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
                         <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
                         {%endif%}
                     </ul>
@@ -91,6 +90,7 @@
                     <br>
                     <br>
                 </div>
+
                 <div class="ps-sidebar__footer">
                     <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
@@ -102,8 +102,7 @@
     <div class="ps-main__wrapper">
         <header class="header--dashboard">
             <div class="header__left">
-                <h3>Products</h3>
-                <p>Product Listings</p>
+                <h3>All Jewellery Seller</h3>
             </div>
             <div class="header__center">
                 <form class="ps-form--search-bar" action="" method="get">
@@ -116,53 +115,51 @@
                     class="icon-exit-right"></i></a></div>
         </header>
         <section class="ps-items-listing">
-            {% for message in messages %}
-            <br>
-            <div class="col-md-8">
-                <div class="alert alert-info">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong>{{message | safe}}!</strong></div>
-
-
-            </div>
-
-            {% endfor %}
-
             <div class="ps-section__content">
                 <div class="table-responsive">
                     <table class="table ps-table">
+                        <thead>
                         <tr>
-                            <th class="text-left">
-                                <a href="{%url 'sellerUpdate'%}" class="ps-btn success">Update Profile</a>
-                                <a href="{%url 'sellerChangePassword'%}" class="ps-btn danger">Change Password</a>
-                            </th>
-                            <td><img src="{{ request.user.sellerprofile.ShopDetails.ShopLogo.url }}"
-                                     style="border-radius: 45px; height: 200px "></td>
+                            <th>Seller ID</th>
+                            <th>Sellers Photo</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Shop Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th></th>
                         </tr>
+                        </thead>
+                        <tbody>
+                        {%for seller in sellers%}
                         <tr>
-                            <th class="text-left">Name</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Name}}</td>
+                            <td>
+                                <a href="{% url 'sellerDetails' seller.user.id %}">#{{forloop.counter}}</a>
+                            </td>
+                            <td><img src="{{seller.user.userprofile.image.url}}" alt="" width="50" height="50"></td>
+                            <td><a href="#"><strong>{{seller.user.username}}</strong></a></td>
+                            <td><a href="#"><strong>{{seller.ShopDetails.Name}}</strong></a></td>
+                            <td><span class="ps-badge success">{{seller.ShopDetails.ShopName}}</span>
+                            </td>
+                            <td><span class="ps-fullfillment">{{seller.ShopDetails.Phone}}</span>
+                            </td>
+                            <td><strong>{{seller.ShopDetails.Address}}</strong></td>
+                            <td>
+                                <div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown"
+                                                         aria-haspopup="true" aria-expanded="false"><i
+                                        class="icon-ellipsis"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{% url 'core:sellerDetails' seller.user.id %}">Visit
+                                            Store</a>
+                                        <a class="dropdown-item" href="{% url 'sellerDetails' seller.user.id %}">View
+                                            Details</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                        <tr>
-                            <th class="text-left">Email</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Email}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Phone</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Phone}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Address</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Address}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">City</th>
-                            <td class="text-left">{{ request.user.userprofile.city}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Country</th>
-                            <td class="text-left">{{ request.user.userprofile.country}}</td>
-                        </tr>
+                        {%endfor%}
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -3,7 +3,7 @@ from django.conf.urls import handler400
 from . import views
 
 from .views import (
-    vandorOrderDetails
+    vandorOrderDetails, sellerDetails, sellerInfoReport
 
 )
 
@@ -23,8 +23,11 @@ urlpatterns = [
     path('seller-profile/', views.settings, name="sellerProfile"),
     path('seller-update/', views.sellerUpdate, name="sellerUpdate"),
     path('seller-change-password/', views.sellerChangePassword, name="sellerChangePassword"),
-    # path('update-order/<order_Number>', views.vandorUpdateOrder, name="updateOrder"),
+    path('Jewellery-sellers/', views.allSeller, name="allSeller"),
+    path('seller-request/', views.sellerRequest, name="sellerRequest"),
+    path('seller-details/<pk>', sellerDetails.as_view(), name="sellerDetails"),
+    path('seller-report/<pk>', sellerInfoReport.as_view(), name="sellerReport"),
 
-    # path('all-product/', allProduct.as_view(), name="allProduct"),
-    path('vandor-Order-Details/<order_Number>', vandorOrderDetails.as_view(), name="vandorOrderDetails")
+    path('vandor-Order-Details/<order_Number>', vandorOrderDetails.as_view(), name="vandorOrderDetails"),
+
 ]

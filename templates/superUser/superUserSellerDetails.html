@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
-    <title>My Profile | Jewllery Seller</title>
+    <title>{{seller.user.sellerprofile.ShopDetails.ShopName}} | Jewllery Seller</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="{% static 'seller/plugins/font-awesome/css/font-awesome.min.css' %}">
@@ -48,10 +48,10 @@
             <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a></li>
             <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
-            <li><a class="active" href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+            <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
             {%if request.user.is_superuser%}
-            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+            <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+            <li><a href="{% url 'sellerRequest'%}"><i class="icon-menu3"></i>Seller Request</a></li>
             {%endif%}
         </ul>
     </div>
@@ -78,19 +78,19 @@
                     <ul class="menu">
                         <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
                         </li>
-                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a>
-                        </li>
+                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
-                        <li><a class="active" href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
+                        <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
-                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+                        <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
+                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-repeat"></i>Seller Request</a></li>
                         {%endif%}
                     </ul>
                     <br>
                     <br>
                     <br>
                 </div>
+
                 <div class="ps-sidebar__footer">
                     <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
@@ -102,71 +102,81 @@
     <div class="ps-main__wrapper">
         <header class="header--dashboard">
             <div class="header__left">
-                <h3>Products</h3>
-                <p>Product Listings</p>
-            </div>
-            <div class="header__center">
-                <form class="ps-form--search-bar" action="" method="get">
-                    <input class="form-control" type="text" placeholder="Search something"/>
-                    <button><i class="icon-magnifier"></i></button>
-                </form>
+                <h3>{{seller.user.sellerprofile.ShopDetails.ShopName}}</h3>
+
             </div>
             <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
-                    class="icon-exit-right"></i></a></div>
+                                          href="{% url 'sellerReport' seller.user.id %}"><span>Download</span><i
+                    class="icon-download"></i></a></div>
+
         </header>
-        <section class="ps-items-listing">
-            {% for message in messages %}
-            <br>
-            <div class="col-md-8">
-                <div class="alert alert-info">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong>{{message | safe}}!</strong></div>
+        <section class="ps-dashboard">
+            <div class="ps-section__left">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ps-card ps-card--order-information ps-card--small">
+                            <div class="ps-card__header">
+                                <h3>Personal Information</h3>
+                            </div>
+                            <div class="ps-card__content">
+                                <h4>{{seller.user.sellerprofile.ShopDetails.Name}}</h4>
+                                <p><strong>Address:</strong> {{seller.user.first_name}} {{seller.user.last_name}}</p>
+                                <p><strong>Phone No:</strong> {{seller.Phone}}</p>
+                                <p><strong>Email:</strong> {{seller.user.email}}</p>
+                                <p><strong>NID No:</strong> {{seller.user.sellerprofile.ShopDetails.NID}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ps-card ps-card--order-information ps-card--small">
 
-
-            </div>
-
-            {% endfor %}
-
-            <div class="ps-section__content">
-                <div class="table-responsive">
-                    <table class="table ps-table">
-                        <tr>
-                            <th class="text-left">
-                                <a href="{%url 'sellerUpdate'%}" class="ps-btn success">Update Profile</a>
-                                <a href="{%url 'sellerChangePassword'%}" class="ps-btn danger">Change Password</a>
-                            </th>
-                            <td><img src="{{ request.user.sellerprofile.ShopDetails.ShopLogo.url }}"
-                                     style="border-radius: 45px; height: 200px "></td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Name</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Name}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Email</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Email}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Phone</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Phone}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Address</th>
-                            <td class="text-left">{{ request.user.sellerprofile.ShopDetails.Address}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">City</th>
-                            <td class="text-left">{{ request.user.userprofile.city}}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-left">Country</th>
-                            <td class="text-left">{{ request.user.userprofile.country}}</td>
-                        </tr>
-                    </table>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ps-card ps-card--order-information ps-card--small">
+                            <div class="ps-card__header">
+                                <h3>Shop Information</h3>
+                            </div>
+                            <div class="ps-card__content">
+                                <p><strong>Shop Name :</strong> {{seller.user.sellerprofile.ShopDetails.ShopName}}</p>
+                                <p><strong>Shop Address:</strong> {{seller.user.sellerprofile.ShopDetails.Address}}</p>
+                                <p><strong>License No:</strong> {{seller.user.sellerprofile.ShopDetails.TradeLicense}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="ps-section__right">
+                <div class="ps-card ps-card--track-order">
+                    <div class="ps-card__header">
+                        <h3>Intelectual Properties</h3>
+                    </div>
+                    <div class="ps-card__content">
+                        <div class="ps-block--track-order">
+                            <div class="ps-block__header">
+                                <p><strong>NID:</strong></p>
+                                <div>
+                                    <a download="nid.jpg" href="{{seller.user.sellerprofile.ShopDetails.NIDImage.url}}">
+                                        <img src="{{seller.user.sellerprofile.ShopDetails.NIDImage.url}}" alt="">
+                                    </a>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="ps-block__header">
+                                    <p><strong>Trade License:</strong></p>
+                                    <div>
+                                        <a download="nid.jpg"
+                                           href="{{seller.user.sellerprofile.ShopDetails.TradeImage.url}}">
+                                            <img src="{{seller.user.sellerprofile.ShopDetails.TradeImage.url}}" alt="">
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
         </section>
     </div>
 </main>

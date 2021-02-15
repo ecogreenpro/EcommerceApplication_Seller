@@ -34,8 +34,8 @@ def categories_home():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """ <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
-                               <div class="ps-block&#45;&#45;category"><a class="ps-block__overlay" href="/category/{}"></a>
+        items_li += """ <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 " >
+                               <div class="ps-block--category" style="height:240;"><a class="ps-block__overlay" href="/category/{}" > </a>
                                <img
                                    src="media/{}" alt="" width="125" height="125">
                                <p>{}</p>
