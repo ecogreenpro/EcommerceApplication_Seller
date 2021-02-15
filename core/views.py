@@ -990,9 +990,9 @@ def storeList(request):
 
 
 class sellerDetails(View):
-    def get(self, request, pk, *args, **kwargs):
-        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
-        product = Products.objects.filter(user_id=sellerUser.id)
+    def get(self, request, *args, **kwargs):
+        sellerUser = sellerProfile.objects.filter(Seller_id=self.kwargs['Seller_id']).first()
+        product = Products.objects.filter(user_id=sellerUser.user.id)
         setting = Settings.objects.get()
         if request.user.is_authenticated:
             cart = CartProducts.objects.filter(user=request.user)

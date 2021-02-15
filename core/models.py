@@ -35,7 +35,6 @@ Status_Choices = (
 
 class Categories(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    icon = models.ImageField(upload_to='Photos')
     slug = models.SlugField(unique=True)
     description = RichTextUploadingField()
     image = models.ImageField(upload_to='Photos')
