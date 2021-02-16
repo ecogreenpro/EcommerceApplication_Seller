@@ -107,28 +107,7 @@
 
         </header>
         <section class="ps-items-listing">
-            <!--<div class="ps-section__header simple">
-                    <div class="ps-section__filter">
-                        <form class="ps-form&#45;&#45;filter" action="index.html" method="get">
-                            <div class="ps-form__left">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Search..." />
-                                </div>
-                                <div class="form-group">
-                                    <select class="ps-select">
-                                        <option value="1">Status</option>
-                                        <option value="2">Active</option>
-                                        <option value="3">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="ps-form__right">
-                                <button class="ps-btn ps-btn&#45;&#45;gray"><i class="icon icon-funnel mr-2"></i>Filter</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="ps-section__actions"><a class="ps-btn success" href="new-order.html"><i class="icon icon-plus mr-2"></i>New Order</a><a class="ps-btn ps-btn&#45;&#45;gray" href="new-order.html"><i class="icon icon-download2 mr-2"></i>Export</a></div>
-                </div>-->
+
             <div class="ps-section__content">
                 <div class="table-responsive">
                     <table class="table ps-table">
@@ -137,7 +116,7 @@
                             <th>ID</th>
                             <th>Date</th>
                             <th>Name</th>
-                            <th>Shipping</th>
+                            <th>Product</th>
                             <th>Status</th>
                             <th>Total</th>
                             <th></th>
@@ -147,22 +126,23 @@
                         {%for orders in myOrders%}
                         <tr>
                             <td>
-                                <a href="{% url 'vandorOrderDetails' orders.order_Number %}">#{{orders.order_Number}}</a>
+                                <a href="{% url 'vandorOrderDetails' orders.order.order_Number %}">#{{orders.order.order_Number}}</a>
                             </td>
-                            <td><strong> {{orders.ordered_date}}</strong></td>
-                            <td><a href="#"><strong>{{orders.first_name}} {{orders.last_name}}</strong></a></td>
-                            <td><span class="ps-badge success">{{orders.payment}}</span>
+                            <td><strong> {{orders.order.ordered_date}}</strong></td>
+                            <td><a href="#"><strong>{{orders.order.first_name}} {{orders.order.last_name}}</strong></a>
                             </td>
-                            <td><span class="ps-fullfillment">{{orders.order_status}}</span>
+                            <td><span class="ps-fullfillment">{{orders.product.name}}</span>
                             </td>
-                            <td><strong>৳ {{orders.OrderTotal}}</strong></td>
+                            <td><span class="ps-badge success">{{orders.order.order_status}}</span>
+                            </td>
+                            <td><strong>৳ {{orders.amount}}</strong></td>
                             <td>
                                 <div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown"
                                                          aria-haspopup="true" aria-expanded="false"><i
                                         class="icon-ellipsis"></i></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
                                             class="dropdown-item"
-                                            href="{% url 'vandorOrderDetails' orders.order_Number %}">Edit</a><a
+                                            href="{% url 'vandorOrderDetails' orders.order.order_Number %}">Edit</a><a
                                             class="dropdown-item" href="#">Delete</a>
                                     </div>
                                 </div>
@@ -173,16 +153,7 @@
                     </table>
                 </div>
             </div>
-            <!--<div class="ps-section__footer">
-                <p>Show 10 in 30 items.</p>
-                <ul class="pagination">
-                    <li><a href="#"><i class="icon icon-chevron-left"></i></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#"><i class="icon-chevron-right"></i></a></li>
-                </ul>
-            </div>-->
+
         </section>
     </div>
 </main>

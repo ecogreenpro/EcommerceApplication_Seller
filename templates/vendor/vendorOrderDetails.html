@@ -153,7 +153,11 @@
                                 <tbody>
                                 {%for productList in Product%}
                                 <tr>
-                                    <td><a href="#">{{productList.product.name}}</a></td>
+                                    <td><a href="#">{{productList.product.name}}</a>
+                                        <br>
+                                        <small>Shop:
+                                            {{productList.product.user.sellerprofile.ShopDetails.ShopName}}</small>
+                                    </td>
                                     <td>{{productList.price}}</td>
                                     <td>{{productList.quantity}}</td>
                                     <td>{{productList.amount}}</td>

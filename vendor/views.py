@@ -88,9 +88,9 @@ def addProduct(request):
         else:
             form = AddProductForm(request=request)
             context = {
-                    'Settings': setting,
-                    'form': form
-                        }
+                'Settings': setting,
+                'form': form
+            }
 
         return render(request, 'vendor/addProduct.html', context)
     else:
@@ -111,8 +111,9 @@ def vendoerStockmanager(request):
 
 @login_required(login_url='/login')
 def vendoerOrderManager(request):
-    orders = Order.objects.all()
     user = request.user
+    products = Products.objects.filter(user=request.user)
+    orders = OrderProduct.objects.filter(product__in=products)
     seller = sellerProfile.objects.filter(user=user)
     setting = Settings.objects.get()
     if seller.exists():
