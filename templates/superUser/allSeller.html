@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{Settings.favIcon.url}}"/>
     <title>Jewellery Seller | Jewllery Seller</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
@@ -33,7 +33,7 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" width="70"
                                                                  height="70" alt=""></a></div>
     <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
             class="icon-exit-right"></i></a></div>
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -104,15 +104,8 @@
             <div class="header__left">
                 <h3>All Jewellery Seller</h3>
             </div>
-            <div class="header__center">
-                <form class="ps-form--search-bar" action="" method="get">
-                    <input class="form-control" type="text" placeholder="Search something"/>
-                    <button><i class="icon-magnifier"></i></button>
-                </form>
-            </div>
-            <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
-                    class="icon-exit-right"></i></a></div>
+
+
         </header>
         <section class="ps-items-listing">
             <div class="ps-section__content">
@@ -134,12 +127,12 @@
                         {%for seller in sellers%}
                         <tr>
                             <td>
-                                <a href="{% url 'sellerDetails' seller.user.id %}">#{{forloop.counter}}</a>
+                                <a href="{% url 'sellerDetails' seller.Seller_id %}">{{seller.Seller_id}}</a>
                             </td>
                             <td><img src="{{seller.user.userprofile.image.url}}" alt="" width="50" height="50"></td>
-                            <td><a href="#"><strong>{{seller.user.username}}</strong></a></td>
-                            <td><a href="#"><strong>{{seller.ShopDetails.Name}}</strong></a></td>
-                            <td><span class="ps-badge success">{{seller.ShopDetails.ShopName}}</span>
+                            <td><a><strong>{{seller.user.username}}</strong></a></td>
+                            <td><a><strong>{{seller.ShopDetails.Name}}</strong></a></td>
+                            <td><span class="ps-badge success"><a href="{% url 'core:sellerDetails' seller.Seller_id %}">{{seller.ShopDetails.ShopName}}</a></span>
                             </td>
                             <td><span class="ps-fullfillment">{{seller.ShopDetails.Phone}}</span>
                             </td>
@@ -149,9 +142,9 @@
                                                          aria-haspopup="true" aria-expanded="false"><i
                                         class="icon-ellipsis"></i></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{% url 'core:sellerDetails' seller.user.id %}">Visit
+                                        <a class="dropdown-item" href="{% url 'core:sellerDetails' seller.Seller_id %}">Visit
                                             Store</a>
-                                        <a class="dropdown-item" href="{% url 'sellerDetails' seller.user.id %}">View
+                                        <a class="dropdown-item" href="{% url 'sellerDetails' seller.Seller_id %}">View
                                             Details</a>
                                         <a class="dropdown-item" href="#">Delete</a>
                                     </div>

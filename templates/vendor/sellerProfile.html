@@ -92,7 +92,7 @@
                     <br>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -100,21 +100,7 @@
         </div>
     </div>
     <div class="ps-main__wrapper">
-        <header class="header--dashboard">
-            <div class="header__left">
-                <h3>Products</h3>
-                <p>Product Listings</p>
-            </div>
-            <div class="header__center">
-                <form class="ps-form--search-bar" action="" method="get">
-                    <input class="form-control" type="text" placeholder="Search something"/>
-                    <button><i class="icon-magnifier"></i></button>
-                </form>
-            </div>
-            <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
-                    class="icon-exit-right"></i></a></div>
-        </header>
+
         <section class="ps-items-listing">
             {% for message in messages %}
             <br>

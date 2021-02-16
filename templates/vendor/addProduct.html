@@ -34,7 +34,7 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" width="70"
                                                                  height="70" alt=""></a>
     </div>
     <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
@@ -89,7 +89,7 @@
                     </ul>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                 </form>
             </div>
             <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
+                                          href="{% url 'core:sellerDetails' request.user.sellerprofile.Seller_id %}"><span>View your store</span><i
                     class="icon-exit-right"></i></a></div>
         </header>
         <section class="ps-new-item">
@@ -125,8 +125,7 @@
                                 <div class="form-group">
                                     <label>Product Name<sup>*</sup>
                                     </label>
-                                    {% render_field form.name type="text" class="form-control" placeholder="Product
-                                    Name" %}
+                                    {% render_field form.name type="text" class="form-control" placeholder="Product Name" %}
                                     {% render_field form.user class="form-control"%}
                                 </div>
                                 <div class="form-group">
@@ -146,8 +145,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Sale Price<sup>*</sup></label>
-                                    {% render_field form.discountPrice class="form-control" placeholder="Discount
-                                    Price"%}
+                                    {% render_field form.discountPrice class="form-control" placeholder="Discount Price"%}
                                 </div>
                                 <div class="form-group">
                                     <label>Sale Quantity<sup>*</sup>

@@ -33,7 +33,7 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" width="70"
                                                                  height="70" alt=""></a>
     </div>
     <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
@@ -90,7 +90,7 @@
                     </ul>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 </form>
             </div>
             <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
+                                          href="{% url 'core:sellerDetails' request.user.sellerprofile.Seller_id %}"><span>View your store</span><i
                     class="icon-exit-right"></i></a></div>
         </header>
         <section class="ps-items-listing">
@@ -127,44 +127,7 @@
             {% endfor %}
             <div class="ps-section__actions"><a class="ps-btn success" href="/add-new-product/"><i
                     class="icon icon-plus mr-2"></i>New Product</a></div>
-            <!--<div class="ps-section__header">
-                <div class="ps-section__filter">
-                    <form class="ps-form&#45;&#45;filter" action="index.html" method="get">
-                        <div class="ps-form__left">
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option value="1">Select Category</option>
-                                    <option value="2">Clothing & Apparel</option>
-                                    <option value="3">Clothing & Apparel</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option value="1">Product Type</option>
-                                    <option value="2">Simple Product</option>
-                                    <option value="3">Groupped product</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="ps-select">
-                                    <option value="1">Status</option>
-                                    <option value="2">Active</option>
-                                    <option value="3">Inactive</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="ps-form__right">
-                            <button class="ps-btn ps-btn&#45;&#45;gray"><i class="icon icon-funnel mr-2"></i>Filter</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="ps-section__search">
-                    <form class="ps-form&#45;&#45;search-simple" action="index.html" method="get">
-                        <input class="form-control" type="text" placeholder="Search product" />
-                        <button><i class="icon icon-magnifier"></i></button>
-                    </form>
-                </div>
-            </div>-->
+
             <div class="ps-section__content">
                 <div class="table-responsive">
                     <table class="table ps-table">
@@ -188,7 +151,7 @@
                         {%if item.user.sellerprofile.ShopName == request.user.sellerprofile.ShopName %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td><a href="#"><strong>{{item.name | truncatechars_html:35}}</strong></a></td>
+                            <td><a href="{% url 'core:productDetail' item.slug %}"><strong>{{item.name | truncatechars_html:35}}</strong></a></td>
                             <td>
                                 <p class="ps-item-categories"><a href="#">Bags</a><a href="#">{{item.category.name}}</a>
                                 </p>

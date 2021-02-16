@@ -25,8 +25,8 @@ urlpatterns = [
     path('seller-change-password/', views.sellerChangePassword, name="sellerChangePassword"),
     path('Jewellery-sellers/', views.allSeller, name="allSeller"),
     path('seller-request/', views.sellerRequest, name="sellerRequest"),
-    path('seller-details/<pk>', sellerDetails.as_view(), name="sellerDetails"),
-    path('seller-report/<pk>', sellerInfoReport.as_view(), name="sellerReport"),
+    path('seller-details/<Seller_id>', sellerDetails.as_view(), name="sellerDetails"),
+    path('seller-report/<Seller_id>', sellerInfoReport.as_view(), name="sellerReport"),
 
     path('vandor-Order-Details/<order_Number>', vandorOrderDetails.as_view(), name="vandorOrderDetails"),
 

@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{Settings.favIcon.url}}"/>
     <title>Jewellery Seller | Jewllery Seller</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
@@ -33,7 +33,7 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="{%static 'media/Jewellery.png'%}" width="70"
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" width="70"
                                                                  height="70" alt=""></a></div>
     <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
             class="icon-exit-right"></i></a></div>
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="{%static 'media/Jewellery.png'%}" width="170" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
     <div class="ps-main__wrapper">
         <header class="header--dashboard">
             <div class="header__left">
-                <h3>All Jewellery Seller</h3>
+                <h3>Seller Request</h3>
             </div>
             <div class="header__center">
                 <form class="ps-form--search-bar" action="" method="get">
@@ -110,9 +110,7 @@
                     <button><i class="icon-magnifier"></i></button>
                 </form>
             </div>
-            <div class="header__right"><a class="header__site-link"
-                                          href=""><span>View your store</span><i
-                    class="icon-exit-right"></i></a></div>
+
         </header>
         <section class="ps-items-listing">
             <div class="ps-section__content">

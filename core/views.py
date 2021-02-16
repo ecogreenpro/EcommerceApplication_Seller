@@ -273,7 +273,7 @@ def changePassword(request):
         else:
 
             form = PasswordChangeForm(request.user)
-            return render(request, 'account/ChangePassword.html', {'form': form,  'Settings': setting})
+            return render(request, 'account/ChangePassword.html', {'form': form, 'Settings': setting})
     else:
         context = {
             'Settings': setting,
