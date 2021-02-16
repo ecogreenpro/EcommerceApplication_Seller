@@ -1,18 +1,17 @@
+<!DOCTYPE html>
 {%load static%}
 {% load checkout_templates_tags%}
-<html>
+<html lang="en">
 <head>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="{% static 'core/fonts/Linearicons/Linearicons/Font/demo-files/demo.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+    <title> #{{OrderNo}} | Jewellery</title>
     <style>
-        body {
-            background: #eee
-        }
-
-        @media print {
-            #printPageButton, #headerPrint {
+         @media print {
+            #printInvoice, #pdfInvoice {
                 display: none;
             }
         }
@@ -21,118 +20,287 @@
             size: auto;   /* auto is the initial value */
             margin: 0mm;  /* this affects the margin in the printer settings */
         }
-
-        html {
-            background-color: #FFFFFF;
-            margin: 0px; /* this affects the margin on the html before sending to printer */
+        body {
+            background: -webkit-linear-gradient(left, #D9A701, #d4b055);
         }
 
-        body {
-            border: solid 1px white;
-            margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */
+        .emp-profile {
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+
+        #invoice {
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+
+        .invoice {
+            position: relative;
+            background-color: #FFF;
+            min-height: 680px;
+            padding: 15px
+        }
+
+        .invoice header {
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #3989c6
+        }
+
+        .invoice .company-details {
+            text-align: right
+        }
+
+        .invoice .company-details .name {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice .contacts {
+            margin-bottom: 20px
+        }
+
+        .invoice .invoice-to {
+            text-align: left
+        }
+
+        .invoice .invoice-to .to {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice .invoice-details {
+            text-align: right
+        }
+
+        .invoice .invoice-details .invoice-id {
+            margin-top: 0;
+            color: #3989c6
+        }
+
+        .invoice main {
+            padding-bottom: 50px
+        }
+
+        .invoice main .thanks {
+            margin-top: -100px;
+            font-size: 2em;
+            margin-bottom: 50px
+        }
+
+        .invoice main .notices {
+            padding-left: 6px;
+            border-left: 6px solid #3989c6
+        }
+
+        .invoice main .notices .notice {
+            font-size: 1.2em
+        }
+
+        .invoice table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 20px
+        }
+
+        .invoice table td, .invoice table th {
+            padding: 15px;
+            background: #eee;
+            border-bottom: 1px solid #fff
+        }
+
+        .invoice table th {
+            white-space: nowrap;
+            font-weight: 400;
+            font-size: 16px
+        }
+
+        .invoice table td h3 {
+            margin: 0;
+            font-weight: 400;
+            color: #3989c6;
+            font-size: 1.2em
+        }
+
+        .invoice table .qty, .invoice table .total, .invoice table .unit {
+            text-align: right;
+            font-size: 1.2em
+        }
+
+        .invoice table .no {
+            color: #fff;
+            font-size: 1.6em;
+            background: #3989c6
+        }
+
+        .invoice table .unit {
+            background: #ddd
+        }
+
+        .invoice table .total {
+            background: #c3baba;
+            color: #000000
+        }
+
+        .invoice table tbody tr:last-child td {
+            border: none
+        }
+
+        .invoice table tfoot td {
+            background: 0 0;
+            border-bottom: none;
+            white-space: nowrap;
+            text-align: right;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-top: 1px solid #aaa
+        }
+
+        .invoice table tfoot tr:first-child td {
+            border-top: none
+        }
+
+        .invoice table tfoot tr:last-child td {
+            color: #3989c6;
+            font-size: 1.4em;
+            border-top: 1px solid #3989c6
+        }
+
+        .invoice table tfoot tr td:first-child {
+            border: none
+        }
+
+        .invoice footer {
+            width: 100%;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #aaa;
+            padding: 8px 0
+        }
+
+        @media print {
+            .invoice {
+                font-size: 11px !important;
+                overflow: hidden !important
+            }
+
+            .invoice footer {
+                position: absolute;
+                bottom: 10px;
+            }
+
+
         }
     </style>
-    <title> Order no #{{OrderNo}} | Jewellery</title>
+
 </head>
 <body>
-<div class="container mt-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-12">
-            <div class="p-3 bg-white rounded">
-                <div class="row">
-                    <div class="col-md-6 ">
-                        <div class="col-md-6 ">
-                        <img src="{{Settings.logo.url}}" alt="" width="200" height="130">
-                    </div>
-                    </div>
-                    <div class="col-md-5 text-right mt-3">
-                        <h4 style="color: darkgoldenrod">{{Settings.siteTitle}}</h4>
-                        <span><strong>{{Settings.description}}</strong></span><br>
-                        <span>{{Settings.address}}</span><br>
-                        <span>Contact: {{Settings.phone}}</span><br>
-                        <span>{{Settings.email}}</span>
-                    </div>
-
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-md-6 text-left">
-                        <h1 class="text-left">Invoice #{{OrderNo}}</h1>
-                        <div class="billed "><span class="font-weight-bold text-uppercase"></span><span
-                                class="ml-1">{{Billed_firstName}} {{Billed_lastName}}</span></div>
-                        <div class="billed"><span class="font-weight-bold text-uppercase"></span><span
-                                class="ml-1">{{Address}}, {{District}}, {{Country}}</span>
-                        </div>
-                        <div class="billed"><span class="font-weight-bold text-uppercase"></span><span
-                                class="ml-1">{{Phone}}</span>
-                        </div>
-                        <div class="billed"><span class="font-weight-bold text-uppercase"></span><span
-                                class="ml-1">{{Email}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-5 text-right mt-3  ">
-                        <div class="billed"></div>
-                        <div class="billed"><span class="font-weight-bold text-uppercase">Order No: </span><span
-                                class="ml-1">{{OrderNo}}</span>
-                        </div>
-                        <div class="billed"><span class="font-weight-bold text-uppercase"> Order Date: </span><span
-                                class="ml-1">{{OrderDate}}</span>
-                        </div>
-                    </div>
 
 
-                </div>
-                <div class="mt-3">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {%for productList in Product%}
-                            <tr>
-                                <td><strong>{{productList.product.name}}</strong></td>
-                                <td>{{productList.quantity}}</td>
-                                <td>{{productList.price}}</td>
-                                <td>{{productList.amount}}</td>
-                            </tr>
-                            {%endfor%}
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><strong>Order Total</strong></td>
-                                <td></td>
-                            </tr>
-                            <tr class="table table-borderless">
-                                <td></td>
-                                <td></td>
-                                <td><strong>{{Delivery}}</strong></td>
-                                <td><strong>100.00</strong></td>
-                            </tr>
-                            <tfoot class="table table-borderless">
-                            <td><strong>Order Note : </strong>{{OrderNote}}</td>
-                            <td></td>
-                            <td><strong>Total</strong></td>
-                            <td><strong>{{oderTotal}}</strong></td>
-                            </tfoot>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="text-right mb-3">
-                    <a id="headerPrint" class="btn btn-success" href="{%url 'core:home'%}"> Continue Shopping
-                    </a>
-                    <button id="printPageButton" class="btn btn-danger" type="button"
-                            onclick="window.print()">Print
-                    </button>
+<div class="container emp-profile">
+    <div id="invoice">
 
-                </div>
+        <div class="toolbar hidden-print">
+            <div class="text-right">
+                <button id="printInvoice" class="btn btn-info" class="btn btn-danger" type="button"
+                        onclick="window.print()"><i class="icon-printer"></i> Print
+                </button>
+                <a id="pdfInvoice" href="{%url 'core:userOrder'%}" class="btn btn-info"><i class="icon-backward-circle"></i> Back</a>
+            </div>
+            <hr>
+        </div>
+        <div class="invoice overflow-auto">
+            <div style="min-width: 600px">
+                <header>
+                    <div class="row">
+                        <div class="col">
+                            <a target="_blank" href="https://lobianijs.com">
+                                <img src="{{Settings.logo.url}}"
+                                     data-holder-rendered="true"/>
+                            </a>
+                        </div>
+                        <div class="col company-details">
+                            <h4 class="name">
+                                Jewellery.com.bd
+                                <br>
+                                <small>A Palace of Ornaments</small>
+                            </h4>
+                            <div>{{Settings.address}}</div>
+                            <div>{{Settings.phone}}</div>
+                            <div>{{Settings.email}}</div>
+                        </div>
+                    </div>
+                </header>
+                <main>
+                    <div class="row contacts">
+                        <div class="col invoice-to">
+                            <div style="width: 110px;border: 2px solid goldenrod;"> <strong>&nbsp; Invoice To:</strong></div>
+                            <h2 class="to">{{Billed_firstName}} {{Billed_lastName}}</h2>
+                            <div class="address">{{Address}}, {{District}}, {{Country}}</div>
+                            <div class="email"><a style="text-decoration: none;" href="mailto:{{Email}}">{{Email}}</a>
+                            </div>
+                        </div>
+                        <div class="col invoice-details">
+                            <h4 class="invoice-id">Invoic No: {{OrderNo}}</h4>
+                            <div class="date">Date of Invoice: {{OrderDate}}</div>
+
+                        </div>
+                    </div>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr>
+                            <th style="border: 1px solid goldenrod; background: #D9A701;"><h5>SL#</h5></th>
+                            <th class="text-left" style="border: 1px solid goldenrod; background: #D9A701;"><h5>Product</h5></th>
+                            <th class="text-right" style="border: 1px solid goldenrod; background: #D9A701;"><h5>Quantity</h5></th>
+                            <th class="text-right" style="border: 1px solid goldenrod; background: #D9A701;"><h5>Price</h5></th>
+                            <th class="text-right" style="border: 1px solid goldenrod; background: #D9A701;"><h5>Price</h5></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for productList in Product%}
+                        <tr>
+                            <td class="total" style="color:black">{{forloop.counter}}</td>
+                            <td><strong>{{productList.product.name}}</strong></td>
+                            <td class="qty">{{productList.quantity}}</td>
+                            <td class="qty">{{productList.price}}</td>
+                            <td class="total">{{productList.amount}}</td>
+                        </tr>
+                        {%endfor%}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">Shipping</td>
+                            <td> 100</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2"> TOTAL</td>
+                            <td>BDT {{oderTotal}}</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <div class="thanks">Thank you!</div>
+                    <div class="notices">
+                        <div>Order Note:</div>
+                        <div class="notice">{{OrderNote}}
+                        </div>
+                    </div>
+                </main>
+
+            </div>
+            <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+            <div>
+                <footer>
+                    {{Settings.siteTitle}}
+                </footer>
             </div>
         </div>
     </div>
