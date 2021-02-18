@@ -112,7 +112,8 @@ class userProfileAdmin(admin.ModelAdmin):
     list_display_links = ['userPhoto', 'user']
     prepopulated_fields = {'slug': ("user",)}
     list_filter = ['user', 'isActive']
-    search_fields = ['user', 'isActive']
+    search_fields = ['Phone',]
+
 
 
 class settingsAdmin(admin.ModelAdmin):

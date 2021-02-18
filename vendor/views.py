@@ -376,3 +376,15 @@ def sellerRequest(request):
         }
         messages.warning(request, 'You are not a Jewellery Seller')
         return render(request, 'becomeSeller.html', context)
+
+
+class sellerRequestDetails(View):
+    def get(self, request, pk, *args, **kwargs):
+        sellers = SellerRegistration.objects.filter(id=self.kwargs['pk']).first()
+        setting = Settings.objects.get()
+        context = {
+
+            'Settings': setting,
+            'seller': sellers,
+        }
+        return render(self.request, "superUser/sellerRequestDetails.html", context)

@@ -142,11 +142,10 @@
                         <tbody>
                         {%for seller in sellers%}
                         <tr>
-                            <td>
-                                <a href="">#{{forloop.counter}}</a>
+                            <td>#{{forloop.counter}}
                             </td>
                             <td><img src="{{seller.ShopLogo.url}}" alt="" width="50" height="50"></td>
-                            <td><a href="#"><strong>{{seller.Name}}</strong></a></td>
+                            <td><a href="{%url 'sellerRequestDetails' seller.id%}"><strong>{{seller.Name}}</strong></a></td>
                             <td><span class="ps-badge success">{{seller.ShopName}}</span>
                             </td>
                             <td><span class="ps-fullfillment">{{seller.Phone}}</span>
@@ -157,7 +156,7 @@
                                                          aria-haspopup="true" aria-expanded="false"><i
                                         class="icon-ellipsis"></i></a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="">View
+                                        <a class="dropdown-item" href="{%url 'sellerRequestDetails' seller.id%}">View
                                             Details</a>
                                         <a class="dropdown-item" href="#">Delete</a>
                                     </div>
