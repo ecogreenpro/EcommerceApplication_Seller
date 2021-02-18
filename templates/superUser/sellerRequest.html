@@ -1,5 +1,6 @@
-{%load static%}
 <!DOCTYPE html>
+{%load static%}
+{%load cart_template_tags%}
 <html lang="en">
 
 <head>
@@ -50,8 +51,12 @@
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
             <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
             {%if request.user.is_superuser%}
-            <li><a  href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-            <li><a class="active" href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+            <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+            </a></li>
+            <li><a class="active" href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+            <span class="badge badge-danger">{% sellerRequsetCount as count %} {{count}}</span>
+            </a></li>
             {%endif%}
         </ul>
     </div>
@@ -82,14 +87,21 @@
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
-                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-                        <li><a class="active" href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+                        <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+                        </a></li>
+                        <li><a class="active" href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+                            <span class="badge badge-danger">{% sellerRequsetCount as count %} {{count}}</span>
+                        </a></li>
                         {%endif%}
                     </ul>
                     <br>
                     <br>
                     <br>
                 </div>
+                <br>
+                <br>
+                <br>
 
                 <div class="ps-sidebar__footer">
                     <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">

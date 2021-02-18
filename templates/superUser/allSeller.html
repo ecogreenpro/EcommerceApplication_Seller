@@ -1,4 +1,5 @@
 {%load static%}
+{%load cart_template_tags%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +51,12 @@
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
             <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
             {%if request.user.is_superuser%}
-            <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+            <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+                <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+            </a></li>
+            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+                <span class="badge badge-danger">{% sellerRequsetCount as count %} {{count}}</span>
+            </a></li>
             {%endif%}
         </ul>
     </div>
@@ -82,14 +87,21 @@
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
-                        <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+                        <li><a class="active" href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+                        <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+                        </a></li>
+                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+                        <span class="badge badge-danger">{% sellerRequsetCount  as count %} {{count}}</span>
+                        </a></li>
                         {%endif%}
                     </ul>
                     <br>
                     <br>
                     <br>
                 </div>
+                <br>
+                <br>
+                <br>
 
                 <div class="ps-sidebar__footer">
                     <div class="ps-copyright"><img src="{{Settings.logo.url}}" width="170" alt="">
@@ -132,7 +144,8 @@
                             <td><img src="{{seller.user.userprofile.image.url}}" alt="" width="50" height="50"></td>
                             <td><a><strong>{{seller.user.username}}</strong></a></td>
                             <td><a><strong>{{seller.ShopDetails.Name}}</strong></a></td>
-                            <td><span class="ps-badge success"><a href="{% url 'core:sellerDetails' seller.Seller_id %}">{{seller.ShopDetails.ShopName}}</a></span>
+                            <td><span class="ps-badge success"><a
+                                    href="{% url 'core:sellerDetails' seller.Seller_id %}">{{seller.ShopDetails.ShopName}}</a></span>
                             </td>
                             <td><span class="ps-fullfillment">{{seller.ShopDetails.Phone}}</span>
                             </td>
