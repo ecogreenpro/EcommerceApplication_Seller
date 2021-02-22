@@ -2,8 +2,21 @@ from django import template
 from django.utils.safestring import mark_safe
 
 from core.models import CartProducts, Order, Products, Shipping
+from vendor.models import SellerRegistration, sellerProfile
 
 register = template.Library()
+
+
+@register.simple_tag
+def sellerCount():
+    seller = sellerProfile.objects.all().count()
+    return seller
+
+
+@register.simple_tag
+def sellerRequsetCount():
+    seller = SellerRegistration.objects.all().count()
+    return seller
 
 
 @register.simple_tag

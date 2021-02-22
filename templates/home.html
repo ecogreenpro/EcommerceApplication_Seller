@@ -323,16 +323,16 @@
                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                             <div class="ps-product--horizontal">
                                 <div class="ps-product__thumbnail" style="border: #0D0A0A"><a
-                                        href="{% url 'core:sellerDetails' seller.user.id %}"><img
+                                        href="{% url 'core:sellerDetails' seller.Seller_id %}"><img
                                         src="{{seller.user.sellerprofile.ShopDetails.ShopLogo.url}}" alt=""></a></div>
                                 <div class="ps-product__content">
-                                    <a class="ps-product__title" href="{% url 'core:sellerDetails' seller.user.id %}">
+                                    <a class="ps-product__title" href="{% url 'core:sellerDetails' seller.Seller_id %}">
                                         <h4 style="color: #D09918;!important;">
                                             {{seller.user.sellerprofile.ShopDetails.ShopName}}</h4>
                                         <br>
                                     </a>
                                     <br>
-                                    <a href="{% url 'core:sellerDetails' seller.user.id %}"
+                                    <a href="{% url 'core:sellerDetails' seller.Seller_id %}"
                                        style="background: #D09918;!important;" class="ps-btn btn-danger"
                                        href="#">Visit Store</a>
                                 </div>

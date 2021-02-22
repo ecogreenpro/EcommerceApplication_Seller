@@ -1,5 +1,6 @@
 {%load static%}
 {% load widget_tweaks %}
+{%load cart_template_tags%}
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +38,7 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><a class="ps-logo" href="#"><img src="img/logo.png" alt=""></a></div>
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" alt=""></a></div>
     <div class="header__right"><a class="header__site-link" href="#"><i class="icon-exit-right"></i></a></div>
 </header>
 <aside class="ps-drawer--mobile">
@@ -52,8 +53,12 @@
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
             <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
             {%if request.user.is_superuser%}
-            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+            <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+                <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+            </a></li>
+            <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+                <span class="badge badge-danger">{% sellerRequsetCount as count %} {{count}}</span>
+            </a></li>
             {%endif%}
         </ul>
     </div>
@@ -85,13 +90,17 @@
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
-                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller</a></li>
-                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request</a></li>
+                        <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
+                            <span class="badge badge-danger">{% sellerCount as count %} {{count}}</span>
+                        </a></li>
+                        <li><a href="{% url 'sellerRequest'%}"><i class="icon-cog"></i>Seller Request
+                            <span class="badge badge-danger">{% sellerRequsetCount as count %} {{count}}</span>
+                        </a></li>
                         {%endif%}
                     </ul>
                 </div>
                 <div class="ps-sidebar__footer">
-                    <div class="ps-copyright"><img src="img/logo.png" alt="">
+                    <div class="ps-copyright"><img src="{{Settings.logo.url}}" alt="" width="170">
                         <p>&copy;2021 Jewellery.com.bd. <br/> All rights reversed.</p>
                     </div>
                 </div>
@@ -111,7 +120,7 @@
                 </form>
             </div>
             <div class="header__right"><a class="header__site-link"
-                                          href="{% url 'core:sellerDetails' request.user.id %}"><span>View your store</span><i
+                                          href="{% url 'core:sellerDetails' request.user.sellerprofile.Seller_id %}"><span>View your store</span><i
                     class="icon-exit-right"></i></a></div>
         </header>
         <section class="ps-new-item">

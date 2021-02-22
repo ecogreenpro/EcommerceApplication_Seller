@@ -18,8 +18,9 @@ from vendor.models import SellerRegistration
 def vendorDashboard(request):
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
+    setting = Settings.objects.get()
     if seller.exists():
-        return render(request, 'vendor/vendorDashboard.html')
+        return render(request, 'vendor/vendorDashboard.html', {'Settings': setting})
     else:
         form = SellerRegistrationForm()
         messages.warning(request, 'You are not a Jewellery Seller')
@@ -49,7 +50,7 @@ def becomeSeller(request):
 def allProduct(request):
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
 
         product = Products.objects.filter(user=request.user)
@@ -72,7 +73,7 @@ def allProduct(request):
 def addProduct(request):
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         if request.method == 'POST':
             form = AddProductForm(request.POST, request.FILES, request=request)
@@ -86,7 +87,12 @@ def addProduct(request):
                 return HttpResponseRedirect('/add-new-product/')
         else:
             form = AddProductForm(request=request)
-        return render(request, 'vendor/addProduct.html', {'form': form})
+            context = {
+                'Settings': setting,
+                'form': form
+            }
+
+        return render(request, 'vendor/addProduct.html', context)
     else:
         form = SellerRegistrationForm()
         context = {
@@ -105,10 +111,11 @@ def vendoerStockmanager(request):
 
 @login_required(login_url='/login')
 def vendoerOrderManager(request):
-    orders = Order.objects.all()
     user = request.user
+    products = Products.objects.filter(user=request.user)
+    orders = OrderProduct.objects.filter(product__in=products)
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         context = {
             'myOrders': orders,
@@ -131,7 +138,7 @@ class vandorOrderDetails(DetailView):
         orderProdcut = OrderProduct.objects.filter(order=order)
         user = request.user
         seller = sellerProfile.objects.filter(user=user)
-        setting = Settings.objects.all()
+        setting = Settings.objects.get()
         if seller.exists():
             context = {
                 'Product': orderProdcut,
@@ -193,7 +200,7 @@ def accountsReport(request):
 def settings(request):
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         context = {'Settings': setting, }
         return render(request, 'vendor/sellerProfile.html', context)
@@ -212,7 +219,7 @@ def updateProduct(request, slug):
     product = Products.objects.filter(slug=slug).first()
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         if request.method == 'POST':
             productUpdateForm = updateForm(request.POST, request.FILES,
@@ -245,7 +252,7 @@ def sellerUpdate(request):
     shopDetails = SellerRegistration.objects.filter(ShopName=request.user.sellerprofile.ShopDetails.ShopName).first()
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         if request.method == 'POST':
             shopDetailsForm = ProfileUpdateForm(request.POST, request.FILES,
@@ -277,7 +284,7 @@ def sellerUpdate(request):
 def sellerChangePassword(request):
     user = request.user
     seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         if request.method == 'POST':
             form = PasswordChangeForm(request.user, request.POST)
@@ -307,7 +314,7 @@ def sellerChangePassword(request):
 @login_required(login_url='/login/')
 def allSeller(request):
     seller = sellerProfile.objects.all()
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if seller.exists():
         context = {
             'Settings': setting,
@@ -326,9 +333,9 @@ def allSeller(request):
 
 
 class sellerDetails(View):
-    def get(self, request, pk, *args, **kwargs):
-        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
-        setting = Settings.objects.all()
+    def get(self, request, *args, **kwargs):
+        sellerUser = sellerProfile.objects.filter(Seller_id=self.kwargs['Seller_id']).first()
+        setting = Settings.objects.get()
         context = {
 
             'Settings': setting,
@@ -338,8 +345,8 @@ class sellerDetails(View):
 
 
 class sellerInfoReport(View):
-    def get(self, request, pk, *args, **kwargs):
-        sellerUser = userProfile.objects.filter(id=self.kwargs['pk']).first()
+    def get(self, request, *args, **kwargs):
+        sellerUser = sellerProfile.objects.filter(Seller_id=self.kwargs['Seller_id']).first()
         setting = Settings.objects.get()
         context = {
 
@@ -353,7 +360,7 @@ class sellerInfoReport(View):
 @login_required(login_url='/login/')
 def sellerRequest(request):
     sellerreq = SellerRegistration.objects.all()
-    setting = Settings.objects.all()
+    setting = Settings.objects.get()
     if sellerreq.exists():
         context = {
             'Settings': setting,
@@ -369,3 +376,15 @@ def sellerRequest(request):
         }
         messages.warning(request, 'You are not a Jewellery Seller')
         return render(request, 'becomeSeller.html', context)
+
+
+class sellerRequestDetails(View):
+    def get(self, request, pk, *args, **kwargs):
+        sellers = SellerRegistration.objects.filter(id=self.kwargs['pk']).first()
+        setting = Settings.objects.get()
+        context = {
+
+            'Settings': setting,
+            'seller': sellers,
+        }
+        return render(self.request, "superUser/sellerRequestDetails.html", context)
