@@ -160,8 +160,7 @@
                         {%if item.user.sellerprofile.ShopName == request.user.sellerprofile.ShopName %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td><a href="{% url 'core:productDetail' item.slug %}"><strong>{{item.name |
-                                truncatechars_html:35}}</strong></a></td>
+                            <td><a href="{% url 'core:productDetail' item.slug %}"><strong>{{item.name | truncatechars_html:35}}</strong></a></td>
                             <td>
                                 <p class="ps-item-categories"><a href="#">Bags</a><a href="#">{{item.category.name}}</a>
                                 </p>
