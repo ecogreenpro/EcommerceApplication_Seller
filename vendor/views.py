@@ -20,10 +20,19 @@ class SellerDashboard(SellerAccountMixin, View):
     def get(self, request, *args, **kwargs):
         seller = sellerProfile.objects.filter(user=self.request.user)
         total_sales = self.get_total_sales()
+        orders = self.get_seller_order()
+        orderCount = self.get_seller_order_count()
+        products = self.seller_product()
+        productCount = self.seller_product_count()
         setting = Settings.objects.get()
         context = {
             'total_sales': total_sales,
-            'Settings': setting
+            'Settings': setting,
+            'sellerOrder': orders,
+            'orderCount': orderCount,
+            'sellerProduct': products,
+            'productCount': productCount
+
         }
         if seller.exists():
             return render(request, 'vendor/vendorDashboard.html', context)
@@ -58,6 +67,7 @@ class allProduct(SellerAccountMixin, View):
         seller = sellerProfile.objects.filter(user=user)
         setting = Settings.objects.get()
         total_sales = self.get_total_sales()
+
         if seller.exists():
 
             product = Products.objects.filter(user=request.user)

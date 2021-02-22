@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" type="image/png" href="{{settings.favIcon.url}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{Settings.favIcon.url}}"/>
     <title>Deshboard | Jewllery Seller</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
           rel="stylesheet">
@@ -34,8 +34,9 @@
         <button class="ps-drawer-toggle"><i class="icon icon-menu"></i></button>
         <img src="" alt="">
     </div>
-    <div class="header__center"><img ssrc="{{Settings.logo.url}}" width="70"
-                                     height="70" alt=""></a></div>
+    <div class="header__center"><a class="ps-logo" href="#"><img src="{{Settings.logo.url}}" width="70"
+                                                                 height="70" alt=""></a>
+    </div>
     <div class="header__right"><a class="header__site-link" href="{% url 'core:logout' %}"><i
             class="icon-exit-right"></i></a></div>
 </header>
@@ -129,11 +130,12 @@
                  <div class="row ">
                     <div class="col-md-4">
                         <div class="ps-block--stat"
-                             style="background-color: #47c5f4!important;background-image: linear-gradient(315deg, #47c5f4 0%, #6791d9 74%)!important;">
+                             style="background-color: #47c5f4!important;background-image: linear-gradient(315deg, #47c5f4 0%, #0050d4 74%)!important;">
                             <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
                             <div class="ps-block__content">
                                 <p class="text-white">Products</p>
-                                <h4 class="text-white">254</h4>
+
+                                <h4 class="text-white">{{productCount}}</h4>
                             </div>
                         </div>
                         <br>
@@ -145,7 +147,7 @@
                             <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
                             <div class="ps-block__content">
                                 <p class="text-white-50">Total Oders</p>
-                                <h4 class="text-white"><strong>14</strong></h4>
+                                <h4 class="text-white"><strong>{{orderCount}}</strong></h4>
                             </div>
                         </div>
                         <br>
@@ -153,11 +155,11 @@
 
                     <div class="col-md-4">
                             <div class="ps-block--stat"
-                             style="background-color: #ffb72c!important;background-image: linear-gradient(315deg, #ffb72c  0%, #f57f59  74%)!important;">
+                             style="background-color: #ffb72c!important;background-image: linear-gradient(315deg, #ffb72c  0%, #e03a00  74%)!important;">
                             <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
                             <div class="ps-block__content">
                                 <p class="text-white-50">Total Earning</p>
-                                <h4 class="text-white"><strong>204234</strong></h4>
+                                <h4 class="text-white"><strong>{{total_sales}}</strong></h4>
                             </div>
 
                         </div>
@@ -167,47 +169,55 @@
                 <div class="ps-card ">
                     <div class="ps-card__header">
                         <h4>Recent Orders</h4>
-
                     </div>
                     <div class="ps-card__content">
                         <div class="table-responsive ">
-                            <table class="table ps-table ">
-                                <thead class="thead-dark">
-                                <tr >
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Product</th>
-                                    <th>Payment</th>
-                                    <th>Fullfillment</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>#A580</td>
-                                    <td><strong> Aug, 15, 2020</strong></td>
-                                    <td><a href="order-detail.html"><strong>Unero Black Military</strong></a></td>
-                                    <td><span class="ps-badge success">Paid</span>
-                                    </td>
-                                    <td><span class="ps-fullfillment success">delivered</span>
-                                    </td>
-                                    <td><strong>$56.00</strong></td>
-                                    <td>
-                                        <div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown"
-                                                                 aria-haspopup="true" aria-expanded="false"><i
-                                                class="icon-ellipsis"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
-                                                    class="dropdown-item" href="#">Edit</a><a class="dropdown-item"
-                                                                                              href="#">Delete</a></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                             <table class="table ps-table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for orders in sellerOrder%}
+                        {% if forloop.counter|divisibleby:2 %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'vandorOrderDetails' orders.order.order_Number %}">#{{orders.order.order_Number}}</a>
+                            </td>
+                            <td><strong> {{orders.order.ordered_date}}</strong></td>
+                            <td><a href="#"><strong>{{orders.order.first_name}} {{orders.order.last_name}}</strong></a>
+                            </td>
+                            <td><span class="ps-fullfillment">{{orders.product.name}}</span>
+                            </td>
+                            <td><span class="ps-badge success">{{orders.order.order_status}}</span>
+                            </td>
+                            <td><strong>৳ {{orders.amount}}</strong></td>
+                            <td>
+                                <div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown"
+                                                         aria-haspopup="true" aria-expanded="false"><i
+                                        class="icon-ellipsis"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
+                                            class="dropdown-item"
+                                            href="{% url 'vandorOrderDetails' orders.order.order_Number %}">Edit</a><a
+                                            class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {%endif%}
+                        {%endfor%}
+                        </tbody>
+                    </table>
                         </div>
                     </div>
-                    <div class="ps-card__footer"><a class="ps-card__morelink" href="orders.htmls">View Full Orders<i
+                    <div class="ps-card__footer"><a class="btn btn-outline-warning" href="/vendoer-order-manager/">View more<i
                             class="icon icon-chevron-right"></i></a></div>
                 </div>
                 <div class="ps-card">
@@ -217,84 +227,67 @@
                     <div class="ps-card__content">
                         <div class="table-responsive">
                             <table class="table ps-table">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Product</th>
-                                    <th>Payment</th>
-                                    <th>Fullfillment</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>#A580</td>
-                                    <td><strong> Aug, 15, 2020</strong></td>
-                                    <td><a href="order-detail.html"><strong>Unero Black Military</strong></a></td>
-                                    <td><span class="ps-badge success">Paid</span>
-                                    </td>
-                                    <td><span class="ps-fullfillment success">delivered</span>
-                                    </td>
-                                    <td><strong>$56.00</strong></td>
-                                    <td>
-                                        <div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown"
-                                                                 aria-haspopup="true" aria-expanded="false"><i
-                                                class="icon-ellipsis"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
-                                                    class="dropdown-item" href="#">Edit</a><a class="dropdown-item"
-                                                                                              href="#">Delete</a></div>
-                                        </div>
-                                    </td>
-                                </tr>
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Categories</th>
+                            <th>SKU</th>
+                            <th>Stock</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
 
-                                </tbody>
-                            </table>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for item in sellerProduct%}
+                        {%if item.isactive%}
+                        {%if forloop.counter|divisibleby:2%}
+                        {%if item.user.sellerprofile.ShopName == request.user.sellerprofile.ShopName %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'core:productDetail' item.slug %}"><strong>{{item.name | truncatechars_html:35}}</strong></a></td>
+                            <td>
+                                <p class="ps-item-categories"><a href="#">{{item.category.name}}</a>
+                                </p>
+                            </td>
+                            <td>AB123456789-1</td>
+                            <td>{% if item.stockQuantity > 0 %}
+                                <span class="ps-badge success">In Stock</span>
+                                {%else%}
+                                <span class="ps-badge alert-danger">Out of Stock</span>
+                                {%endif%}
+                            </td>
+                            <td>{{item.stockQuantity}}</td>
+                            <td><strong>{{item.price}}</strong></td>
+
+
+                            <td>
+                                <div class="dropdown"><a href="" id="dropdownMenuButton" data-toggle="dropdown"
+                                                         aria-haspopup="true" aria-expanded="false"><i
+                                        class="icon-ellipsis"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a
+                                            class="dropdown-item" href="{% url 'updateProduct' item.slug %}">Edit</a><a
+                                            class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {%endif%}
+                        {%endif%}
+                        {%endif%}
+                        {%endfor%}
+                        </tbody>
+                    </table>
                         </div>
                     </div>
-                    <div class="ps-card__footer"><a class="ps-card__morelink" href="orders.htmls">View Full Orders<i
+                    <div class="ps-card__footer"><a class="btn btn-outline-danger" href="/all-product/">View more<i
                             class="icon icon-chevron-right"></i></a></div>
                 </div>
 
             </div>
-
-
-            <!--<div class="ps-section__right">
-                <section class="ps-card ps-card&#45;&#45;statics">
-                    <div class="ps-card__header">
-                        <h4>Statics</h4>
-                    </div>
-                    <div class="ps-card__content">
-                        <div class="ps-block&#45;&#45;stat"
-                             style="background-color: #47c5f4!important;background-image: linear-gradient(315deg, #47c5f4 0%, #6791d9 74%)!important;">
-                            <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
-                            <div class="ps-block__content">
-                                <p class="text-white">Products</p>
-                                <h4 class="text-white">254</h4>
-                            </div>
-                        </div>
-                        <div class="ps-block&#45;&#45;stat"
-                             style="background-color: #f44747!important;background-image: linear-gradient(315deg, #ff7474 0%, #920000 74%)!important;">
-                            <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
-                            <div class="ps-block__content">
-                                <p class="text-white-50">Total Oders</p>
-                                <h4 class="text-white"><strong>14</strong></h4>
-                            </div>
-                        </div>
-
-                        <div class="ps-block&#45;&#45;stat"
-                             style="background-color: #ffb72c!important;background-image: linear-gradient(315deg, #ffb72c  0%, #f57f59  74%)!important;">
-                            <div class="ps-block__left"><span><i class="icon-cart"></i></span></div>
-                            <div class="ps-block__content">
-                                <p class="text-white-50">Total Earning</p>
-                                <h4 class="text-white"><strong>204234</strong></h4>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-            </div>-->
 
         </section>
     </div>
