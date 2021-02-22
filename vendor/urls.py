@@ -2,13 +2,13 @@ from django.urls import path
 from . import views
 
 from .views import (
-    vandorOrderDetails, sellerDetails, sellerInfoReport, sellerRequestDetails
+    vandorOrderDetails, sellerDetails, sellerInfoReport, sellerRequestDetails,SellerDashboard,allProduct
 
 )
 
 urlpatterns = [
-    path('vendor-dashboard/', views.vendorDashboard, name="vendorDashboard"),
-    path('all-product/', views.allProduct, name="allProduct"),
+    path('vendor-dashboard/', SellerDashboard.as_view(), name="vendorDashboard"),
+    path('all-product/', allProduct.as_view(), name="allProduct"),
     path('add-new-product/', views.addProduct, name="addProduct"),
     path('update-product/<slug>', views.updateProduct, name="updateProduct"),
     path('vendoer-stock-manager/', views.vendoerStockmanager, name="vendoerStockmanager"),

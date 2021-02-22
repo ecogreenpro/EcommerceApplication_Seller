@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
@@ -11,20 +12,25 @@ from django.views.generic import ListView, DetailView, View, UpdateView
 
 from core.models import Products, OrderProduct, Order, Settings, userProfile
 from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
+from vendor.mixins import SellerAccountMixin
 from vendor.models import SellerRegistration
 
 
-@login_required(login_url='/login')
-def vendorDashboard(request):
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        return render(request, 'vendor/vendorDashboard.html', {'Settings': setting})
-    else:
-        form = SellerRegistrationForm()
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', {'form': form})
+class SellerDashboard(SellerAccountMixin, View):
+    def get(self, request, *args, **kwargs):
+        seller = sellerProfile.objects.filter(user=self.request.user)
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        context = {
+            'total_sales': total_sales,
+            'Settings': setting
+        }
+        if seller.exists():
+            return render(request, 'vendor/vendorDashboard.html', context)
+        else:
+            form = SellerRegistrationForm()
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', {'form': form})
 
 
 def becomeSeller(request):
@@ -46,27 +52,29 @@ def becomeSeller(request):
 #     paginate_by = 16
 #     template_name = "vendor/allProduct.html"
 
-@login_required(login_url='/login')
-def allProduct(request):
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
+class allProduct(SellerAccountMixin, View):
+    def get(self,request):
+        user = request.user
+        seller = sellerProfile.objects.filter(user=user)
+        setting = Settings.objects.get()
+        total_sales = self.get_total_sales()
+        if seller.exists():
 
-        product = Products.objects.filter(user=request.user)
-        context = {
-            'product': product,
-            'Settings': setting,
-        }
-        return render(request, 'vendor/allProduct.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+            product = Products.objects.filter(user=request.user)
+            context = {
+                'product': product,
+                'Settings': setting,
+                'total_sales': total_sales
+            }
+            return render(request, 'vendor/allProduct.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
 @login_required(login_url='/login')
@@ -130,6 +138,19 @@ def vendoerOrderManager(request):
         }
         messages.warning(request, 'You are not a Jewellery Seller')
         return render(request, 'becomeSeller.html', context)
+
+
+@login_required(login_url='/login')
+def get_total_sales(request):
+    user = request.user
+    products = Products.objects.filter(user=user)
+    orders = OrderProduct.objects.filter(product__in=products)
+    transactions = orders.aggregate(Sum("price"))
+    total_sales = transactions["price__sum"]
+    context = {
+        'total_sales': total_sales
+    }
+    return render(request, 'vendorDashboard.html', context)
 
 
 class vandorOrderDetails(DetailView):
@@ -310,6 +331,7 @@ def sellerChangePassword(request):
         return render(request, 'becomeSeller.html', context)
 
 
+# Super admin part
 @user_passes_test(lambda u: u.is_superuser)
 @login_required(login_url='/login/')
 def allSeller(request):

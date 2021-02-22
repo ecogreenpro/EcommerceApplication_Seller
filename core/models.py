@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 from django_countries.fields import CountryField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 Label_Choices = (
     ('Sale', 'Sale'),
@@ -206,6 +206,14 @@ class OrderProduct(models.Model):
             total += order_item.get_final_price()
 
         return total
+
+    def get_total_sales(self):
+        user = self.request.user
+        products = Products.objects.filter(user=user)
+        productPrice = OrderProduct.objects.filter(product__in=products)
+        transactions = productPrice.aggregate(Sum("price"))
+        total_sales = transactions["price__sum"]
+        return total_sales
 
 
 class Coupon(models.Model):
