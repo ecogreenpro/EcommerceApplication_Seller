@@ -49,7 +49,7 @@
     <div class="ps-drawer__content">
         <ul class="menu">
             <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a></li>
-            <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+            <li><a class="active" href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
             <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
             {%if request.user.is_superuser%}
             <li><a href="{% url 'allSeller'%}"><i class="icon-cog"></i>All Seller
@@ -84,7 +84,7 @@
                     <ul class="menu">
                         <li><a href="{% url 'vendorDashboard' %}"><i class="icon-home"></i>Dashboard</a>
                         </li>
-                        <li><a href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
+                        <li><a class="active" href="{% url 'allProduct' %}"><i class="icon-database"></i>Products</a></li>
                         <li><a href="{% url 'vendoerOrderManager'%}"><i class="icon-bag2"></i>Orders</a></li>
                         <li><a href="{% url 'sellerProfile'%}"><i class="icon-cog"></i>Settings</a></li>
                         {%if request.user.is_superuser%}
@@ -123,7 +123,7 @@
         </header>
         <section class="ps-new-item">
 
-            <form method="post" class="needs-validation" enctype="multipart/form-data">
+            <form method="post" class="needs-validation" action="/add-new-product/" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
                 <div class="row">
