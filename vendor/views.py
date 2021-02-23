@@ -78,8 +78,8 @@ class allProduct(SellerAccountMixin, View):
             return render(request, 'becomeSeller.html', context)
 
 
-class addProduct(SellerAccountMixin,View):
-    def get(self,request):
+class addProduct(SellerAccountMixin, View):
+    def get(self, request):
         user = request.user
         seller = sellerProfile.objects.filter(user=user)
         total_sales = self.get_total_sales()
@@ -100,7 +100,7 @@ class addProduct(SellerAccountMixin,View):
                 context = {
                     'Settings': setting,
                     'form': form,
-                    'total_sales':total_sales
+                    'total_sales': total_sales
                 }
 
             return render(request, 'vendor/addProduct.html', context)
@@ -120,46 +120,37 @@ def vendoerStockmanager(request):
     return render(request, 'vendor/vendoerStockmanager.html', context)
 
 
-@login_required(login_url='/login')
-def vendoerOrderManager(request):
-    user = request.user
-    products = Products.objects.filter(user=request.user)
-    orders = OrderProduct.objects.filter(product__in=products)
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        context = {
-            'myOrders': orders,
-            'Settings': setting,
-        }
-        return render(request, 'vendor/vendoerOrderManager.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+class vendoerOrderManager(SellerAccountMixin, View):
+    def get(self, request):
+        user = request.user
+        products = Products.objects.filter(user=request.user)
+        orders = OrderProduct.objects.filter(product__in=products)
+        total_sales = self.get_total_sales()
+        seller = sellerProfile.objects.filter(user=user)
+        setting = Settings.objects.get()
+        if seller.exists():
+            context = {
+                'myOrders': orders,
+                'Settings': setting,
+                'total_sales': total_sales
+            }
+            return render(request, 'vendor/vendoerOrderManager.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
-@login_required(login_url='/login')
-def get_total_sales(request):
-    user = request.user
-    products = Products.objects.filter(user=user)
-    orders = OrderProduct.objects.filter(product__in=products)
-    transactions = orders.aggregate(Sum("price"))
-    total_sales = transactions["price__sum"]
-    context = {
-        'total_sales': total_sales
-    }
-    return render(request, 'vendorDashboard.html', context)
-
-
-class vandorOrderDetails(DetailView):
+class vandorOrderDetails(SellerAccountMixin, View):
     def get(self, request, *args, **kwargs):
         order = Order.objects.get(order_Number=self.kwargs['order_Number'])
         orderProdcut = OrderProduct.objects.filter(order=order)
+        total_sales = self.get_total_sales()
         user = request.user
         seller = sellerProfile.objects.filter(user=user)
         setting = Settings.objects.get()
@@ -180,6 +171,7 @@ class vandorOrderDetails(DetailView):
                 'OrderNote': order.order_note,
                 'OrderStatus': order.order_status,
                 'Settings': setting,
+                'total_sales': total_sales,
             }
             return render(self.request, "vendor/vendorOrderDetails.html", context)
         else:
@@ -187,6 +179,7 @@ class vandorOrderDetails(DetailView):
             context = {
                 'Settings': setting,
                 'form': form,
+
             }
             messages.warning(request, 'You are not a Jewellery Seller')
             return render(request, 'becomeSeller.html', context)
@@ -220,151 +213,164 @@ def accountsReport(request):
     return render(request, 'vendor/accountsReport.html', context)
 
 
-@login_required(login_url='/login')
-def settings(request):
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        context = {'Settings': setting, }
-        return render(request, 'vendor/sellerProfile.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
-
-
-@login_required(login_url='/login')
-def updateProduct(request, slug):
-    product = Products.objects.filter(slug=slug).first()
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        if request.method == 'POST':
-            productUpdateForm = updateForm(request.POST, request.FILES,
-                                           instance=product)
-            if productUpdateForm.is_valid():
-                productUpdateForm.save()
-                messages.success(request, 'Your Product has been updated!')
-                return HttpResponseRedirect('/all-product/')
+class settings(SellerAccountMixin, View):
+    def get(self, request):
+        user = request.user
+        seller = sellerProfile.objects.filter(user=user)
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        if seller.exists():
+            context = {'Settings': setting,
+                       'total_sales': total_sales
+                       }
+            return render(request, 'vendor/sellerProfile.html', context)
         else:
-
-            productUpdateForm = updateForm(instance=product)
+            form = SellerRegistrationForm()
             context = {
-
-                'form': productUpdateForm,
                 'Settings': setting,
+                'form': form,
             }
-            return render(request, 'vendor/updateProduct.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
-@login_required(login_url='/login')  # Check login
-def sellerUpdate(request):
-    shopDetails = SellerRegistration.objects.filter(ShopName=request.user.sellerprofile.ShopDetails.ShopName).first()
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        if request.method == 'POST':
-            shopDetailsForm = ProfileUpdateForm(request.POST, request.FILES,
-                                                instance=shopDetails)
-            if shopDetailsForm.is_valid():
-                shopDetailsForm.save()
-                messages.success(request, 'Your account has been updated!')
-                return HttpResponseRedirect('/seller-profile/')
-        else:
-
-            shopDetailsForm = ProfileUpdateForm(instance=shopDetails)
-            context = {
-
-                'shopDetailsForm': shopDetailsForm,
-                'Settings': setting,
-            }
-            return render(request, 'vendor/sellerDetailsUpdate.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
-
-
-@login_required(login_url='/login')
-def sellerChangePassword(request):
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        if request.method == 'POST':
-            form = PasswordChangeForm(request.user, request.POST)
-            if form.is_valid():
-                user = form.save()
-                update_session_auth_hash(request, user)  # Important!
-                messages.success(request, 'Your password was successfully updated!')
-                return HttpResponseRedirect('/seller-profile')
+class updateProduct(SellerAccountMixin, View):
+    def get(self, request, slug):
+        product = Products.objects.filter(slug=slug).first()
+        user = request.user
+        seller = sellerProfile.objects.filter(user=user)
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        if seller.exists():
+            if request.method == 'POST':
+                productUpdateForm = updateForm(request.POST, request.FILES,
+                                               instance=product)
+                if productUpdateForm.is_valid():
+                    productUpdateForm.save()
+                    messages.success(request, 'Your Product has been updated!')
+                    return HttpResponseRedirect('/all-product/')
             else:
-                messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
-                return HttpResponseRedirect('/seller-change-password/')
-        else:
 
-            form = PasswordChangeForm(request.user)
-            return render(request, 'vendor/sellerChangePassword.html', {'form': form, })
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+                productUpdateForm = updateForm(instance=product)
+                context = {
+
+                    'form': productUpdateForm,
+                    'Settings': setting,
+                    'total_sales': total_sales
+                }
+                return render(request, 'vendor/updateProduct.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
+
+
+class sellerUpdate(SellerAccountMixin, View):
+    def get(self, request):
+        shopDetails = SellerRegistration.objects.filter(
+            ShopName=request.user.sellerprofile.ShopDetails.ShopName).first()
+        user = request.user
+        total_sales = self.get_total_sales()
+        seller = sellerProfile.objects.filter(user=user)
+        setting = Settings.objects.get()
+        if seller.exists():
+            if request.method == 'POST':
+                shopDetailsForm = ProfileUpdateForm(request.POST, request.FILES,
+                                                    instance=shopDetails)
+                if shopDetailsForm.is_valid():
+                    shopDetailsForm.save()
+                    messages.success(request, 'Your account has been updated!')
+                    return HttpResponseRedirect('/seller-profile/')
+            else:
+
+                shopDetailsForm = ProfileUpdateForm(instance=shopDetails)
+                context = {
+
+                    'shopDetailsForm': shopDetailsForm,
+                    'Settings': setting,
+                    'total_sales': total_sales
+                }
+                return render(request, 'vendor/sellerDetailsUpdate.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
+
+
+class sellerChangePassword(SellerAccountMixin, View):
+    def get(self, request):
+        user = request.user
+        seller = sellerProfile.objects.filter(user=user)
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        if seller.exists():
+            if request.method == 'POST':
+                form = PasswordChangeForm(request.user, request.POST)
+                if form.is_valid():
+                    user = form.save()
+                    update_session_auth_hash(request, user)  # Important!
+                    messages.success(request, 'Your password was successfully updated!')
+                    return HttpResponseRedirect('/seller-profile')
+                else:
+                    messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
+                    return HttpResponseRedirect('/seller-change-password/')
+            else:
+
+                form = PasswordChangeForm(request.user)
+                return render(request, 'vendor/sellerChangePassword.html', {'form': form, 'total_sales': total_sales})
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
 # Super admin part
-@user_passes_test(lambda u: u.is_superuser)
-@login_required(login_url='/login/')
-def allSeller(request):
-    seller = sellerProfile.objects.all()
-    setting = Settings.objects.get()
-    if seller.exists():
-        context = {
-            'Settings': setting,
-            'sellers': seller
 
-        }
-        return render(request, 'superUser/allSeller.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+class allseller(SellerAccountMixin, View):
+    def get(self, request):
+        total_sales = self.get_total_sales()
+        seller = sellerProfile.objects.all()
+        setting = Settings.objects.get()
+        if seller.exists():
+            context = {
+                'Settings': setting,
+                'sellers': seller,
+                'total_sales': total_sales
+
+            }
+            return render(request, 'superUser/allSeller.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
-class sellerDetails(View):
+class sellerDetails(SellerAccountMixin, View):
     def get(self, request, *args, **kwargs):
+        total_sales = self.get_total_sales()
         sellerUser = sellerProfile.objects.filter(Seller_id=self.kwargs['Seller_id']).first()
         setting = Settings.objects.get()
         context = {
 
             'Settings': setting,
             'seller': sellerUser,
+            'total_sales': total_sales
         }
         return render(self.request, "superUser/superUserSellerDetails.html", context)
 
@@ -381,35 +387,38 @@ class sellerInfoReport(View):
         return render(self.request, "superUser/sellerInfoReport.html", context)
 
 
-@user_passes_test(lambda u: u.is_superuser)
-@login_required(login_url='/login/')
-def sellerRequest(request):
-    sellerreq = SellerRegistration.objects.all()
-    setting = Settings.objects.get()
-    if sellerreq.exists():
-        context = {
-            'Settings': setting,
-            'sellers': sellerreq
+class sellerRequest(SellerAccountMixin, View):
+    def get(self, request):
+        sellerreq = SellerRegistration.objects.all()
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        if sellerreq.exists():
+            context = {
+                'Settings': setting,
+                'sellers': sellerreq,
+                'total_sales': total_sales
 
-        }
-        return render(request, 'superUser/sellerRequest.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+            }
+            return render(request, 'superUser/sellerRequest.html', context)
+        else:
+            form = SellerRegistrationForm()
+            context = {
+                'Settings': setting,
+                'form': form,
+            }
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
-class sellerRequestDetails(View):
+class sellerRequestDetails(SellerAccountMixin, View):
     def get(self, request, pk, *args, **kwargs):
+        total_sales = self.get_total_sales()
         sellers = SellerRegistration.objects.filter(id=self.kwargs['pk']).first()
         setting = Settings.objects.get()
         context = {
 
             'Settings': setting,
             'seller': sellers,
+            'total_sales': total_sales
         }
         return render(self.request, "superUser/sellerRequestDetails.html", context)
