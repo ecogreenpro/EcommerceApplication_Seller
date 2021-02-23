@@ -1,19 +1,29 @@
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.contrib import messages, auth
-# Create your views here.
-from django.views.generic import ListView, DetailView, View, UpdateView
-
-from core.models import Products, OrderProduct, Order, Settings, userProfile
+from django.shortcuts import render
+from django.contrib import messages
+from django.views.generic import DetailView, View
+from core.models import Products, OrderProduct, Order, Settings
 from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
 from vendor.mixins import SellerAccountMixin
 from vendor.models import SellerRegistration
+
+
+def becomeSeller(request):
+    setting = Settings.objects.get()
+    if request.method == 'POST':
+        form = SellerRegistrationForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Seller Registration Confirmed, We Will mail you shortly')
+            return HttpResponseRedirect('/login/')
+    else:
+        form = SellerRegistrationForm()
+    return render(request, 'becomeSeller.html', {'form': form, 'Settings': setting})
 
 
 class SellerDashboard(SellerAccountMixin, View):
@@ -42,27 +52,8 @@ class SellerDashboard(SellerAccountMixin, View):
             return render(request, 'becomeSeller.html', {'form': form})
 
 
-def becomeSeller(request):
-    setting = Settings.objects.get()
-    if request.method == 'POST':
-        form = SellerRegistrationForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            form.save()
-            messages.info(request, 'Seller Registration Confirmed, We Will mail you shortly')
-            return HttpResponseRedirect('/login/')
-    else:
-        form = SellerRegistrationForm()
-    return render(request, 'becomeSeller.html', {'form': form, 'Settings': setting})
-
-
-# class allProduct(ListView):
-#     model = Products
-#     paginate_by = 16
-#     template_name = "vendor/allProduct.html"
-
 class allProduct(SellerAccountMixin, View):
-    def get(self,request):
+    def get(self, request):
         user = request.user
         seller = sellerProfile.objects.filter(user=user)
         setting = Settings.objects.get()
@@ -87,38 +78,40 @@ class allProduct(SellerAccountMixin, View):
             return render(request, 'becomeSeller.html', context)
 
 
-@login_required(login_url='/login')
-def addProduct(request):
-    user = request.user
-    seller = sellerProfile.objects.filter(user=user)
-    setting = Settings.objects.get()
-    if seller.exists():
-        if request.method == 'POST':
-            form = AddProductForm(request.POST, request.FILES, request=request)
+class addProduct(SellerAccountMixin,View):
+    def get(self,request):
+        user = request.user
+        seller = sellerProfile.objects.filter(user=user)
+        total_sales = self.get_total_sales()
+        setting = Settings.objects.get()
+        if seller.exists():
+            if request.method == 'POST':
+                form = AddProductForm(request.POST, request.FILES, request=request)
 
-            if form.is_valid():
-                form.save()
-                messages.info(request, 'Product Added Successfully, We will review your Product.')
-                return HttpResponseRedirect('/all-product/')
+                if form.is_valid():
+                    form.save()
+                    messages.info(request, 'Product Added Successfully, We will review your Product.')
+                    return HttpResponseRedirect('/all-product/')
+                else:
+                    messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
+                    return HttpResponseRedirect('/add-new-product/')
             else:
-                messages.error(request, 'Please correct the error below.<br>' + str(form.errors))
-                return HttpResponseRedirect('/add-new-product/')
+                form = AddProductForm(request=request)
+                context = {
+                    'Settings': setting,
+                    'form': form,
+                    'total_sales':total_sales
+                }
+
+            return render(request, 'vendor/addProduct.html', context)
         else:
-            form = AddProductForm(request=request)
+            form = SellerRegistrationForm()
             context = {
                 'Settings': setting,
-                'form': form
+                'form': form,
             }
-
-        return render(request, 'vendor/addProduct.html', context)
-    else:
-        form = SellerRegistrationForm()
-        context = {
-            'Settings': setting,
-            'form': form,
-        }
-        messages.warning(request, 'You are not a Jewellery Seller')
-        return render(request, 'becomeSeller.html', context)
+            messages.warning(request, 'You are not a Jewellery Seller')
+            return render(request, 'becomeSeller.html', context)
 
 
 @login_required(login_url='/login')
