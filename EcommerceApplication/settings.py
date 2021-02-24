@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'core',
     'vendor',
     'ckeditor',
-    'widget_tweaks'
+    'widget_tweaks',
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+SOCIAL_AUTH_FACEBOOK_KEY = '2603592103290321'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'd874d4c24901eb1bea58e3460fb55a3a'  # App Secret
 
 ROOT_URLCONF = 'EcommerceApplication.urls'
 
@@ -65,10 +70,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'EcommerceApplication.wsgi.application'
 
@@ -143,3 +159,7 @@ CKEDITOR_CONFIGS = {
         'width': '510px',
     },
 }
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
