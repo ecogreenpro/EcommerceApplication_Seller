@@ -57,12 +57,7 @@ class CartProductsAdmin(admin.ModelAdmin):
     ]
 
 
-class CouponAdmin(admin.ModelAdmin):
-    list_display = [
-        'code',
-        'amount',
 
-    ]
 
 
 class ShippingAdmin(admin.ModelAdmin):
@@ -142,7 +137,6 @@ admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(CartProducts, CartProductsAdmin)
-admin.site.register(Coupon, CouponAdmin)
 admin.site.register(Shipping, ShippingAdmin)
 admin.site.register(Order, OderAdmin)
 admin.site.register(OrderProduct, OrderProductAdmin)

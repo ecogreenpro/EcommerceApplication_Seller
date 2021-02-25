@@ -1,5 +1,6 @@
 {% load static %}
 {% load cart_template_tags%}
+{% load widget_tweaks %}
 {%include 'header.html'%}
 <body>
 
@@ -102,12 +103,17 @@
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                                 <figure>
                                     <figcaption>Coupon Discount</figcaption>
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="ps-btn ps-btn--outline">Apply</button>
-                                    </div>
+                                    <form method="post" class="needs-validation " novalidate
+                                          enctype="multipart/form-data">
+                                        <fieldset class="form-group">
+                                            {% csrf_token %}
+                                            {{form.media}}
+                                            {{form.as_p}}
+                                        </fieldset>
+                                        <button class="ps-btn danger " type="submit">
+                                            Apply
+                                        </button>
+                                    </form>
                                 </figure>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">

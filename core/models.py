@@ -9,6 +9,7 @@ from django_countries.fields import CountryField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db.models import Count, Sum
+from django_simple_coupons.models import Coupon
 
 Label_Choices = (
     ('Sale', 'Sale'),
@@ -177,7 +178,7 @@ class Order(models.Model):
 
     payment = models.CharField(choices=Payment_Choices, max_length=20, null=True)
     coupon = models.ForeignKey(
-        'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+         Coupon, on_delete=models.SET_NULL, blank=True, null=True)
     shipping = models.ForeignKey(
         'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20, null=True)

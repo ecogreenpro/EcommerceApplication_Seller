@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 
-from .forms import ProfileUpdateForm
+from .forms import ProfileUpdateForm, CouponApplyForm
 from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
@@ -534,6 +534,7 @@ def cart(request):
     category = Categories.objects.all()  # Access User Session information
     cart = CartProducts.objects.filter(user=request.user)
     setting = Settings.objects.get()
+    form = CouponApplyForm()
     if cart:
         total = 0
         for rs in cart:
@@ -546,6 +547,7 @@ def cart(request):
             'category': category,
             'total': total,
             'Settings': setting,
+            'form':form,
         }
     else:
         context = {"empty": True, 'Settings': setting}
