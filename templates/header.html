@@ -6,8 +6,12 @@
 <style>
     .navigation__extra > li:after {
 
-    background-color: #fff!important;
-}
+        background-color: #fff !important;
+    }
+
+    .fb-customerchat {
+        margin-bottom: 60px;
+    }
 </style>
 <head>
     <meta charset="utf-8">
@@ -39,7 +43,8 @@
         <div class="ps-container">
             <div class="header__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle"><i style="color:#D09918;" class="icon-menu"></i><span style="color:#D09918;"> Shop by Department</span></div>
+                    <div class="menu__toggle"><i style="color:#D09918;" class="icon-menu"></i><span
+                            style="color:#D09918;"> Shop by Department</span></div>
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             {% categories %}
@@ -61,7 +66,8 @@
             </div>
             <div class="header__right">
                 <div class="header__actions"><a class="header__extra" href="#">
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i style="color:#D09918;" class="icon-bag2"></i>
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i style="color:#D09918;"
+                                                                                    class="icon-bag2"></i>
                         <span style="background:#D09918;">{% cartCount user.id as count %}
                             <i>{{count}}</i></span></a>
                         <div class="ps-cart__content">
@@ -102,7 +108,7 @@
                         <div class="ps-block__right">{% if request.user.is_authenticated %}
                             <a href="{% url 'core:userprofile' %}" style="color:#D09918;">{{request.user.username}}</a>
                             {%else%}
-                            <a  href="{% url 'core:login'%}" style="color:#D09918;">Login</a><a
+                            <a href="{% url 'core:login'%}" style="color:#D09918;">Login</a><a
                                     href="{% url 'core:signup'%}" style="color:#D09918;">Register</a>
                             {%endif%}
                         </div>
@@ -116,7 +122,8 @@
         <div class="ps-container">
             <div class="navigation__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle"><i class="icon-menu text-white"></i><span class="text-white"> Shop by Department</span></div>
+                    <div class="menu__toggle"><i class="icon-menu text-white"></i><span class="text-white"> Shop by Department</span>
+                    </div>
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             {% categories %}
@@ -132,7 +139,9 @@
                     </li>
                 </ul>
                 <ul class="navigation__extra">
-                    <li><a class="text-white" href="/shop/"><span class="rounded border border-white bg-warning text-danger">&nbsp; Hot Deals &nbsp;</span></a></li>
+                    <li><a class="text-white" href="/shop/"><span
+                            class="rounded border border-white bg-warning text-danger">&nbsp; Hot Deals &nbsp;</span></a>
+                    </li>
                     <li><a class="text-white" href="/jewelry-store/">Jewellery Store</a></li>
                     <li><a class="text-white" href="/shop/">Shop Now</a></li>
                     <li><a class="text-white" href="/become-seller/">Sell on Jewellery</a></li>
@@ -145,13 +154,14 @@
     <div class="navigation--mobile" style="background: whitesmoke!important;">
         <div class="navigation__left">
             <a class="ps-logo" href="{% url 'core:home'%}"><img src="{{Settings.logo.url}}"
-                                                                                          alt=""
-                                                                                          height="60" width="100"></a>
+                                                                alt=""
+                                                                height="60" width="100"></a>
         </div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i style="color:#D09918;"
-                        class="icon-bag2"></i><span style="background:#D09918;">{% cartCount user.id as count %}
+                                                                                class="icon-bag2"></i><span
+                        style="background:#D09918;">{% cartCount user.id as count %}
                             <i>{{count}}</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
@@ -187,15 +197,17 @@
                 </div>
                 <div class="ps-block--user-header">
                     {% if request.user.is_authenticated %}
-                    <div class="ps-block__left"><a href="{% url 'core:userprofile' %}"><i style="color:#D09918;" class="icon-user"></i></a></div>
+                    <div class="ps-block__left"><a href="{% url 'core:userprofile' %}"><i style="color:#D09918;"
+                                                                                          class="icon-user"></i></a>
+                    </div>
                     <div class="ps-block__right">
                         <a href="{% url 'core:userprofile' %}">{{request.user.username}}</a>
                         {%else%}
 
                         <div class="ps-block ">
-                        <a href="{% url 'core:login'%}" style="color:#D09918;">Login</a>
-                        <br>
-                        <a href="{% url 'core:signup'%}" style="color:#D09918;">Register</a>
+                            <a href="{% url 'core:login'%}" style="color:#D09918;">Login</a>
+                            <br>
+                            <a href="{% url 'core:signup'%}" style="color:#D09918;">Register</a>
                         </div>
                         {%endif%}
                     </div>
@@ -252,11 +264,17 @@
     </div>
 </div>
 <div class="navigation--list">
-    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i style="color:#FAAE1A;"
-            class="icon-menu"></i><span style="color:#FAAE1A;"> Menu</span></a><a class="navigation__item ps-toggle--sidebar"
-                                                           href="#navigation-mobile"><i style="color:#FAAE1A;" class="icon-list4"></i><span style="color:#FAAE1A;"> Categories</span></a><a
-            class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i style="color:#FAAE1A;" class="icon-magnifier"></i><span style="color:#FAAE1A;"> Search</span></a><a
-            class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i style="color:#FAAE1A;" class="icon-bag2"></i><span style="color:#FAAE1A;"> Cart</span></a>
+    <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i
+            style="color:#FAAE1A;"
+            class="icon-menu"></i><span style="color:#FAAE1A;"> Menu</span></a><a
+            class="navigation__item ps-toggle--sidebar"
+            href="#navigation-mobile"><i style="color:#FAAE1A;" class="icon-list4"></i><span style="color:#FAAE1A;"> Categories</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i style="color:#FAAE1A;"
+                                                                                  class="icon-magnifier"></i><span
+            style="color:#FAAE1A;"> Search</span></a><a
+            class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i style="color:#FAAE1A;"
+                                                                               class="icon-bag2"></i><span
+            style="color:#FAAE1A;"> Cart</span></a>
     </div>
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
@@ -278,9 +296,11 @@
     </div>
     <div class="ps-panel__content">
         <ul class="menu--mobile">
-            <li><a href="/shop/"><span class="rounded border border-warning bg-warning text-white">&nbsp; Hot Deals &nbsp;</span></a></li>
-            <li><a  href="/shop/"><span class="rounded border border-danger bg-danger text-white">&nbsp; Shop Now &nbsp;</span></a></li>
-             <li><a href="/jewelry-store/">Jewellery Store</a></li>
+            <li><a href="/shop/"><span class="rounded border border-warning bg-warning text-white">&nbsp; Hot Deals &nbsp;</span></a>
+            </li>
+            <li><a href="/shop/"><span
+                    class="rounded border border-danger bg-danger text-white">&nbsp; Shop Now &nbsp;</span></a></li>
+            <li><a href="/jewelry-store/">Jewellery Store</a></li>
             <li><a href="/become-seller/">Sell on Jewellery</a></li>
             <li><a href="/about/">About us</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -303,6 +323,30 @@
     </div>
 </div>
 <div id="back2top"><i class="icon icon-arrow-up"></i></div>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v10.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your Chat Plugin code -->
+<div class="fb-customerchat"
+     attribution="setup_tool"
+     page_id="103158937919482">
+</div>
 
 <script src="{%static 'core/plugins/jquery.min.js'%}"></script>
 <script src="{%static 'core/plugins/nouislider/nouislider.min.js'%}"></script>

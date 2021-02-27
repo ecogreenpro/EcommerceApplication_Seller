@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.forms import TextInput, EmailInput, Select, FileInput
+from django_simple_coupons.models import Coupon
 
 from .models import userProfile
 
@@ -20,8 +21,6 @@ class ProfileModelForm(forms.ModelForm):
         fields = ['address', 'image', 'country', 'city', 'Phone']
 
 
-
-
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = userProfile
@@ -33,3 +32,7 @@ class ProfileUpdateForm(forms.ModelForm):
             'country': Select(attrs={'class': 'form-control', 'placeholder': 'country'}),
             'image': FileInput(attrs={'class': '', 'placeholder': 'image', }),
         }
+
+
+class CouponApplyForm(forms.Form):
+    code = forms.CharField()
