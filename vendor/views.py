@@ -11,7 +11,6 @@ from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, 
 from vendor.mixins import SellerAccountMixin
 from vendor.models import SellerRegistration
 
-
 def becomeSeller(request):
     setting = Settings.objects.get()
     if request.method == 'POST':
@@ -21,6 +20,10 @@ def becomeSeller(request):
             form.save()
             messages.info(request, 'Seller Registration Confirmed, We Will mail you shortly')
             return HttpResponseRedirect('/login/')
+        else:
+            messages.error(request,  + str(form.errors))
+            return HttpResponseRedirect('/become-seller/')
+
     else:
         form = SellerRegistrationForm()
     return render(request, 'becomeSeller.html', {'form': form, 'Settings': setting})
