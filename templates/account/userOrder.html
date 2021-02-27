@@ -27,9 +27,8 @@
                                         Information</a></li>
                                     <li class="active"><a href="{% url 'core:userOrder' %}"><i class="icon-papers"></i>
                                         My Orders</a></li>
-                                    <!--                                        <li><a href="#"><i class="icon-map-marker"></i> Address</a></li>-->
-                                    <!--                                        <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>-->
-                                    <!--                                        <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>-->
+                                    <li ><a href="{% url 'core:chat' %}"><i class="icon-paper-plane"></i> Chat</a>
+                                    </li>
                                     {% if user.sellerprofile.isSeller %}
                                     <li class="list-group-item">
                                         <a class=" btn btn-outline-primary alert-warnings "
@@ -90,28 +89,7 @@
             </div>
         </div>
     </section>
-    <div class="ps-newsletter">
-        <div class="ps-container">
-            <form class="ps-form--newsletter" action="do_action" method="post">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__left">
-                            <h3>Newsletter</h3>
-                            <p>Subcribe to get information about products and coupons</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                        <div class="ps-form__right">
-                            <div class="form-group--nest">
-                                <input class="form-control" type="email" placeholder="Email address">
-                                <button class="ps-btn">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
 </main>
 <!--    <div class="d-flex" id="wrapper">-->
 
