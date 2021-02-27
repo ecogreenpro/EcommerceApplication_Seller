@@ -552,7 +552,7 @@ def cart(request):
 
     return render(request, 'cart.html', context)
 
-
+from notifications.signals import notify
 @login_required(login_url='/login')
 def checkout(request):
     current_user = request.user
@@ -587,6 +587,7 @@ def checkout(request):
         data.order_Number = orderNumber
         data.save()
 
+
         for rs in cart:
             productDetails = OrderProduct()
             product = Products.objects.get(id=rs.item_id)
@@ -602,6 +603,7 @@ def checkout(request):
             product.stockQuantity -= rs.quantity
             product.save()
             productDetails.save()
+            notify.send(request.user, recipient=product.user, verb="Ordered Your Product")
 
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
         request.session['cart_items'] = 0

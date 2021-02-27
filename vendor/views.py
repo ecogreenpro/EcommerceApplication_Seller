@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from django.views.generic import DetailView, View
+from notifications.signals import notify
+
 from core.models import Products, OrderProduct, Order, Settings
 from vendor.forms import SellerRegistrationForm, AddProductForm, sellerProfile, ProfileUpdateForm, updateForm
 from vendor.mixins import SellerAccountMixin
@@ -20,6 +22,7 @@ def becomeSeller(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Seller Registration Confirmed, We Will mail you shortly')
+            notify.send(SellerRegistration.Name, recipient=request.user, verb="want to be your Seller")
             return HttpResponseRedirect('/login/')
     else:
         form = SellerRegistrationForm()
@@ -50,6 +53,7 @@ class SellerDashboard(SellerAccountMixin, View):
             form = SellerRegistrationForm()
             messages.warning(request, 'You are not a Jewellery Seller')
             return render(request, 'becomeSeller.html', {'form': form})
+
 
 def addProduct(request):
     user = request.user
@@ -114,6 +118,7 @@ class allProduct(SellerAccountMixin, View):
             }
             messages.warning(request, 'You are not a Jewellery Seller')
             return render(request, 'becomeSeller.html', context)
+
 
 @login_required(login_url='/login')
 def vendoerStockmanager(request):
@@ -234,6 +239,7 @@ class settings(SellerAccountMixin, View):
             messages.warning(request, 'You are not a Jewellery Seller')
             return render(request, 'becomeSeller.html', context)
 
+
 @login_required(login_url='/login')  # Check login
 def updateProduct(request, slug):
     product = Products.objects.filter(slug=slug).first()
@@ -270,7 +276,6 @@ def updateProduct(request, slug):
         }
         messages.warning(request, 'You are not a Jewellery Seller')
         return render(request, 'becomeSeller.html', context)
-
 
 
 @login_required(login_url='/login')  # Check login
@@ -431,3 +436,8 @@ class sellerRequestDetails(SellerAccountMixin, View):
             'total_sales': total_sales
         }
         return render(self.request, "superUser/sellerRequestDetails.html", context)
+
+
+@login_required(login_url='/login')
+def notification(request):
+    return render(request, 'notification.html')

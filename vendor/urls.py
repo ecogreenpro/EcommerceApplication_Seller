@@ -1,5 +1,7 @@
-from django.urls import path
+import notifications
+from django.urls import path, include
 from . import views
+import notifications.urls
 
 from .views import (
     vandorOrderDetails, vendoerOrderManager, sellerDetails, sellerInfoReport, sellerRequestDetails, SellerDashboard,
@@ -28,5 +30,6 @@ urlpatterns = [
     path('seller-request-details/<pk>', sellerRequestDetails.as_view(), name="sellerRequestDetails"),
     path('seller-details/<Seller_id>', sellerDetails.as_view(), name="sellerDetails"),
     path('seller-report/<Seller_id>', sellerInfoReport.as_view(), name="sellerReport"),
+    path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
 
 ]

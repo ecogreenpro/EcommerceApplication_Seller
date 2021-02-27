@@ -26,6 +26,7 @@ urlpatterns = [
                   path('', include('vendor.urls'), name='vendor'),
                   path(r'^ckeditor/', include('ckeditor_uploader.urls')),
                   path('oauth/', include('social_django.urls', namespace='social')),
+                  path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Jewellery Admin'
