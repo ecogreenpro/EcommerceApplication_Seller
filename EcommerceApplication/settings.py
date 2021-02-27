@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'widget_tweaks',
     'social_django',
-    'notifications'
+    'notifications',
+    'django_simple_coupons'
 
 
 ]
