@@ -52,6 +52,7 @@ urlpatterns = [
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
     path('brand/<slug>/', BrandView.as_view(), name='brand'),
+    path('order-complete/', views.orderComplete, name='orderComplete'),
 
 
 ]

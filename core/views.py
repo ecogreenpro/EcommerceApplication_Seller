@@ -3,6 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect
 from django.template.loader import get_template
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -13,7 +14,8 @@ from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 
 from .forms import ProfileUpdateForm, CouponApplyForm
-from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage, Balance
+from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage, \
+    Balance
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
 
@@ -202,7 +204,9 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return render(request, 'account/userprofile.html')
+                return redirect('/user-profile/', request, )
+                # url = reverse(request, 'core:userprofile',)
+                # return HttpResponseRedirect(url)
             else:
                 messages.info(request, 'Invalid Login')
         else:
@@ -633,6 +637,7 @@ def checkout(request):
 
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
         request.session['cart_items'] = 0
+        #return redirect('/order-complete/', request, {'orderCode': orderNumber})
         return render(request, 'orderComplete.html', {'orderCode': orderNumber})
 
     context = {
@@ -1045,3 +1050,27 @@ class sellerDetails(View):
                 'seller': sellerUser,
             }
             return render(self.request, "SellerDetails.html", context)
+
+
+@login_required(login_url='/login')
+def orderComplete(request):
+    setting = Settings.objects.get()
+    if request.user.is_authenticated:
+        cart = CartProducts.objects.filter(user=request.user)
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
+        context = {
+            'Settings': setting,
+            'cart': cart,
+            'total': total
+        }
+        return render(request, 'orderComplete.html', context)
+    else:
+        context = {
+            'Settings': setting,
+        }
+        return render(request, 'orderComplete.html', context)
