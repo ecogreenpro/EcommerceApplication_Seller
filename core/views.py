@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 
 from .forms import ProfileUpdateForm, CouponApplyForm
-from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage
+from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping, Settings, CarouselAdvImage, Balance
 from .models import Products, Categories, Brands
 from vendor.models import sellerProfile
 
@@ -458,6 +458,7 @@ def userOrder(request):
 @login_required(login_url='/login')
 def balance(request):
     setting = Settings.objects.get()
+    point = Balance.objects.filter(user=request.user)
     if request.user.is_authenticated:
         cart = CartProducts.objects.filter(user=request.user)
         total = 0
@@ -466,10 +467,15 @@ def balance(request):
                 total += rs.item.discountPrice * rs.quantity
             else:
                 total += rs.item.price * rs.quantity
+        total_points = 0
+        for pnt in point:
+            total_points += pnt.points
         context = {
             'Settings': setting,
             'cart': cart,
-            'total': total
+            'total': total,
+            'points': total_points,
+
         }
         return render(request, 'account/balance.html', context)
     else:
@@ -547,14 +553,17 @@ def cart(request):
             'category': category,
             'total': total,
             'Settings': setting,
-            'form':form,
+            'form': form,
         }
     else:
         context = {"empty": True, 'Settings': setting}
 
     return render(request, 'cart.html', context)
 
+
 from notifications.signals import notify
+
+
 @login_required(login_url='/login')
 def checkout(request):
     current_user = request.user
@@ -563,6 +572,7 @@ def checkout(request):
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
     setting = Settings.objects.get()
+    checkUser = Balance.objects.filter(user=request.user)
     total = 100
 
     for rs in cart:
@@ -589,7 +599,6 @@ def checkout(request):
         data.order_Number = orderNumber
         data.save()
 
-
         for rs in cart:
             productDetails = OrderProduct()
             product = Products.objects.get(id=rs.item_id)
@@ -603,6 +612,21 @@ def checkout(request):
                 productDetails.price = rs.item.price
             productDetails.amount = rs.get_final_price
             product.stockQuantity -= rs.quantity
+            if checkUser:
+                control = 1
+            else:
+                control = 0
+
+            if control == 1:
+                pnt = Balance.objects.get(user=request.user)
+                pnt.points += 2
+                pnt.save()
+            else:
+                pnt = Balance()
+                pnt.user = request.user
+                pnt.points = 2
+                pnt.save()
+
             product.save()
             productDetails.save()
             notify.send(request.user, recipient=product.user, verb="Ordered Your Product")

@@ -1,132 +1,182 @@
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>My Balance | Jewellery</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<title>{{user.first_name}} {{user.last_name}} | Jewellery | Jewellery.com.bd</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+{%include 'header.html'%}
+<style>
+    .my-coin .my-coin__content .bg-img {
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+        background-color: #ffb72c !important;
+        background-image: linear-gradient(315deg, #ffb72c 0%, #e03a00 74%) !important;
+        background-size: 100%;
+        height: 214px;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid #ffb72c;
+    }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+    .my-coin .my-coin__content .bg-img .overlay-text p {
+        color: #FFFFFF;
+    }
+
+    .my-coin .my-coin__content .bg-img .overlay-text p.ttl {
+        font-size: 30px;
+    }
 
 
+    .my-coin .my-coin__content .bg-img .overlay-text p.des {
+        font-size: 20px;
+        margin-top: -5px;
+        padding-bottom: 10px;
+    }
 
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
-</head>
-<header>
-    {%include 'header.html'%}
-</header>
-<main role="main">
-    <body>
+    .my-coin .my-coin__content .bg-img .overlay-text p.des2 {
+        font-size: 20px;
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
 
-    <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        {%include "sideNav.html"%}
-        <!--Main View Start-->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <main role="main"><br>
+    .my-coin .my-coin__content .bg-img .overlay-text p.des3 {
+        font-size: 20px;
+        margin-top: -35px;
+    }
 
 
-                    <div class="py-3 text-center alert alert-primary">
-                        <h2>Your Balance Summary</h2>
+    .my-coin .my-coin__content .bg-img .overlay-text p.point {
+        font-size: 70px;
+        margin-top: -45px;
+        padding-left: 1px;
+        color: #FFFFFF;
+    }
+
+
+    .my-coin .my-coin__content .bg-img .overlay-text p {
+        color: #FFFFFF;
+    }
+
+    .my-coin .my-coin__heading p {
+        font-size: 120%;
+        color: #666666;
+    }
+
+    .pt-1, .py-1 {
+        padding-top: 0.25rem !important;
+    }
+
+</style>
+
+<body>
+<main class="ps-page--my-account">
+    <section class="ps-section--account">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ps-section__left">
+                        <aside class="ps-widget--account-dashboard">
+                            <div class="ps-widget__header"><img src="{{user.userprofile.image.url}}"
+                                                                alt="{{user.first_name}}" class="rounded-circle"
+                                                                width="150">
+                                <figure>
+                                    <figcaption>Hello</figcaption>
+                                    <p>{{user.email}}</p>
+                                </figure>
+                            </div>
+                            <div class="ps-widget__content">
+                                <ul>
+                                    <li><a href="{% url 'core:userprofile' %}"><i class="icon-user"></i>
+                                        Account Information</a></li>
+                                    <li><a href="{% url 'core:userOrder' %}"><i class="icon-papers"></i> My Orders</a>
+                                    </li>
+                                    <li><a href="{% url 'core:chat' %}"><i class="icon-paper-plane"></i> Chat</a>
+                                    </li>
+
+                                    <li class="active"><a href="{% url 'core:points' %}"><i
+                                            class="icon-coin-dollar"></i>
+                                        Jewellery Points</a></li>
+                                    {% if user.sellerprofile.isSeller %}
+                                    <li class="list-group-item">
+                                        <a class=" btn btn-outline-primary alert-warnings "
+                                           href="{% url 'vendorDashboard' %}">
+                                            <i class="fas fa-tachometer-alt"></i>
+                                            Go to Vendor Dashboard
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                    <li><a href="{% url 'core:changePassword' %}"><i class="icon-power-switch"></i>Change
+                                        Password</a>
+                                    <li><a href="{% url 'core:logout' %}"><i class="icon-power-switch"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                        </aside>
                     </div>
-                    <hr>
-                    <div class="card text-Black alert-success  mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-center">Vertual Balance</div>
-                        <div class="card-body">
-                            <h5 class="card-title"> Your Balance is 0 Tk</h5>
+                </div>
+                <div class="col-lg-8">
+                    <div class="ps-section__right">
+                        <form method="POST" enctype="multipart/form-data" action="/updateProfile/"
+                              class="ps-form--account-setting">
+                            {% csrf_token %}
+                            <div class="ps-form__header">
+                                <h3> My Jewellery Points</h3>
+                            </div>
+                            <br>
+
+
+                        </form>
+                        <div>
+                            <section class="my-coin">
+
+                                <div class="my-coin__content">
+                                    <div class="bg-img">
+                                        <div class="overlay-text">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <p class="ttl">Hello!</p>
+                                                        <p class="des">You have Jewellery points to use</p>
+
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="des2">Available</p>
+                                                        <p class="point">{{points}}</p>
+                                                        <p class="des3">Points</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="text-center p-4">
+                                        <form action="">
+                                            <div class="row">
+                                                <div class="col-12 value">
+                                                    <h4>Jewellery Points Value: <span>10 Jewellery Points = 1 Taka</span>
+                                                    </h4>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-outline-success">Cash your
+                                                        points in Jewellery Balance
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>-->
+
+                                </div>
+                            </section>
                         </div>
-
-
                     </div>
-                    <h2>Transaction History</h2>
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Ammount</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Transaction Id</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>5000 Tk</td>
-                            <td>11/11/2020</td>
-                            <td>Withdrawn</td>
-                            <td>thskalzxxjaj23</td>
-
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>500 Tk</td>
-                            <td>07/11/2020</td>
-                            <td>Bonus</td>
-                            <td>thskalzxxjaj23</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>5000 Tk</td>
-                            <td>06/11/2020</td>
-                            <td>Cashback</td>
-                            <td>thskalzxxjaj23</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                </div>
             </div>
+        </div>
+    </section>
 
 </main>
-</div>
-</div>
-
-</main>
-</div>
-
-</div>
-<!--Main View End-->
-</div>
-
-
 </body>
 
-<!-- FOOTER -->
-<footer>{% include 'footer.html'%}</footer>
 
-</main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/dashboard.js' %}"></script>
-</body>
+{% include 'footer.html'%}
+
+
 </html>

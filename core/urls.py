@@ -47,6 +47,7 @@ urlpatterns = [
     path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
     path('jewelry-seller/<Seller_id>/', sellerDetails.as_view(), name='sellerDetails'),
     path('chat/', views.chat, name="chat"),
+    path('jewellery-points/', views.balance, name="points"),
     path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),

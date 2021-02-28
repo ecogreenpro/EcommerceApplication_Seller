@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping, OrderProduct, \
-    Settings, CarouselAdvImage
+    Settings, CarouselAdvImage, Balance
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -130,6 +130,12 @@ class CarouselAdvImageAdmin(admin.ModelAdmin):
 
     ]
 
+class BalanceAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'points'
+    ]
+    search_fields = ['user']
 
 admin.site.register(CarouselAdvImage, CarouselAdvImageAdmin)
 admin.site.register(Settings, settingsAdmin)
@@ -141,3 +147,4 @@ admin.site.register(Shipping, ShippingAdmin)
 admin.site.register(Order, OderAdmin)
 admin.site.register(OrderProduct, OrderProductAdmin)
 admin.site.register(userProfile, userProfileAdmin)
+admin.site.register(Balance, BalanceAdmin)

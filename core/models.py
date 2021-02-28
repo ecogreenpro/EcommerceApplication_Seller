@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.forms import EmailField
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
 from django_countries.fields import CountryField
@@ -178,7 +177,7 @@ class Order(models.Model):
 
     payment = models.CharField(choices=Payment_Choices, max_length=20, null=True)
     coupon = models.ForeignKey(
-         Coupon, on_delete=models.SET_NULL, blank=True, null=True)
+        Coupon, on_delete=models.SET_NULL, blank=True, null=True)
     shipping = models.ForeignKey(
         'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20, null=True)
@@ -312,3 +311,11 @@ class CarouselAdvImage(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Balance(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    points = models.FloatField(null=True)
+
+    def __str__(self):
+        return self.user
